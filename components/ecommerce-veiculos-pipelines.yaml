@@ -2,9 +2,9 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: ecommerce-veiculos-pipelines
-  title: E-commerce Veículos - CI/CD Pipelines
-  description: Workflows e pipelines de CI/CD compartilhados para todos os repositórios
-  tags: [devops, cicd, pipelines, automation]
+  title: E-commerce Veículos - CI/CD Pipelines & Automation
+  description: Workflows de CI/CD e automação inteligente de documentação usando Claude API
+  tags: [devops, cicd, pipelines, automation, documentation, claude-api]
   annotations:
     github.com/project-slug: emingues-xx/ecommerce-veiculos-pipelines
 spec:

@@ -8,3 +8,9 @@ metadata:
 spec:
   owner: squad-vitrine
   domain: ecommerce-veiculos
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: github
+      target: emingues-xx/catalog

@@ -1,0 +1,27 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: backoffice-veiculos-api
+  title: Backoffice de Veículos API
+  description: API REST para operações administrativas de veículos
+  tags: [api, rest, admin, backoffice]
+spec:
+  type: openapi
+  lifecycle: production
+  owner: squad-backoffice
+  system: backoffice-veiculos
+  definition: |
+    openapi: 3.0.3
+    info:
+      title: Backoffice de Veículos API
+      version: 1.0.0
+      description: API para operações administrativas e CRUD de veículos
+    paths:
+      /api/admin/vehicles:
+        post:
+          summary: Cadastra novo veículo
+          security:
+            - bearerAuth: []
+          responses:
+            '201':
+              description: Veículo cadastrado com sucesso

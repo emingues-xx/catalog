@@ -7,3 +7,9 @@ metadata:
   tags: [ecommerce, veiculos]
 spec:
   owner: tribe-ecommerce
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: github
+      target: emingues-xx/catalog

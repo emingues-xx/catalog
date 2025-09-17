@@ -1,0 +1,1679 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica do domínio E-commerce de Veículos">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Arquitetura - Sistema Backoffice de Veículos - E-commerce de Veículos - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitetura-sistema-backoffice-de-veiculos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="E-commerce de Veículos - Documentação" class="md-header__button md-logo" aria-label="E-commerce de Veículos - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            E-commerce de Veículos - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitetura - Sistema Backoffice de Veículos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/emingues-xx/catalog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    emingues-xx/catalog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vitrine-veiculos/" class="md-tabs__link">
+          
+  
+  
+  Sistemas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../components/vitrine-veiculos-web/" class="md-tabs__link">
+          
+  
+  
+  Componentes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../guides/contributing/" class="md-tabs__link">
+          
+  
+  
+  Guias
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="E-commerce de Veículos - Documentação" class="md-nav__button md-logo" aria-label="E-commerce de Veículos - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    E-commerce de Veículos - Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/emingues-xx/catalog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    emingues-xx/catalog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sistemas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sistemas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vitrine-veiculos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vitrine de Veículos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backoffice de Veículos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Componentes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Vitrine
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Vitrine
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vitrine-veiculos-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    vitrine-veiculos-web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vitrine-veiculos-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    vitrine-veiculos-api
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vitrine-veiculos-bff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    vitrine-veiculos-bff
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Backoffice
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Backoffice
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/backoffice-veiculos-web/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    backoffice-veiculos-web
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/backoffice-veiculos-api/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    backoffice-veiculos-api
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/backoffice-veiculos-bff/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    backoffice-veiculos-bff
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Bibliotecas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bibliotecas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/ecommerce-veiculos-shared/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ecommerce-veiculos-shared
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/ecommerce-veiculos-ui-components/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ecommerce-veiculos-ui-components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/ecommerce-veiculos-pipelines/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ecommerce-veiculos-pipelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Arquitetura
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão Geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ADRs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            ADRs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sobre ADRs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guias
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guias
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Componentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-backoffice-veiculos-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frontend (backoffice-veiculos-web)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bff-backoffice-veiculos-bff" class="md-nav__link">
+    <span class="md-ellipsis">
+      BFF (backoffice-veiculos-bff)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-core-backoffice-veiculos-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Core (backoffice-veiculos-api)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitetura de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autorizacao-rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autorização (RBAC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auditoria
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fluxo de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluxo de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operacoes-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operações CRUD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Banco de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Banco de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estratégias de Performance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache Strategy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-layer-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-layer Caching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoramento-e-observabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoramento e Observabilidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoramento e Observabilidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apm-application-performance-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      APM (Application Performance Monitoring)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de Negócio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-e-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup e Disaster Recovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup e Disaster Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-3-2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estratégia 3-2-1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rporto-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPO/RTO Targets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-e-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compliance e Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compliance e Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lgpd-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      LGPD Compliance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Standards
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/emingues-xx/catalog/edit/master/docs/systems/backoffice-veiculos/arquitetura.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="arquitetura-sistema-backoffice-de-veiculos">Arquitetura - Sistema Backoffice de Veículos<a class="headerlink" href="#arquitetura-sistema-backoffice-de-veiculos" title="Permanent link">&para;</a></h1>
+<p>Visão técnica da arquitetura do sistema administrativo interno.</p>
+<h2 id="visao-geral">Visão Geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
+<p>Sistema administrativo robusto com foco em segurança, auditoria e performance para operações internas de gestão de anúncios e vendas.</p>
+<h2 id="componentes">Componentes<a class="headerlink" href="#componentes" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-backoffice-veiculos-web">Frontend (backoffice-veiculos-web)<a class="headerlink" href="#frontend-backoffice-veiculos-web" title="Permanent link">&para;</a></h3>
+<p><strong>Tecnologia</strong>: React 18 + Next.js 14 + TypeScript + Material-UI</p>
+<p><strong>Responsabilidades</strong>:
+- Interface administrativa responsiva
+- Gestão de estado complexo (Redux Toolkit)
+- Dashboards interativos
+- Formulários dinâmicos com validação</p>
+<p><strong>Características</strong>:
+- Server Side Rendering para SEO interno
+- Role-based component rendering
+- Real-time updates via WebSockets
+- Progressive Web App (PWA)</p>
+<h3 id="bff-backoffice-veiculos-bff">BFF (backoffice-veiculos-bff)<a class="headerlink" href="#bff-backoffice-veiculos-bff" title="Permanent link">&para;</a></h3>
+<p><strong>Tecnologia</strong>: Node.js + Express + TypeScript</p>
+<p><strong>Responsabilidades</strong>:
+- Agregação de dados para dashboards
+- Transformação de dados complexos
+- Cache de relatórios pesados
+- Rate limiting por usuário/role</p>
+<p><strong>Endpoints principais</strong>:
+- <code>/api/dashboard</code> - Métricas consolidadas
+- <code>/api/reports</code> - Relatórios customizados
+- <code>/api/users/profile</code> - Perfil do usuário
+- <code>/api/notifications</code> - Central de notificações</p>
+<h3 id="api-core-backoffice-veiculos-api">API Core (backoffice-veiculos-api)<a class="headerlink" href="#api-core-backoffice-veiculos-api" title="Permanent link">&para;</a></h3>
+<p><strong>Tecnologia</strong>: Node.js + Fastify + TypeScript</p>
+<p><strong>Responsabilidades</strong>:
+- CRUD completo de entidades
+- Lógica de negócio complexa
+- Sistema de permissões (RBAC)
+- Auditoria de todas as operações</p>
+<h2 id="arquitetura-de-seguranca">Arquitetura de Segurança<a class="headerlink" href="#arquitetura-de-seguranca" title="Permanent link">&para;</a></h2>
+<h3 id="autenticacao">Autenticação<a class="headerlink" href="#autenticacao" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Usuário → Login → JWT Token → Refresh Token → Session Management
+</code></pre></div></td></tr></table></div>
+<p><strong>Fluxo de Login</strong>:
+1. Credenciais enviadas via HTTPS
+2. Validação contra Active Directory/LDAP
+3. Geração de JWT + Refresh Token
+4. Armazenamento seguro no cliente
+5. Renovação automática de tokens</p>
+<h3 id="autorizacao-rbac">Autorização (RBAC)<a class="headerlink" href="#autorizacao-rbac" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>User → Role → Permissions → Resources
+</code></pre></div></td></tr></table></div>
+<p><strong>Hierarquia de Roles</strong>:
+- <strong>Super Admin</strong>: Acesso total ao sistema
+- <strong>Admin</strong>: Gestão completa exceto configurações
+- <strong>Manager</strong>: Supervisão de equipes e relatórios
+- <strong>Operator</strong>: Operações diárias limitadas
+- <strong>Viewer</strong>: Apenas visualização</p>
+<h3 id="auditoria">Auditoria<a class="headerlink" href="#auditoria" title="Permanent link">&para;</a></h3>
+<p>Todas as operações são logadas:
+- <strong>Quem</strong>: ID do usuário e role
+- <strong>O que</strong>: Ação realizada (CREATE, UPDATE, DELETE)<br />
+- <strong>Quando</strong>: Timestamp preciso
+- <strong>Onde</strong>: IP, User-Agent, localização
+- <strong>Como</strong>: Dados antes/depois da alteração</p>
+<h2 id="fluxo-de-dados">Fluxo de Dados<a class="headerlink" href="#fluxo-de-dados" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>Frontend → BFF → API Core → Database
+    ↓       ↓       ↓
+WebSocket → Cache → Audit Log
+</code></pre></div></td></tr></table></div>
+<h3 id="operacoes-crud">Operações CRUD<a class="headerlink" href="#operacoes-crud" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Create</strong>: Validação → Persistência → Auditoria → Cache invalidation</li>
+<li><strong>Read</strong>: Cache check → Database query → Response caching</li>
+<li><strong>Update</strong>: Validation → Diff generation → Update → Audit → Cache update</li>
+<li><strong>Delete</strong>: Soft delete → Audit trail → Cache invalidation</li>
+</ol>
+<h3 id="real-time-updates">Real-time Updates<a class="headerlink" href="#real-time-updates" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>WebSockets</strong>: Para dashboards em tempo real</li>
+<li><strong>Server-Sent Events</strong>: Para notificações</li>
+<li><strong>Polling</strong>: Fallback para conexões instáveis</li>
+</ul>
+<h2 id="banco-de-dados">Banco de Dados<a class="headerlink" href="#banco-de-dados" title="Permanent link">&para;</a></h2>
+<h3 id="estrutura-principal">Estrutura Principal<a class="headerlink" href="#estrutura-principal" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Entidades principais</span>
+<span class="n">veiculos</span><span class="p">:</span><span class="w"> </span><span class="n">Dados</span><span class="w"> </span><span class="n">dos</span><span class="w"> </span><span class="n">veículos</span>
+<span class="n">usuarios</span><span class="p">:</span><span class="w"> </span><span class="n">Usuários</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">sistema</span><span class="w">  </span>
+<span class="n">roles</span><span class="p">:</span><span class="w"> </span><span class="n">Perfis</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">acesso</span>
+<span class="n">permissions</span><span class="p">:</span><span class="w"> </span><span class="n">Permissões</span><span class="w"> </span><span class="n">específicas</span>
+<span class="n">audit_log</span><span class="p">:</span><span class="w"> </span><span class="n">Log</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">auditoria</span>
+
+<span class="c1">-- Relacionamentos</span>
+<span class="n">user_roles</span><span class="p">:</span><span class="w"> </span><span class="n">N</span><span class="p">:</span><span class="n">N</span><span class="w"> </span><span class="n">usuários</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="n">roles</span>
+<span class="n">role_permissions</span><span class="p">:</span><span class="w"> </span><span class="n">N</span><span class="p">:</span><span class="n">N</span><span class="w"> </span><span class="n">roles</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="n">permissões</span>
+<span class="n">veiculo_historico</span><span class="p">:</span><span class="w"> </span><span class="n">Histórico</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">alterações</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="estrategias-de-performance">Estratégias de Performance<a class="headerlink" href="#estrategias-de-performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Índices compostos</strong>: Para queries complexas de relatórios</li>
+<li><strong>Particionamento</strong>: Logs de auditoria por data</li>
+<li><strong>Read replicas</strong>: Para relatórios pesados</li>
+<li><strong>Connection pooling</strong>: Pool otimizado por ambiente</li>
+</ul>
+<h2 id="cache-strategy">Cache Strategy<a class="headerlink" href="#cache-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="multi-layer-caching">Multi-layer Caching<a class="headerlink" href="#multi-layer-caching" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Browser Cache → CDN → Application Cache → Database Cache
+</code></pre></div></td></tr></table></div>
+<p><strong>Camadas</strong>:
+1. <strong>Browser</strong>: Assets estáticos (1 dia)
+2. <strong>CDN</strong>: Imagens otimizadas (7 dias)<br />
+3. <strong>Redis</strong>: Dados de aplicação (variável por tipo)
+4. <strong>Database</strong>: Query cache nativo</p>
+<p><strong>Políticas por Tipo</strong>:
+- <strong>Dashboards</strong>: 5 minutos TTL
+- <strong>Relatórios</strong>: 30 minutos TTL
+- <strong>Listas estáticas</strong>: 1 hora TTL
+- <strong>Permissões</strong>: 15 minutos TTL</p>
+<h2 id="monitoramento-e-observabilidade">Monitoramento e Observabilidade<a class="headerlink" href="#monitoramento-e-observabilidade" title="Permanent link">&para;</a></h2>
+<h3 id="apm-application-performance-monitoring">APM (Application Performance Monitoring)<a class="headerlink" href="#apm-application-performance-monitoring" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>New Relic</strong>: Performance e erros</li>
+<li><strong>DataDog</strong>: Métricas de infraestrutura</li>
+<li><strong>Sentry</strong>: Error tracking e alertas</li>
+</ul>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>Application Logs → Fluentd → ElasticSearch → Kibana
+Security Logs → SIEM → SOC Alerts
+</code></pre></div></td></tr></table></div>
+<p><strong>Estrutura de Logs</strong>:
+- <strong>Level</strong>: DEBUG, INFO, WARN, ERROR, FATAL
+- <strong>Context</strong>: User ID, Request ID, Session
+- <strong>Performance</strong>: Response time, memory usage
+- <strong>Security</strong>: Authentication attempts, permission checks</p>
+<h3 id="metricas-de-negocio">Métricas de Negócio<a class="headerlink" href="#metricas-de-negocio" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>SLA</strong>: Uptime &gt; 99.9%</li>
+<li><strong>Performance</strong>: Response time &lt; 500ms (p95)</li>
+<li><strong>Security</strong>: Zero critical vulnerabilities</li>
+<li><strong>User Experience</strong>: System usability score &gt; 4.5/5</li>
+</ul>
+<h2 id="backup-e-disaster-recovery">Backup e Disaster Recovery<a class="headerlink" href="#backup-e-disaster-recovery" title="Permanent link">&para;</a></h2>
+<h3 id="estrategia-3-2-1">Estratégia 3-2-1<a class="headerlink" href="#estrategia-3-2-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>3 cópias</strong>: Original + 2 backups</li>
+<li><strong>2 mídias</strong>: Local SSD + Cloud storage</li>
+<li><strong>1 offsite</strong>: Backup geográfico</li>
+</ul>
+<h3 id="rporto-targets">RPO/RTO Targets<a class="headerlink" href="#rporto-targets" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RPO</strong>: Recovery Point Objective &lt; 1 hora</li>
+<li><strong>RTO</strong>: Recovery Time Objective &lt; 4 horas</li>
+<li><strong>Testes</strong>: Monthly disaster recovery drills</li>
+</ul>
+<h2 id="compliance-e-seguranca">Compliance e Segurança<a class="headerlink" href="#compliance-e-seguranca" title="Permanent link">&para;</a></h2>
+<h3 id="lgpd-compliance">LGPD Compliance<a class="headerlink" href="#lgpd-compliance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consentimento explícito para dados pessoais</li>
+<li>Right to be forgotten implementation</li>
+<li>Data portability features</li>
+<li>Privacy by design architecture</li>
+</ul>
+<h3 id="security-standards">Security Standards<a class="headerlink" href="#security-standards" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>OWASP Top 10</strong>: Proteção implementada</li>
+<li><strong>ISO 27001</strong>: Compliance de segurança</li>
+<li><strong>PCI DSS</strong>: Para dados de pagamento</li>
+<li><strong>SOC 2 Type II</strong>: Auditoria de controles</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.footer", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../../search/main.js"></script>
+      
+    
+  </body>
+</html>

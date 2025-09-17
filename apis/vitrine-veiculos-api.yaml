@@ -1,0 +1,47 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: vitrine-veiculos-api
+  title: Vitrine de Veículos API
+  description: API REST para consultas públicas de veículos
+  tags: [api, rest, vehicles, public]
+spec:
+  type: openapi
+  lifecycle: production
+  owner: squad-vitrine
+  system: vitrine-veiculos
+  definition: |
+    openapi: 3.0.3
+    info:
+      title: Vitrine de Veículos API
+      version: 1.0.0
+      description: API REST para consultas públicas, busca e filtros de veículos
+    servers:
+      - url: https://api-vitrine.veiculos.com
+        description: Production
+      - url: http://localhost:3001
+        description: Development
+    paths:
+      /api/vehicles:
+        get:
+          summary: Lista veículos
+          description: Retorna lista paginada de veículos com filtros opcionais
+          parameters:
+            - name: page
+              in: query
+              schema:
+                type: integer
+                default: 1
+            - name: limit
+              in: query
+              schema:
+                type: integer
+                default: 20
+                maximum: 50
+            - name: brand
+              in: query
+              schema:
+                type: string
+          responses:
+            '200':
+              description: Lista de veículos retornada com sucesso

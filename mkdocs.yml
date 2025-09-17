@@ -1,0 +1,70 @@
+site_name: E-commerce de Veículos - Documentação
+site_description: Documentação técnica do domínio E-commerce de Veículos
+
+repo_url: https://github.com/emingues-xx/catalog
+repo_name: emingues-xx/catalog
+
+nav:
+  - Home: index.md
+  - Sistemas:
+    - Vitrine de Veículos: systems/vitrine-veiculos/index.md
+    - Backoffice de Veículos: systems/backoffice-veiculos/index.md
+  - Componentes:
+    - Vitrine:
+      - vitrine-veiculos-web: components/vitrine-veiculos-web/index.md
+      - vitrine-veiculos-api: components/vitrine-veiculos-api/index.md
+      - vitrine-veiculos-bff: components/vitrine-veiculos-bff/index.md
+    - Backoffice:
+      - backoffice-veiculos-web: components/backoffice-veiculos-web/index.md
+      - backoffice-veiculos-api: components/backoffice-veiculos-api/index.md
+      - backoffice-veiculos-bff: components/backoffice-veiculos-bff/index.md
+    - Bibliotecas:
+      - ecommerce-veiculos-shared: components/ecommerce-veiculos-shared/index.md
+      - ecommerce-veiculos-ui-components: components/ecommerce-veiculos-ui-components/index.md
+      - ecommerce-veiculos-pipelines: components/ecommerce-veiculos-pipelines/index.md
+  - Arquitetura:
+    - Visão Geral: architecture/overview.md
+    - ADRs: 
+      - Sobre ADRs: architecture/adrs/index.md
+  - Guias:
+    - Contribuição: guides/contributing.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+  - techdocs-core
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - toc:
+      permalink: true

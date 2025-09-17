@@ -10,6 +10,10 @@ spec:
     - ./systems/vitrine-veiculos.yaml
     - ./systems/backoffice-veiculos.yaml
     - ./owners/groups.yaml
+    - ./apis/vitrine-veiculos-api.yaml
+    - ./apis/vitrine-veiculos-bff-api.yaml
+    - ./apis/backoffice-veiculos-api.yaml
+    - ./apis/backoffice-veiculos-bff-api.yaml
     - ./components/vitrine-veiculos-web.yaml
     - ./components/vitrine-veiculos-api.yaml
     - ./components/vitrine-veiculos-bff.yaml

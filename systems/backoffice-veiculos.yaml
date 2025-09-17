@@ -8,3 +8,9 @@ metadata:
 spec:
   owner: squad-backoffice
   domain: ecommerce-veiculos
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: github
+      target: emingues-xx/catalog
