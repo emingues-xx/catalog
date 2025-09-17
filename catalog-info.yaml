@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: catalog-root
+  description: Raiz do catálogo de E-commerce de veículos
+spec:
+  type: url
+  targets:
+    - ./domains/ecommerce-veiculos.yaml
+    - ./systems/vitrine-veiculos.yaml
+    - ./systems/backoffice-veiculos.yaml
+    - ./owners/groups.yaml

@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: tribe-ecommerce
+  title: Tribo de E-commerce
+  description: Grupo responsável pelo domínio de E-commerce de veículos.
+spec:
+  type: team
+  profile:
+    displayName: Tribo E-commerce
+  children: [squad-vitrine, squad-backoffice]
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: squad-vitrine
+  title: Squad Vitrine
+  description: Time responsável pela vitrine de veículos (catálogo público).
+spec:
+  type: team
+  profile:
+    displayName: Squad Vitrine
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: squad-backoffice
+  title: Squad Backoffice
+  description: Time responsável pelo backoffice (anúncios, dashboard e vendas).
+spec:
+  type: team
+  profile:
+    displayName: Squad Backoffice

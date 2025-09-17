@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: vitrine-veiculos
+  title: Vendas de Veículos — Vitrine
+  description: Sistema responsável pela vitrine (catálogo público), busca e exibição de veículos para venda.
+  tags: [vitrine, catalogo, busca]
+spec:
+  owner: squad-vitrine
+  domain: ecommerce-veiculos

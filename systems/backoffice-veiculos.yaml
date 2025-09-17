@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: backoffice-veiculos
+  title: Backoffice de Veículos
+  description: Sistema interno para cadastro de anúncios, dashboard e acompanhamento de vendas.
+  tags: [backoffice, anuncios, vendas]
+spec:
+  owner: squad-backoffice
+  domain: ecommerce-veiculos
