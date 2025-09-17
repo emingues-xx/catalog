@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backoffice-veiculos-web
+  title: Backoffice de Veículos - Frontend
+  description: Painel administrativo React/Next.js para gestão de anúncios e vendas
+  tags: [frontend, react, nextjs, backoffice, admin]
+  annotations:
+    github.com/project-slug: emingues-xx/backoffice-veiculos-web
+spec:
+  type: website
+  lifecycle: production
+  owner: squad-backoffice
+  system: backoffice-veiculos
+  dependsOn:
+    - component:backoffice-veiculos-bff
+    - component:ecommerce-veiculos-ui-components
+    - component:ecommerce-veiculos-shared

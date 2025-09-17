@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backoffice-veiculos-api
+  title: Backoffice de Veículos - API
+  description: API Node.js para CRUD de anúncios, usuários e acompanhamento de vendas
+  tags: [backend, nodejs, api, backoffice, admin]
+  annotations:
+    github.com/project-slug: emingues-xx/backoffice-veiculos-api
+spec:
+  type: service
+  lifecycle: production
+  owner: squad-backoffice
+  system: backoffice-veiculos
+  providesApis:
+    - backoffice-veiculos-api
+  dependsOn:
+    - component:ecommerce-veiculos-shared

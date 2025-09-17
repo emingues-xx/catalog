@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ecommerce-veiculos-ui-components
+  title: E-commerce Veículos - UI Components
+  description: Design system e biblioteca de componentes React compartilhados
+  tags: [library, react, design-system, ui-components]
+  annotations:
+    github.com/project-slug: emingues-xx/ecommerce-veiculos-ui-components
+spec:
+  type: library
+  lifecycle: production
+  owner: tribe-ecommerce
+  system: ecommerce-veiculos
+  dependsOn:
+    - component:ecommerce-veiculos-shared
