@@ -11,5 +11,5 @@ spec:
     builder: mkdocs
     generator: techdocs
     publisher:
-      type: github
-      target: emingues-xx/catalog
+      type: local
+      target: ./docs/architecture

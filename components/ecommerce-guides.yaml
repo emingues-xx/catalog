@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ecommerce-guides
+  title: E-commerce - Guias e Documentação
+  description: Guias de contribuição, desenvolvimento e boas práticas do e-commerce de veículos
+  tags: [documentation, guides, contributing]
+spec:
+  type: documentation
+  lifecycle: production
+  owner: tribe-ecommerce
+  system: ecommerce-veiculos
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs/guides

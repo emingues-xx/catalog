@@ -12,3 +12,9 @@ spec:
   lifecycle: production
   owner: tribe-ecommerce
   system: ecommerce-veiculos
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs/components/ecommerce-veiculos-pipelines

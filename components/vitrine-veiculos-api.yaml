@@ -16,3 +16,9 @@ spec:
     - vitrine-veiculos-api
   dependsOn:
     - component:ecommerce-veiculos-shared
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs/components/vitrine-veiculos-api

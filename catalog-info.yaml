@@ -24,3 +24,4 @@ spec:
     - ./components/ecommerce-veiculos-ui-components.yaml
     - ./components/ecommerce-veiculos-pipelines.yaml
     - ./components/ecommerce-docs.yaml
+    - ./components/ecommerce-guides.yaml
