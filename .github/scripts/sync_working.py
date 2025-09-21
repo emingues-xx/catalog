@@ -172,6 +172,29 @@ class OutlineSyncWorking:
             print(f"❌ Erro ao buscar documento '{title}': {e}")
             return None
 
+    def _get_document_info(self, doc_id: str) -> Optional[Dict[str, Any]]:
+        """Obtém informações de um documento pelo ID"""
+        try:
+            test_data = {"id": ""}
+            response = requests.post(
+                f'{self.api_url}/api/documents.list',
+                headers=self.headers,
+                json=test_data,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                documents = data.get('data', [])
+                for doc in documents:
+                    if doc.get('id') == doc_id:
+                        return doc
+            
+            return None
+        except Exception as e:
+            print(f"❌ Erro ao obter informações do documento '{doc_id}': {e}")
+            return None
+
     def _create_parent_document(self, title: str, collection_id: str) -> Optional[str]:
         """Cria um documento pai vazio quando necessário"""
         try:
@@ -245,26 +268,51 @@ class OutlineSyncWorking:
                     parent_document_id = self._create_parent_document(parent_document_title, collection_id)
             
             if doc_id:
-                # Atualizar documento existente
-                data = {
-                    'id': doc_id,
-                    'text': enhanced_content,
-                    'readonly': True,
-                    'collectionId': collection_id
-                }
-                
-                # Adicionar parentId se especificado
-                if parent_document_id:
-                    data['parentDocumentId'] = parent_document_id
-                
-                response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
-                
-                if response.status_code in [200, 201]:
-                    print(f"✅ Documento '{title}' atualizado com sucesso (readonly)")
-                    return True
+                # Verificar se o documento está na coleção correta
+                doc_info = self._get_document_info(doc_id)
+                if doc_info and doc_info.get('collectionId') != collection_id:
+                    print(f"🔄 Migrando documento '{title}' para nova coleção")
+                    # Forçar migração para nova coleção
+                    data = {
+                        'id': doc_id,
+                        'text': enhanced_content,
+                        'readonly': True,
+                        'collectionId': collection_id
+                    }
+                    
+                    # Adicionar parentId se especificado
+                    if parent_document_id:
+                        data['parentDocumentId'] = parent_document_id
+                    
+                    response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
+                    
+                    if response.status_code in [200, 201]:
+                        print(f"✅ Documento '{title}' migrado para nova coleção com sucesso")
+                        return True
+                    else:
+                        print(f"❌ Erro ao migrar documento '{title}': {response.status_code} - {response.text}")
+                        return False
                 else:
-                    print(f"❌ Erro ao atualizar documento '{title}': {response.status_code} - {response.text}")
-                    return False
+                    # Atualizar documento existente na coleção correta
+                    data = {
+                        'id': doc_id,
+                        'text': enhanced_content,
+                        'readonly': True,
+                        'collectionId': collection_id
+                    }
+                    
+                    # Adicionar parentId se especificado
+                    if parent_document_id:
+                        data['parentDocumentId'] = parent_document_id
+                    
+                    response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
+                    
+                    if response.status_code in [200, 201]:
+                        print(f"✅ Documento '{title}' atualizado com sucesso (readonly)")
+                        return True
+                    else:
+                        print(f"❌ Erro ao atualizar documento '{title}': {response.status_code} - {response.text}")
+                        return False
             else:
                 # Criar novo documento público e readonly
                 data = {
