@@ -19,14 +19,14 @@ config:
 
 # Mapeamento específico de documentos
 documents:
-  # Documentação principal
+  # Documentação principal (Nível 0)
   "docs/index.md":
     title: "E-commerce de Veículos - Documentação"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["overview", "main"]
     description: "Documentação principal do domínio E-commerce de Veículos"
 
-  # Documentos pais (nível 1)
+  # Documentos pais (Nível 1)
   "docs/systems/index.md":
     title: "Sistemas"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -51,7 +51,7 @@ documents:
     tags: ["guide", "overview"]
     description: "Guias e tutoriais"
 
-  # Sistemas - Vitrine de Veículos (nível 2)
+  # Sistemas - Vitrine de Veículos (Nível 2)
   "docs/systems/vitrine-veiculos/index.md":
     title: "Vitrine de Veículos"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -59,7 +59,7 @@ documents:
     tags: ["system", "vitrine", "frontend"]
     description: "Documentação do sistema de vitrine de veículos"
 
-  # Sistemas - Vitrine de Veículos - Features (nível 3)
+  # Sistemas - Vitrine de Veículos - Features (Nível 3)
   "docs/systems/vitrine-veiculos/features.md":
     title: "Features"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -67,15 +67,15 @@ documents:
     tags: ["system", "vitrine", "features"]
     description: "Funcionalidades do sistema de vitrine"
 
-  # Sistemas - Vitrine de Veículos - Features - Busca (nível 4)
-  "docs/systems/vitrine-veiculos/feature-busca-veiculos.md":
+  # Sistemas - Vitrine de Veículos - Features - Busca (Nível 4)
+  "docs/systems/vitrine-veiculos/features/busca-veiculos.md":
     title: "Busca de Veículos"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Features"
     tags: ["system", "vitrine", "feature", "search"]
     description: "Documentação da funcionalidade de busca de veículos"
 
-  # Sistemas - Vitrine de Veículos - Arquitetura (nível 3)
+  # Sistemas - Vitrine de Veículos - Arquitetura (Nível 3)
   "docs/systems/vitrine-veiculos/arquitetura.md":
     title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -83,7 +83,7 @@ documents:
     tags: ["system", "vitrine", "architecture"]
     description: "Arquitetura detalhada do sistema de vitrine"
 
-  # Sistemas - Backoffice de Veículos (nível 2)
+  # Sistemas - Backoffice de Veículos (Nível 2)
   "docs/systems/backoffice-veiculos/index.md":
     title: "Backoffice de Veículos"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -91,7 +91,7 @@ documents:
     tags: ["system", "backoffice", "admin"]
     description: "Documentação do sistema de backoffice de veículos"
 
-  # Sistemas - Backoffice de Veículos - Features (nível 3)
+  # Sistemas - Backoffice de Veículos - Features (Nível 3)
   "docs/systems/backoffice-veiculos/features.md":
     title: "Features"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -99,15 +99,15 @@ documents:
     tags: ["system", "backoffice", "features"]
     description: "Funcionalidades do sistema de backoffice"
 
-  # Sistemas - Backoffice de Veículos - Features - Cadastro (nível 4)
-  "docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md":
+  # Sistemas - Backoffice de Veículos - Features - Cadastro (Nível 4)
+  "docs/systems/backoffice-veiculos/features/cadastro-anuncio.md":
     title: "Cadastro de Anúncios"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Features"
     tags: ["system", "backoffice", "feature", "ads"]
     description: "Documentação da funcionalidade de cadastro de anúncios"
 
-  # Sistemas - Backoffice de Veículos - Arquitetura (nível 3)
+  # Sistemas - Backoffice de Veículos - Arquitetura (Nível 3)
   "docs/systems/backoffice-veiculos/arquitetura.md":
     title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -115,7 +115,7 @@ documents:
     tags: ["system", "backoffice", "architecture"]
     description: "Arquitetura detalhada do sistema de backoffice"
 
-  # Componentes - Vitrine Web (nível 2)
+  # Componentes - Vitrine Web (Nível 2)
   "docs/components/vitrine-veiculos-web/index.md":
     title: "Vitrine Web"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -123,7 +123,7 @@ documents:
     tags: ["component", "vitrine", "web", "frontend"]
     description: "Documentação do componente web da vitrine"
 
-  # Componentes - Vitrine Web - Arquitetura (nível 3)
+  # Componentes - Vitrine Web - Arquitetura (Nível 3)
   "docs/components/vitrine-veiculos-web/arquitetura.md":
     title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -131,7 +131,7 @@ documents:
     tags: ["component", "vitrine", "web", "architecture"]
     description: "Arquitetura do componente web da vitrine"
 
-  # Componentes - Vitrine Web - Architecture (nível 3) - arquivo existente
+  # Componentes - Vitrine Web - Architecture (Nível 3)
   "docs/components/vitrine-veiculos-web/architecture.md":
     title: "Architecture"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -139,7 +139,7 @@ documents:
     tags: ["component", "vitrine", "web", "architecture"]
     description: "Architecture do componente web da vitrine"
 
-  # Componentes - Vitrine Web - Setup (nível 3)
+  # Componentes - Vitrine Web - Setup (Nível 3)
   "docs/components/vitrine-veiculos-web/setup.md":
     title: "Setup"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -147,7 +147,7 @@ documents:
     tags: ["component", "vitrine", "web", "setup"]
     description: "Guia de configuração do componente web da vitrine"
 
-  # Componentes - Vitrine API (nível 2)
+  # Componentes - Vitrine API (Nível 2)
   "docs/components/vitrine-veiculos-api/index.md":
     title: "Vitrine API"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -155,7 +155,7 @@ documents:
     tags: ["component", "vitrine", "api", "backend"]
     description: "Documentação da API da vitrine"
 
-  # Componentes - Vitrine API - API Reference (nível 3)
+  # Componentes - Vitrine API - API Reference (Nível 3)
   "docs/components/vitrine-veiculos-api/api-reference.md":
     title: "API Reference"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -163,7 +163,7 @@ documents:
     tags: ["component", "vitrine", "api", "reference"]
     description: "Referência da API da vitrine"
 
-  # Componentes - Vitrine API - API (nível 3) - arquivo existente
+  # Componentes - Vitrine API - API (Nível 3)
   "docs/components/vitrine-veiculos-api/api.md":
     title: "API"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -171,7 +171,7 @@ documents:
     tags: ["component", "vitrine", "api", "documentation"]
     description: "Documentação da API da vitrine"
 
-  # Componentes - Vitrine BFF (nível 2)
+  # Componentes - Vitrine BFF (Nível 2)
   "docs/components/vitrine-veiculos-bff/index.md":
     title: "Vitrine BFF"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -179,7 +179,7 @@ documents:
     tags: ["component", "vitrine", "bff", "backend"]
     description: "Documentação do BFF da vitrine"
 
-  # Componentes - Backoffice Web (nível 2)
+  # Componentes - Backoffice Web (Nível 2)
   "docs/components/backoffice-veiculos-web/index.md":
     title: "Backoffice Web"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -187,7 +187,7 @@ documents:
     tags: ["component", "backoffice", "web", "admin"]
     description: "Documentação do componente web do backoffice"
 
-  # Componentes - Backoffice API (nível 2)
+  # Componentes - Backoffice API (Nível 2)
   "docs/components/backoffice-veiculos-api/index.md":
     title: "Backoffice API"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -195,7 +195,7 @@ documents:
     tags: ["component", "backoffice", "api", "admin"]
     description: "Documentação da API do backoffice"
 
-  # Componentes - Backoffice BFF (nível 2)
+  # Componentes - Backoffice BFF (Nível 2)
   "docs/components/backoffice-veiculos-bff/index.md":
     title: "Backoffice BFF"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -203,7 +203,7 @@ documents:
     tags: ["component", "backoffice", "bff", "admin"]
     description: "Documentação do BFF do backoffice"
 
-  # Componentes - Pipelines E-commerce (nível 2)
+  # Componentes - Pipelines E-commerce (Nível 2)
   "docs/components/ecommerce-veiculos-pipelines/index.md":
     title: "Pipelines E-commerce"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -211,7 +211,7 @@ documents:
     tags: ["component", "pipelines", "ci-cd", "automation"]
     description: "Documentação dos pipelines de CI/CD"
 
-  # Componentes - Pipelines E-commerce - Automação (nível 3)
+  # Componentes - Pipelines E-commerce - Automação (Nível 3)
   "docs/components/ecommerce-veiculos-pipelines/automation.md":
     title: "Automação - Pipelines"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -219,7 +219,7 @@ documents:
     tags: ["component", "pipelines", "automation"]
     description: "Documentação da automação dos pipelines"
 
-  # Componentes - Pipelines E-commerce - Workflows (nível 3)
+  # Componentes - Pipelines E-commerce - Workflows (Nível 3)
   "docs/components/ecommerce-veiculos-pipelines/workflows.md":
     title: "Workflows - Pipelines"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -227,7 +227,7 @@ documents:
     tags: ["component", "pipelines", "workflows"]
     description: "Documentação dos workflows dos pipelines"
 
-  # Arquitetura - Sobre ADRs (nível 2)
+  # Arquitetura - Sobre ADRs (Nível 2)
   "docs/architecture/sobre-adrs.md":
     title: "Sobre ADRs"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -235,7 +235,7 @@ documents:
     tags: ["architecture", "adr", "decisions"]
     description: "Documentação sobre Architecture Decision Records"
 
-  # Arquitetura - ADRs Index (nível 2) - arquivo existente
+  # Arquitetura - ADRs Index (Nível 2)
   "docs/architecture/adrs/index.md":
     title: "ADRs"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -243,17 +243,17 @@ documents:
     tags: ["architecture", "adr", "decisions"]
     description: "Architecture Decision Records"
 
-  # Guias - Guia de Contribuição (nível 2)
-  "docs/guides/guia-contribuicao.md":
-    title: "Guia de Contribuição"
+  # Guias - Contributing (Nível 2)
+  "docs/guides/contributing.md":
+    title: "Contributing"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Guias"
     tags: ["guide", "contributing", "development"]
     description: "Guia para contribuir com o projeto"
 
-  # Guias - Contributing (nível 2) - arquivo existente
-  "docs/guides/contributing.md":
-    title: "Contributing"
+  # Guias - Guia de Contribuição (Nível 2)
+  "docs/guides/guia-contribuicao.md":
+    title: "Guia de Contribuição"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Guias"
     tags: ["guide", "contributing", "development"]
