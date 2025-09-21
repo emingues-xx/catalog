@@ -26,7 +26,7 @@ documents:
     tags: ["overview", "main"]
     description: "Documentação principal do domínio E-commerce de Veículos"
 
-  # Documentos pais (criados automaticamente)
+  # Documentos pais (nível 1)
   "docs/systems/index.md":
     title: "Sistemas"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -39,13 +39,19 @@ documents:
     tags: ["component", "overview"]
     description: "Documentação dos componentes e bibliotecas"
 
+  "docs/architecture/overview.md":
+    title: "Arquitetura"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    tags: ["architecture", "overview"]
+    description: "Documentação de arquitetura e decisões técnicas"
+
   "docs/guides/index.md":
     title: "Guias"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["guide", "overview"]
     description: "Guias e tutoriais"
 
-  # Sistemas
+  # Sistemas - Vitrine de Veículos (nível 2)
   "docs/systems/vitrine-veiculos/index.md":
     title: "Vitrine de Veículos"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -53,20 +59,31 @@ documents:
     tags: ["system", "vitrine", "frontend"]
     description: "Documentação do sistema de vitrine de veículos"
 
+  # Sistemas - Vitrine de Veículos - Features (nível 3)
+  "docs/systems/vitrine-veiculos/features.md":
+    title: "Features"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Vitrine de Veículos"
+    tags: ["system", "vitrine", "features"]
+    description: "Funcionalidades do sistema de vitrine"
+
+  # Sistemas - Vitrine de Veículos - Features - Busca (nível 4)
   "docs/systems/vitrine-veiculos/feature-busca-veiculos.md":
     title: "Busca de Veículos"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
-    parent_document: "Vitrine de Veículos"
+    parent_document: "Features"
     tags: ["system", "vitrine", "feature", "search"]
     description: "Documentação da funcionalidade de busca de veículos"
 
+  # Sistemas - Vitrine de Veículos - Arquitetura (nível 3)
   "docs/systems/vitrine-veiculos/arquitetura.md":
-    title: "Arquitetura - Vitrine de Veículos"
+    title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine de Veículos"
     tags: ["system", "vitrine", "architecture"]
     description: "Arquitetura detalhada do sistema de vitrine"
 
+  # Sistemas - Backoffice de Veículos (nível 2)
   "docs/systems/backoffice-veiculos/index.md":
     title: "Backoffice de Veículos"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -74,35 +91,31 @@ documents:
     tags: ["system", "backoffice", "admin"]
     description: "Documentação do sistema de backoffice de veículos"
 
+  # Sistemas - Backoffice de Veículos - Features (nível 3)
+  "docs/systems/backoffice-veiculos/features.md":
+    title: "Features"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Backoffice de Veículos"
+    tags: ["system", "backoffice", "features"]
+    description: "Funcionalidades do sistema de backoffice"
+
+  # Sistemas - Backoffice de Veículos - Features - Cadastro (nível 4)
+  "docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md":
+    title: "Cadastro de Anúncios"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Features"
+    tags: ["system", "backoffice", "feature", "ads"]
+    description: "Documentação da funcionalidade de cadastro de anúncios"
+
+  # Sistemas - Backoffice de Veículos - Arquitetura (nível 3)
   "docs/systems/backoffice-veiculos/arquitetura.md":
-    title: "Arquitetura - Backoffice de Veículos"
+    title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Backoffice de Veículos"
     tags: ["system", "backoffice", "architecture"]
     description: "Arquitetura detalhada do sistema de backoffice"
 
-  "docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md":
-    title: "Cadastro de Anúncios"
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
-    parent_document: "Backoffice de Veículos"
-    tags: ["system", "backoffice", "feature", "ads"]
-    description: "Documentação da funcionalidade de cadastro de anúncios"
-
-  # Arquitetura
-  "docs/architecture/overview.md":
-    title: "Arquitetura"
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
-    tags: ["architecture", "overview"]
-    description: "Documentação de arquitetura e decisões técnicas"
-
-  "docs/architecture/adrs/index.md":
-    title: "Sobre ADRs"
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
-    parent_document: "Arquitetura"
-    tags: ["architecture", "adr", "decisions"]
-    description: "Documentação sobre Architecture Decision Records"
-
-  # Componentes
+  # Componentes - Vitrine Web (nível 2)
   "docs/components/vitrine-veiculos-web/index.md":
     title: "Vitrine Web"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -110,13 +123,23 @@ documents:
     tags: ["component", "vitrine", "web", "frontend"]
     description: "Documentação do componente web da vitrine"
 
-  "docs/components/vitrine-veiculos-web/architecture.md":
+  # Componentes - Vitrine Web - Arquitetura (nível 3)
+  "docs/components/vitrine-veiculos-web/arquitetura.md":
     title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine Web"
     tags: ["component", "vitrine", "web", "architecture"]
     description: "Arquitetura do componente web da vitrine"
 
+  # Componentes - Vitrine Web - Architecture (nível 3) - arquivo existente
+  "docs/components/vitrine-veiculos-web/architecture.md":
+    title: "Architecture"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Vitrine Web"
+    tags: ["component", "vitrine", "web", "architecture"]
+    description: "Architecture do componente web da vitrine"
+
+  # Componentes - Vitrine Web - Setup (nível 3)
   "docs/components/vitrine-veiculos-web/setup.md":
     title: "Setup"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -124,7 +147,7 @@ documents:
     tags: ["component", "vitrine", "web", "setup"]
     description: "Guia de configuração do componente web da vitrine"
 
-  # Componentes - Vitrine API
+  # Componentes - Vitrine API (nível 2)
   "docs/components/vitrine-veiculos-api/index.md":
     title: "Vitrine API"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -132,14 +155,23 @@ documents:
     tags: ["component", "vitrine", "api", "backend"]
     description: "Documentação da API da vitrine"
 
-  "docs/components/vitrine-veiculos-api/api.md":
+  # Componentes - Vitrine API - API Reference (nível 3)
+  "docs/components/vitrine-veiculos-api/api-reference.md":
     title: "API Reference"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine API"
     tags: ["component", "vitrine", "api", "reference"]
     description: "Referência da API da vitrine"
 
-  # Componentes - Vitrine BFF
+  # Componentes - Vitrine API - API (nível 3) - arquivo existente
+  "docs/components/vitrine-veiculos-api/api.md":
+    title: "API"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Vitrine API"
+    tags: ["component", "vitrine", "api", "documentation"]
+    description: "Documentação da API da vitrine"
+
+  # Componentes - Vitrine BFF (nível 2)
   "docs/components/vitrine-veiculos-bff/index.md":
     title: "Vitrine BFF"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -147,7 +179,7 @@ documents:
     tags: ["component", "vitrine", "bff", "backend"]
     description: "Documentação do BFF da vitrine"
 
-  # Componentes - Backoffice Web
+  # Componentes - Backoffice Web (nível 2)
   "docs/components/backoffice-veiculos-web/index.md":
     title: "Backoffice Web"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -155,7 +187,7 @@ documents:
     tags: ["component", "backoffice", "web", "admin"]
     description: "Documentação do componente web do backoffice"
 
-  # Componentes - Backoffice API
+  # Componentes - Backoffice API (nível 2)
   "docs/components/backoffice-veiculos-api/index.md":
     title: "Backoffice API"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -163,7 +195,7 @@ documents:
     tags: ["component", "backoffice", "api", "admin"]
     description: "Documentação da API do backoffice"
 
-  # Componentes - Backoffice BFF
+  # Componentes - Backoffice BFF (nível 2)
   "docs/components/backoffice-veiculos-bff/index.md":
     title: "Backoffice BFF"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -171,7 +203,7 @@ documents:
     tags: ["component", "backoffice", "bff", "admin"]
     description: "Documentação do BFF do backoffice"
 
-  # Pipelines
+  # Componentes - Pipelines E-commerce (nível 2)
   "docs/components/ecommerce-veiculos-pipelines/index.md":
     title: "Pipelines E-commerce"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -179,6 +211,7 @@ documents:
     tags: ["component", "pipelines", "ci-cd", "automation"]
     description: "Documentação dos pipelines de CI/CD"
 
+  # Componentes - Pipelines E-commerce - Automação (nível 3)
   "docs/components/ecommerce-veiculos-pipelines/automation.md":
     title: "Automação - Pipelines"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -186,6 +219,7 @@ documents:
     tags: ["component", "pipelines", "automation"]
     description: "Documentação da automação dos pipelines"
 
+  # Componentes - Pipelines E-commerce - Workflows (nível 3)
   "docs/components/ecommerce-veiculos-pipelines/workflows.md":
     title: "Workflows - Pipelines"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
@@ -193,9 +227,33 @@ documents:
     tags: ["component", "pipelines", "workflows"]
     description: "Documentação dos workflows dos pipelines"
 
-  # Guias
-  "docs/guides/contributing.md":
+  # Arquitetura - Sobre ADRs (nível 2)
+  "docs/architecture/sobre-adrs.md":
+    title: "Sobre ADRs"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Arquitetura"
+    tags: ["architecture", "adr", "decisions"]
+    description: "Documentação sobre Architecture Decision Records"
+
+  # Arquitetura - ADRs Index (nível 2) - arquivo existente
+  "docs/architecture/adrs/index.md":
+    title: "ADRs"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Arquitetura"
+    tags: ["architecture", "adr", "decisions"]
+    description: "Architecture Decision Records"
+
+  # Guias - Guia de Contribuição (nível 2)
+  "docs/guides/guia-contribuicao.md":
     title: "Guia de Contribuição"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_document: "Guias"
+    tags: ["guide", "contributing", "development"]
+    description: "Guia para contribuir com o projeto"
+
+  # Guias - Contributing (nível 2) - arquivo existente
+  "docs/guides/contributing.md":
+    title: "Contributing"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Guias"
     tags: ["guide", "contributing", "development"]
