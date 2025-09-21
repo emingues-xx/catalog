@@ -124,21 +124,13 @@ documents:
     description: "Documentação do componente web da vitrine"
 
   # Componentes - Vitrine Web - Arquitetura (Nível 3)
-  "docs/components/vitrine-veiculos-web/arquitetura.md":
+  "docs/components/vitrine-veiculos-web/architecture.md":
     title: "Arquitetura"
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine Web"
     tags: ["component", "vitrine", "web", "architecture"]
     description: "Arquitetura do componente web da vitrine"
-
-  # Componentes - Vitrine Web - Architecture (Nível 3)
-  "docs/components/vitrine-veiculos-web/architecture.md":
-    title: "Architecture"
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
-    parent_document: "Vitrine Web"
-    tags: ["component", "vitrine", "web", "architecture"]
-    description: "Architecture do componente web da vitrine"
-
+  
   # Componentes - Vitrine Web - Setup (Nível 3)
   "docs/components/vitrine-veiculos-web/setup.md":
     title: "Setup"
