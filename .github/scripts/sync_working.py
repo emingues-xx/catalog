@@ -416,6 +416,24 @@ class OutlineSyncWorking:
         md_files = list(docs_dir.rglob('*.md'))
         print(f"📄 Encontrados {len(md_files)} arquivos .md para processar")
         
+        # Primeira passada: criar todos os documentos pais necessários
+        print("\n🔄 Primeira passada: Criando documentos pais...")
+        parent_titles = set()
+        for md_file in md_files:
+            file_path = str(md_file.relative_to(docs_dir.parent))
+            mapping = self._get_document_mapping(file_path)
+            parent_document = mapping.get('parent_document')
+            if parent_document:
+                parent_titles.add(parent_document)
+        
+        for parent_title in parent_titles:
+            if not self._search_document(parent_title):
+                print(f"📄 Criando documento pai: {parent_title}")
+                collection_id = self.mapping_config['config']['default_collection_id']
+                self._create_parent_document(parent_title, collection_id)
+        
+        # Segunda passada: processar todos os documentos
+        print("\n🔄 Segunda passada: Processando todos os documentos...")
         for md_file in md_files:
             try:
                 # Usar caminho relativo ao diretório docs
