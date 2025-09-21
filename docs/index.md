@@ -14,7 +14,7 @@ Sistema responsável pela experiência pública dos usuários, incluindo catálo
 [📖 Documentação da Vitrine](systems/vitrine-veiculos/index.md)
 
 ### ⚙️ Backoffice de Veículos  
-Sistema interno para cadastro de anúncios, dashboard administrativo e acompanhamento de vendas. 
+Sistema interno para cadastro de anúncios, dashboard administrativo e acompanhamento de vendas.  
 
 [📖 Documentação do Backoffice](systems/backoffice-veiculos/index.md)
 

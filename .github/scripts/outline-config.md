@@ -10,17 +10,13 @@
 
 Configure os seguintes secrets no seu repositório GitHub:
 
-### 1. OUTLINE_API_URL
-```
-Name: OUTLINE_API_URL
-Value: https://outline-production-47e1.up.railway.app/api
-```
-
-### 2. OUTLINE_API_TOKEN
+### 1. OUTLINE_API_TOKEN
 ```
 Name: OUTLINE_API_TOKEN
-Value: [SEU_TOKEN_AQUI]
+Value: ol_api_1QaafZhDnPSgs9bzU4vV4LpydZ9A6hVYdcZuCK
 ```
+
+**Nota**: A URL da API é fixa: `https://outline-production-47e1.up.railway.app`
 
 ## 🎯 Como Obter o Token de API
 
@@ -82,8 +78,9 @@ Após configurar os secrets, você pode testar:
 Os documentos serão organizados em uma estrutura hierárquica:
 
 ### Coleção Pai
-- **ID**: `docs-KS6TJUuX5p`
-- **URL**: https://outline-production-47e1.up.railway.app/collection/docs-KS6TJUuX5p/recent
+- **ID**: `fdc96e70-5b1d-4de5-abca-09fc9749b543`
+- **Nome**: Docs
+- **URL**: https://outline-production-47e1.up.railway.app/collection/fdc96e70-5b1d-4de5-abca-09fc9749b543
 
 ### Sub-coleções (criadas automaticamente)
 - **Documentação Principal** (`main-collection`)

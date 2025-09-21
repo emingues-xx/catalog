@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Script para sincronizar documentação do diretório docs/ com o Outline
+Script de sincronização que funciona com a API do Outline
+Versão simplificada que usa apenas a coleção existente
 """
 
 import os
@@ -11,19 +12,18 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 
-class OutlineSync:
+class OutlineSyncWorking:
     def __init__(self):
-        self.api_url = os.getenv('OUTLINE_API_URL')
-        self.api_token = os.getenv('OUTLINE_API_TOKEN')
-        self.github_repo = os.getenv('GITHUB_REPOSITORY', '')
-        self.github_sha = os.getenv('GITHUB_SHA', '')
+        self.api_url = "https://outline-production-47e1.up.railway.app"
+        self.api_token = os.getenv('OUTLINE_API_TOKEN', 'ol_api_tekTu1JQZ5x6DryFECHKN6mXfdB8weVcAjKJxN')
         
-        if not self.api_url or not self.api_token:
-            raise ValueError("OUTLINE_API_URL e OUTLINE_API_TOKEN devem estar definidos")
+        if not self.api_token:
+            raise ValueError("OUTLINE_API_TOKEN deve estar definido")
         
         self.headers = {
             'Authorization': f'Bearer {self.api_token}',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         }
         
         # Carregar configuração de mapeamento
@@ -43,7 +43,7 @@ class OutlineSync:
         """Retorna configuração padrão caso o arquivo de mapeamento não exista"""
         return {
             'config': {
-                'default_collection_id': 'default-collection',
+                'default_collection_id': 'fdc96e70-5b1d-4de5-abca-09fc9749b543',  # Coleção "Docs"
                 'default_tags': ['backstage', 'documentation']
             },
             'documents': {},
@@ -53,11 +53,6 @@ class OutlineSync:
     def _get_document_mapping(self, file_path: str) -> Dict[str, Any]:
         """Obtém o mapeamento específico para um documento"""
         return self.mapping_config.get('documents', {}).get(file_path, {})
-    
-    def _get_collection_id(self, file_path: str) -> str:
-        """Obtém o ID da coleção para um documento"""
-        mapping = self._get_document_mapping(file_path)
-        return mapping.get('collection_id', self.mapping_config['config']['default_collection_id'])
     
     def _get_document_title(self, file_path: str, file_name: str) -> str:
         """Obtém o título do documento no Outline"""
@@ -80,18 +75,72 @@ class OutlineSync:
         mapping = self._get_document_mapping(file_path)
         return mapping.get('description', '')
     
-    def _search_document(self, title: str) -> Optional[str]:
-        """Busca um documento existente no Outline pelo título"""
+    def _test_api_connection(self) -> bool:
+        """Testa a conexão com a API"""
         try:
-            # Como documents.search não funciona, vamos usar documents.list
-            response = requests.get(
-                f'{self.api_url}/documents.list',
-                headers=self.headers
+            # Testar com documents.list
+            test_data = {"id": ""}
+            response = requests.post(
+                f'{self.api_url}/api/documents.list',
+                headers=self.headers,
+                json=test_data,
+                timeout=10
             )
             
             if response.status_code == 200:
-                results = response.json().get('data', [])
-                for doc in results:
+                data = response.json()
+                documents = data.get('data', [])
+                print(f"✅ Conexão com API OK - {len(documents)} documentos encontrados")
+                
+                # Testar collections.list também
+                collections_response = requests.post(
+                    f'{self.api_url}/api/collections.list',
+                    headers=self.headers,
+                    json=test_data,
+                    timeout=10
+                )
+                
+                if collections_response.status_code == 200:
+                    collections_data = collections_response.json()
+                    collections = collections_data.get('data', [])
+                    print(f"✅ Coleções acessíveis - {len(collections)} coleções encontradas")
+                    
+                    # Verificar se a coleção padrão existe
+                    default_collection_id = self.mapping_config['config']['default_collection_id']
+                    collection_exists = any(col.get('id') == default_collection_id for col in collections)
+                    
+                    if collection_exists:
+                        print(f"✅ Coleção padrão encontrada: {default_collection_id}")
+                    else:
+                        print(f"⚠️ Coleção padrão não encontrada: {default_collection_id}")
+                        print("Coleções disponíveis:")
+                        for col in collections:
+                            print(f"  - {col.get('id')}: {col.get('name')}")
+                
+                return True
+            else:
+                print(f"❌ Erro na API: {response.status_code} - {response.text}")
+                return False
+                
+        except Exception as e:
+            print(f"❌ Erro de conexão: {e}")
+            return False
+    
+    def _search_document(self, title: str) -> Optional[str]:
+        """Busca um documento existente no Outline pelo título"""
+        try:
+            test_data = {"id": ""}
+            response = requests.post(
+                f'{self.api_url}/api/documents.list',
+                headers=self.headers,
+                json=test_data,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                documents = data.get('data', [])
+                for doc in documents:
                     if doc.get('title') == title:
                         return doc.get('id')
             
@@ -100,52 +149,11 @@ class OutlineSync:
             print(f"❌ Erro ao buscar documento '{title}': {e}")
             return None
     
-    def _create_collection(self, collection_id: str, name: str, description: str = "", color: str = "#3B82F6") -> bool:
-        """Cria uma coleção no Outline se ela não existir"""
-        try:
-            # Verificar se a coleção já existe
-            response = requests.get(f'{self.api_url}/collections.list', headers=self.headers)
-            if response.status_code == 200:
-                collections = response.json().get('data', [])
-                for collection in collections:
-                    if collection.get('id') == collection_id:
-                        print(f"✅ Coleção '{name}' já existe")
-                        return True
-            
-            # Para sub-coleções, usar a coleção pai como parent
-            parent_collection_id = self.mapping_config['config']['default_collection_id']
-            
-            # Criar nova coleção
-            data = {
-                'name': name,
-                'description': description,
-                'color': color,
-                'private': False
-            }
-            
-            # Se não for a coleção pai, adicionar como sub-coleção
-            if collection_id != parent_collection_id:
-                data['parentId'] = parent_collection_id
-            
-            response = requests.post(f'{self.api_url}/collections.create', headers=self.headers, json=data)
-            
-            if response.status_code in [200, 201]:
-                print(f"✅ Coleção '{name}' criada com sucesso")
-                return True
-            else:
-                print(f"❌ Erro ao criar coleção '{name}': {response.text}")
-                return False
-                
-        except Exception as e:
-            print(f"❌ Erro ao criar coleção '{name}': {e}")
-            return False
-    
     def _create_or_update_document(self, file_path: str, content: str) -> bool:
         """Cria ou atualiza um documento no Outline"""
         try:
             file_name = Path(file_path).name
             title = self._get_document_title(file_path, file_name)
-            collection_id = self._get_collection_id(file_path)
             tags = self._get_document_tags(file_path)
             description = self._get_document_description(file_path)
             
@@ -162,42 +170,43 @@ class OutlineSync:
                     'text': enhanced_content
                 }
                 
-                response = requests.post(f'{self.api_url}/documents.update', headers=self.headers, json=data)
+                response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
                 
                 if response.status_code in [200, 201]:
                     print(f"✅ Documento '{title}' atualizado com sucesso")
                     return True
                 else:
-                    print(f"❌ Erro ao atualizar documento '{title}': {response.text}")
+                    print(f"❌ Erro ao atualizar documento '{title}': {response.status_code} - {response.text}")
                     return False
             else:
-                # Criar novo documento
+                # Criar novo documento (formato simples que funciona)
                 data = {
                     'title': title,
-                    'text': enhanced_content,
-                    'collectionId': collection_id,
-                    'publish': True
+                    'text': enhanced_content
                 }
                 
-                response = requests.post(f'{self.api_url}/documents.create', headers=self.headers, json=data)
+                response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
                 
                 if response.status_code in [200, 201]:
                     print(f"✅ Documento '{title}' criado com sucesso")
                     return True
                 else:
-                    print(f"❌ Erro ao criar documento '{title}': {response.text}")
+                    print(f"❌ Erro ao criar documento '{title}': {response.status_code} - {response.text}")
                     return False
-                    
+                
         except Exception as e:
             print(f"❌ Erro ao processar documento '{file_path}': {e}")
             return False
     
     def _enhance_content(self, content: str, file_path: str, tags: List[str]) -> str:
         """Adiciona metadados e informações extras ao conteúdo"""
+        github_repo = os.getenv('GITHUB_REPOSITORY', '')
+        github_sha = os.getenv('GITHUB_SHA', '')
+        
         # Adicionar cabeçalho com informações do repositório
         header = f"""---
-*Documento sincronizado automaticamente do repositório [{self.github_repo}](https://github.com/{self.github_repo})*
-*Última atualização: commit {self.github_sha[:8]}*
+*Documento sincronizado automaticamente do repositório [{github_repo}](https://github.com/{github_repo})*
+*Última atualização: commit {github_sha[:8] if github_sha else 'N/A'}*
 *Arquivo original: `{file_path}`*
 
 ---
@@ -210,57 +219,18 @@ class OutlineSync:
 ---
 
 **Tags:** {', '.join([f'`{tag}`' for tag in tags])}
-**Fonte:** [{self.github_repo}](https://github.com/{self.github_repo}/blob/main/{file_path})
+**Fonte:** [{github_repo}](https://github.com/{github_repo}/blob/main/{file_path})
 """
         
         return header + content + footer
-    
-    def _ensure_collections_exist(self):
-        """Garante que todas as coleções necessárias existam"""
-        # Primeiro, verificar se a coleção pai existe
-        parent_collection_id = self.mapping_config['config']['default_collection_id']
-        if not self._verify_collection_exists(parent_collection_id):
-            print(f"❌ Coleção pai '{parent_collection_id}' não encontrada. Verifique se ela existe no Outline.")
-            return False
-        
-        # Depois, criar as sub-coleções
-        collections = self.mapping_config.get('collections', {})
-        
-        for collection_id, collection_info in collections.items():
-            name = collection_info.get('name', collection_id)
-            description = collection_info.get('description', '')
-            color = collection_info.get('color', '#3B82F6')
-            
-            self._create_collection(collection_id, name, description, color)
-        
-        return True
-    
-    def _verify_collection_exists(self, collection_id: str) -> bool:
-        """Verifica se a coleção existe no Outline"""
-        try:
-            response = requests.get(f'{self.api_url}/collections.list', headers=self.headers)
-            if response.status_code == 200:
-                collections = response.json().get('data', [])
-                for collection in collections:
-                    if collection.get('id') == collection_id:
-                        print(f"✅ Coleção '{collection_id}' encontrada")
-                        return True
-                print(f"❌ Coleção '{collection_id}' não encontrada")
-                return False
-            else:
-                print(f"❌ Erro ao verificar coleções: {response.text}")
-                return False
-        except Exception as e:
-            print(f"❌ Erro ao verificar coleção '{collection_id}': {e}")
-            return False
     
     def sync_documents(self):
         """Sincroniza todos os documentos do diretório docs/"""
         print("🚀 Iniciando sincronização com Outline...")
         
-        # Garantir que as coleções existam
-        if not self._ensure_collections_exist():
-            print("❌ Falha na verificação/criação de coleções. Abortando sincronização.")
+        # Testar conexão com API
+        if not self._test_api_connection():
+            print("❌ Falha na conexão com a API. Abortando sincronização.")
             return False
         
         docs_dir = Path('docs')
@@ -297,7 +267,7 @@ class OutlineSync:
 def main():
     """Função principal"""
     try:
-        syncer = OutlineSync()
+        syncer = OutlineSyncWorking()
         success = syncer.sync_documents()
         
         if success:

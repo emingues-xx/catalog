@@ -3,8 +3,8 @@
 
 # Configurações globais
 config:
-  # ID da coleção pai no Outline (baseado na URL fornecida)
-  default_collection_id: "docs-KS6TJUuX5p"
+  # ID da coleção pai no Outline (coleção "Docs" encontrada)
+  default_collection_id: "fdc96e70-5b1d-4de5-abca-09fc9749b543"
   
   # Template para títulos de documentos
   title_template: "{title}"
