@@ -55,7 +55,7 @@ class OutlineSyncWorking:
         """Retorna configuração padrão caso o arquivo de mapeamento não exista"""
         return {
             'config': {
-                'default_collection_id': 'e581b5ff-6e58-45ae-ac32-ac40bd83d8f7',  # Coleção "Docs"
+                'default_collection_id': '5c78f84a-f721-47cc-a983-2eb05e6bf246',  # Coleção "Docs"
                 'default_tags': ['backstage', 'documentation']
             },
             'documents': {},

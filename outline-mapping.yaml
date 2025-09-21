@@ -4,7 +4,7 @@
 # Configurações globais
 config:
   # ID da coleção "Docs" no Outline
-  default_collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+  default_collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
   
   # Template para títulos de documentos
   title_template: "{title}"
@@ -22,55 +22,55 @@ documents:
   # Documentação principal
   "docs/index.md":
     title: "E-commerce de Veículos - Documentação"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["overview", "main"]
     description: "Documentação principal do domínio E-commerce de Veículos"
 
   # Sistemas
   "docs/systems/vitrine-veiculos/index.md":
     title: "Sistemas"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["system", "overview"]
     description: "Documentação dos sistemas do domínio"
 
   "docs/systems/vitrine-veiculos/index.md":
     title: "Vitrine de Veículos"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Sistemas"
     tags: ["system", "vitrine", "frontend"]
     description: "Documentação do sistema de vitrine de veículos"
 
   "docs/systems/vitrine-veiculos/feature-busca-veiculos.md":
     title: "Busca de Veículos"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine de Veículos"
     tags: ["system", "vitrine", "feature", "search"]
     description: "Documentação da funcionalidade de busca de veículos"
 
   "docs/systems/vitrine-veiculos/arquitetura.md":
     title: "Arquitetura - Vitrine de Veículos"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine de Veículos"
     tags: ["system", "vitrine", "architecture"]
     description: "Arquitetura detalhada do sistema de vitrine"
 
   "docs/systems/backoffice-veiculos/index.md":
     title: "Backoffice de Veículos"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Sistemas"
     tags: ["system", "backoffice", "admin"]
     description: "Documentação do sistema de backoffice de veículos"
 
   "docs/systems/backoffice-veiculos/arquitetura.md":
     title: "Arquitetura - Backoffice de Veículos"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Backoffice de Veículos"
     tags: ["system", "backoffice", "architecture"]
     description: "Arquitetura detalhada do sistema de backoffice"
 
   "docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md":
     title: "Cadastro de Anúncios"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Backoffice de Veículos"
     tags: ["system", "backoffice", "feature", "ads"]
     description: "Documentação da funcionalidade de cadastro de anúncios"
@@ -78,13 +78,13 @@ documents:
   # Arquitetura
   "docs/architecture/overview.md":
     title: "Arquitetura"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["architecture", "overview"]
     description: "Documentação de arquitetura e decisões técnicas"
 
   "docs/architecture/adrs/index.md":
     title: "Sobre ADRs"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Arquitetura"
     tags: ["architecture", "adr", "decisions"]
     description: "Documentação sobre Architecture Decision Records"
@@ -92,27 +92,27 @@ documents:
   # Componentes
   "docs/components/vitrine-veiculos-web/index.md":
     title: "Componentes"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["component", "overview"]
     description: "Documentação dos componentes e bibliotecas"
 
   "docs/components/vitrine-veiculos-web/index.md":
     title: "Vitrine Web"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "vitrine", "web", "frontend"]
     description: "Documentação do componente web da vitrine"
 
   "docs/components/vitrine-veiculos-web/architecture.md":
     title: "Arquitetura"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine Web"
     tags: ["component", "vitrine", "web", "architecture"]
     description: "Arquitetura do componente web da vitrine"
 
   "docs/components/vitrine-veiculos-web/setup.md":
     title: "Setup"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine Web"
     tags: ["component", "vitrine", "web", "setup"]
     description: "Guia de configuração do componente web da vitrine"
@@ -120,14 +120,14 @@ documents:
   # Componentes - Vitrine API
   "docs/components/vitrine-veiculos-api/index.md":
     title: "Vitrine API"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "vitrine", "api", "backend"]
     description: "Documentação da API da vitrine"
 
   "docs/components/vitrine-veiculos-api/api.md":
     title: "API Reference"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Vitrine API"
     tags: ["component", "vitrine", "api", "reference"]
     description: "Referência da API da vitrine"
@@ -135,7 +135,7 @@ documents:
   # Componentes - Vitrine BFF
   "docs/components/vitrine-veiculos-bff/index.md":
     title: "Vitrine BFF"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "vitrine", "bff", "backend"]
     description: "Documentação do BFF da vitrine"
@@ -143,7 +143,7 @@ documents:
   # Componentes - Backoffice Web
   "docs/components/backoffice-veiculos-web/index.md":
     title: "Backoffice Web"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "backoffice", "web", "admin"]
     description: "Documentação do componente web do backoffice"
@@ -151,7 +151,7 @@ documents:
   # Componentes - Backoffice API
   "docs/components/backoffice-veiculos-api/index.md":
     title: "Backoffice API"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "backoffice", "api", "admin"]
     description: "Documentação da API do backoffice"
@@ -159,7 +159,7 @@ documents:
   # Componentes - Backoffice BFF
   "docs/components/backoffice-veiculos-bff/index.md":
     title: "Backoffice BFF"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "backoffice", "bff", "admin"]
     description: "Documentação do BFF do backoffice"
@@ -167,21 +167,21 @@ documents:
   # Pipelines
   "docs/components/ecommerce-veiculos-pipelines/index.md":
     title: "Pipelines E-commerce"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Componentes"
     tags: ["component", "pipelines", "ci-cd", "automation"]
     description: "Documentação dos pipelines de CI/CD"
 
   "docs/components/ecommerce-veiculos-pipelines/automation.md":
     title: "Automação - Pipelines"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Pipelines E-commerce"
     tags: ["component", "pipelines", "automation"]
     description: "Documentação da automação dos pipelines"
 
   "docs/components/ecommerce-veiculos-pipelines/workflows.md":
     title: "Workflows - Pipelines"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Pipelines E-commerce"
     tags: ["component", "pipelines", "workflows"]
     description: "Documentação dos workflows dos pipelines"
@@ -189,13 +189,13 @@ documents:
   # Guias
   "docs/guides/contributing.md":
     title: "Guias"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     tags: ["guide", "overview"]
     description: "Guias e tutoriais"
 
   "docs/guides/contributing.md":
     title: "Guia de Contribuição"
-    collection_id: "e581b5ff-6e58-45ae-ac32-ac40bd83d8f7"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_document: "Guias"
     tags: ["guide", "contributing", "development"]
     description: "Guia para contribuir com o projeto"
