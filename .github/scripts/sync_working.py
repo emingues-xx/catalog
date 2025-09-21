@@ -66,6 +66,35 @@ class OutlineSyncWorking:
         """Obtém o mapeamento específico para um documento"""
         return self.mapping_config.get('documents', {}).get(file_path, {})
     
+    def _get_collection_hierarchy(self, file_path: str) -> List[str]:
+        """Determina a hierarquia de coleções baseada no caminho do arquivo"""
+        path_parts = Path(file_path).parts
+        
+        if len(path_parts) < 2:
+            return ["docs"]
+        
+        # docs/systems/vitrine-veiculos/arquitetura.md
+        # -> ["docs", "Sistemas", "Sistema Vitrine de Veículos"]
+        
+        hierarchy = ["docs"]
+        
+        if path_parts[1] == "systems":
+            hierarchy.append("Sistemas")
+            if len(path_parts) >= 3:
+                system_name = path_parts[2].replace("-", " ").title()
+                hierarchy.append(f"Sistema {system_name}")
+        elif path_parts[1] == "components":
+            hierarchy.append("Componentes")
+            if len(path_parts) >= 3:
+                component_name = path_parts[2].replace("-", " ").title()
+                hierarchy.append(f"Componente {component_name}")
+        elif path_parts[1] == "architecture":
+            hierarchy.append("Arquitetura")
+        elif path_parts[1] == "guides":
+            hierarchy.append("Guias")
+        
+        return hierarchy
+    
     def _get_document_title(self, file_path: str, file_name: str) -> str:
         """Obtém o título do documento no Outline"""
         mapping = self._get_document_mapping(file_path)
@@ -138,6 +167,88 @@ class OutlineSyncWorking:
             print(f"❌ Erro de conexão: {e}")
             return False
     
+    def _create_collection_hierarchy(self, hierarchy: List[str]) -> Optional[str]:
+        """Cria a hierarquia de coleções e retorna o ID da coleção final"""
+        if not hierarchy:
+            return None
+        
+        current_parent_id = None
+        current_collection_id = None
+        
+        for i, collection_name in enumerate(hierarchy):
+            # Verificar se a coleção já existe
+            existing_id = self._find_collection_by_name(collection_name, current_parent_id)
+            
+            if existing_id:
+                current_collection_id = existing_id
+                current_parent_id = existing_id
+                print(f"✅ Coleção '{collection_name}' já existe (ID: {existing_id})")
+            else:
+                # Criar nova coleção
+                new_id = self._create_collection(collection_name, current_parent_id)
+                if new_id:
+                    current_collection_id = new_id
+                    current_parent_id = new_id
+                    print(f"✅ Coleção '{collection_name}' criada (ID: {new_id})")
+                else:
+                    print(f"❌ Erro ao criar coleção '{collection_name}'")
+                    return None
+        
+        return current_collection_id
+    
+    def _find_collection_by_name(self, name: str, parent_id: Optional[str] = None) -> Optional[str]:
+        """Busca uma coleção pelo nome e parent"""
+        try:
+            test_data = {"id": ""}
+            response = requests.post(
+                f'{self.api_url}/api/collections.list',
+                headers=self.headers,
+                json=test_data,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                collections = data.get('data', [])
+                
+                for col in collections:
+                    if (col.get('name') == name and 
+                        col.get('parentId') == parent_id):
+                        return col.get('id')
+            
+            return None
+        except Exception as e:
+            print(f"❌ Erro ao buscar coleção '{name}': {e}")
+            return None
+    
+    def _create_collection(self, name: str, parent_id: Optional[str] = None) -> Optional[str]:
+        """Cria uma nova coleção"""
+        try:
+            data = {
+                'name': name,
+                'description': f'Coleção para {name}',
+                'private': False
+            }
+            
+            # Sempre incluir parentId, mesmo que seja None
+            data['parentId'] = parent_id
+            
+            print(f"🔧 Criando coleção '{name}' com parentId: {parent_id}")
+            
+            response = requests.post(f'{self.api_url}/api/collections.create', headers=self.headers, json=data)
+            
+            if response.status_code in [200, 201]:
+                new_id = response.json().get('data', {}).get('id')
+                print(f"✅ Coleção '{name}' criada com sucesso (ID: {new_id})")
+                return new_id
+            else:
+                print(f"❌ Erro ao criar coleção '{name}': {response.status_code} - {response.text}")
+                return None
+                
+        except Exception as e:
+            print(f"❌ Erro ao criar coleção '{name}': {e}")
+            return None
+    
     def _search_document(self, title: str) -> Optional[str]:
         """Busca um documento existente no Outline pelo título"""
         try:
@@ -172,6 +283,16 @@ class OutlineSyncWorking:
             # Adicionar metadados ao conteúdo
             enhanced_content = self._enhance_content(content, file_path, tags)
             
+            # Determinar hierarquia de coleções
+            hierarchy = self._get_collection_hierarchy(file_path)
+            print(f"🌳 Hierarquia para '{file_path}': {' >> '.join(hierarchy)}")
+            
+            # Criar hierarquia de coleções
+            collection_id = self._create_collection_hierarchy(hierarchy)
+            if not collection_id:
+                print(f"❌ Não foi possível criar hierarquia para '{file_path}'")
+                return False
+            
             # Buscar documento existente
             doc_id = self._search_document(title)
             
@@ -180,7 +301,8 @@ class OutlineSyncWorking:
                 data = {
                     'id': doc_id,
                     'text': enhanced_content,
-                    'readonly': True
+                    'readonly': True,
+                    'collectionId': collection_id
                 }
                 
                 response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
@@ -197,7 +319,7 @@ class OutlineSyncWorking:
                     'title': title,
                     'text': enhanced_content,
                     'publish': True,
-                    'collectionId': self.mapping_config['config']['default_collection_id']
+                    'collectionId': collection_id
                 }
                 
                 response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
