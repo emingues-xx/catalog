@@ -45,7 +45,7 @@ Value: your-api-token-here
 Após adicionar os secrets, você pode verificar se estão configurados corretamente:
 
 1. Volte para **Secrets and variables** > **Actions**
-2. Você deve ver os dois secrets listados:
+2. Você deve ver os dois secrets listados :
    - `OUTLINE_API_URL`
    - `OUTLINE_API_TOKEN`
 
