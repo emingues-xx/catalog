@@ -1,0 +1,186 @@
+# Mapeamento de documentos para sincronização com Outline
+# Este arquivo define como os documentos do diretório docs/ são mapeados para o Outline
+
+# Configurações globais
+config:
+  # ID da coleção pai no Outline (baseado na URL fornecida)
+  default_collection_id: "docs-KS6TJUuX5p"
+  
+  # Template para títulos de documentos
+  title_template: "{title}"
+  
+  # Configurações de metadados
+  metadata:
+    # Tags padrão para todos os documentos
+    default_tags: ["backstage", "documentation", "ecommerce"]
+    
+    # Template para descrição
+    description_template: "Documentação do {system} - {component}"
+
+# Mapeamento específico de documentos
+documents:
+  # Documentação principal
+  "docs/index.md":
+    title: "E-commerce de Veículos - Documentação"
+    collection_id: "main-collection"
+    tags: ["overview", "main"]
+    description: "Documentação principal do domínio E-commerce de Veículos"
+
+  # Arquitetura
+  "docs/architecture/overview.md":
+    title: "Visão Geral da Arquitetura"
+    collection_id: "architecture-collection"
+    tags: ["architecture", "overview"]
+    description: "Visão geral da arquitetura do sistema"
+
+  "docs/architecture/adrs/index.md":
+    title: "Sobre ADRs (Architecture Decision Records)"
+    collection_id: "architecture-collection"
+    tags: ["architecture", "adr", "decisions"]
+    description: "Documentação sobre Architecture Decision Records"
+
+  # Sistemas
+  "docs/systems/vitrine-veiculos/index.md":
+    title: "Sistema Vitrine de Veículos"
+    collection_id: "systems-collection"
+    tags: ["system", "vitrine", "frontend"]
+    description: "Documentação do sistema de vitrine de veículos"
+
+  "docs/systems/vitrine-veiculos/arquitetura.md":
+    title: "Arquitetura - Vitrine de Veículos"
+    collection_id: "systems-collection"
+    tags: ["system", "vitrine", "architecture"]
+    description: "Arquitetura detalhada do sistema de vitrine"
+
+  "docs/systems/vitrine-veiculos/feature-busca-veiculos.md":
+    title: "Feature: Busca de Veículos"
+    collection_id: "systems-collection"
+    tags: ["system", "vitrine", "feature", "search"]
+    description: "Documentação da funcionalidade de busca de veículos"
+
+  "docs/systems/backoffice-veiculos/index.md":
+    title: "Sistema Backoffice de Veículos"
+    collection_id: "systems-collection"
+    tags: ["system", "backoffice", "admin"]
+    description: "Documentação do sistema de backoffice de veículos"
+
+  "docs/systems/backoffice-veiculos/arquitetura.md":
+    title: "Arquitetura - Backoffice de Veículos"
+    collection_id: "systems-collection"
+    tags: ["system", "backoffice", "architecture"]
+    description: "Arquitetura detalhada do sistema de backoffice"
+
+  "docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md":
+    title: "Feature: Cadastro de Anúncios"
+    collection_id: "systems-collection"
+    tags: ["system", "backoffice", "feature", "ads"]
+    description: "Documentação da funcionalidade de cadastro de anúncios"
+
+  # Componentes - Vitrine
+  "docs/components/vitrine-veiculos-web/index.md":
+    title: "Componente: Vitrine Web"
+    collection_id: "components-collection"
+    tags: ["component", "vitrine", "web", "frontend"]
+    description: "Documentação do componente web da vitrine"
+
+  "docs/components/vitrine-veiculos-web/architecture.md":
+    title: "Arquitetura - Vitrine Web"
+    collection_id: "components-collection"
+    tags: ["component", "vitrine", "web", "architecture"]
+    description: "Arquitetura do componente web da vitrine"
+
+  "docs/components/vitrine-veiculos-web/setup.md":
+    title: "Setup - Vitrine Web"
+    collection_id: "components-collection"
+    tags: ["component", "vitrine", "web", "setup"]
+    description: "Guia de configuração do componente web da vitrine"
+
+  "docs/components/vitrine-veiculos-api/index.md":
+    title: "Componente: Vitrine API"
+    collection_id: "components-collection"
+    tags: ["component", "vitrine", "api", "backend"]
+    description: "Documentação da API da vitrine"
+
+  "docs/components/vitrine-veiculos-api/api.md":
+    title: "API Reference - Vitrine"
+    collection_id: "components-collection"
+    tags: ["component", "vitrine", "api", "reference"]
+    description: "Referência da API da vitrine"
+
+  "docs/components/vitrine-veiculos-bff/index.md":
+    title: "Componente: Vitrine BFF"
+    collection_id: "components-collection"
+    tags: ["component", "vitrine", "bff", "backend"]
+    description: "Documentação do BFF da vitrine"
+
+  # Componentes - Backoffice
+  "docs/components/backoffice-veiculos-web/index.md":
+    title: "Componente: Backoffice Web"
+    collection_id: "components-collection"
+    tags: ["component", "backoffice", "web", "admin"]
+    description: "Documentação do componente web do backoffice"
+
+  "docs/components/backoffice-veiculos-api/index.md":
+    title: "Componente: Backoffice API"
+    collection_id: "components-collection"
+    tags: ["component", "backoffice", "api", "admin"]
+    description: "Documentação da API do backoffice"
+
+  "docs/components/backoffice-veiculos-bff/index.md":
+    title: "Componente: Backoffice BFF"
+    collection_id: "components-collection"
+    tags: ["component", "backoffice", "bff", "admin"]
+    description: "Documentação do BFF do backoffice"
+
+  # Pipelines
+  "docs/components/ecommerce-veiculos-pipelines/index.md":
+    title: "Pipelines E-commerce"
+    collection_id: "components-collection"
+    tags: ["component", "pipelines", "ci-cd", "automation"]
+    description: "Documentação dos pipelines de CI/CD"
+
+  "docs/components/ecommerce-veiculos-pipelines/automation.md":
+    title: "Automação - Pipelines"
+    collection_id: "components-collection"
+    tags: ["component", "pipelines", "automation"]
+    description: "Documentação da automação dos pipelines"
+
+  "docs/components/ecommerce-veiculos-pipelines/workflows.md":
+    title: "Workflows - Pipelines"
+    collection_id: "components-collection"
+    tags: ["component", "pipelines", "workflows"]
+    description: "Documentação dos workflows dos pipelines"
+
+  # Guias
+  "docs/guides/contributing.md":
+    title: "Guia de Contribuição"
+    collection_id: "guides-collection"
+    tags: ["guide", "contributing", "development"]
+    description: "Guia para contribuir com o projeto"
+
+# Configurações de coleções no Outline
+collections:
+  "main-collection":
+    name: "Documentação Principal"
+    description: "Documentação principal do projeto"
+    color: "#3B82F6"
+
+  "architecture-collection":
+    name: "Arquitetura"
+    description: "Documentação de arquitetura e decisões técnicas"
+    color: "#8B5CF6"
+
+  "systems-collection":
+    name: "Sistemas"
+    description: "Documentação dos sistemas do domínio"
+    color: "#10B981"
+
+  "components-collection":
+    name: "Componentes"
+    description: "Documentação dos componentes e bibliotecas"
+    color: "#F59E0B"
+
+  "guides-collection":
+    name: "Guias"
+    description: "Guias e tutoriais"
+    color: "#EF4444"

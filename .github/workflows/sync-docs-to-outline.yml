@@ -1,0 +1,63 @@
+name: Sync Documentation to Outline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'outline-mapping.yaml'
+      - '.github/workflows/sync-docs-to-outline.yml'
+
+jobs:
+  sync-to-outline:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history to detect changes
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pyyaml
+
+      - name: Check for documentation changes
+        id: check-changes
+        run: |
+          # Check if docs directory or mapping file changed
+          if git diff --name-only HEAD~1 HEAD | grep -E '^(docs/|outline-mapping\.yaml)'; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📝 Documentation changes detected"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No documentation changes detected"
+          fi
+
+      - name: Sync to Outline
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: python .github/scripts/sync_to_outline.py
+        env:
+          OUTLINE_API_URL: ${{ secrets.OUTLINE_API_URL }}
+          OUTLINE_API_TOKEN: ${{ secrets.OUTLINE_API_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+
+      - name: Comment on commit (if sync was successful)
+        if: steps.check-changes.outputs.has_changes == 'true' && success()
+        run: |
+          echo "✅ Documentation successfully synced to Outline"
+          echo "📚 Updated documents are now available in your Outline workspace"
+
+      - name: Comment on commit (if sync failed)
+        if: steps.check-changes.outputs.has_changes == 'true' && failure()
+        run: |
+          echo "❌ Failed to sync documentation to Outline"
+          echo "Please check the logs for more details"
