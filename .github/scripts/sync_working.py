@@ -561,7 +561,7 @@ class OutlineSyncWorking:
             return 4
         
         # docs/components/vitrine-veiculos-web/arquitetura.md, setup.md = nível 3
-        if len(path_parts) == 5 and path_parts[4] in ["arquitetura.md", "setup.md", "api-reference.md", "automation.md", "workflows.md"]:
+        if len(path_parts) == 5 and path_parts[4] in ["arquitetura.md", "setup.md", "api-reference.md", "api.md", "automation.md", "workflows.md"]:
             return 3
         
         # docs/architecture/overview.md = nível 1
