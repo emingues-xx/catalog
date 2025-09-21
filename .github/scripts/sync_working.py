@@ -537,7 +537,14 @@ class OutlineSyncWorking:
         return 2
 
     def _get_document_level(self, file_path: str) -> int:
-        """Determina o nível hierárquico do documento baseado no caminho"""
+        """Determina o nível hierárquico do documento baseado na propriedade level do mapeamento"""
+        mapping = self._get_document_mapping(file_path)
+        
+        # Se o mapeamento tem a propriedade level, usar ela
+        if 'level' in mapping:
+            return mapping['level']
+        
+        # Fallback: calcular baseado no caminho (para compatibilidade)
         path_parts = file_path.split('/')
         
         # docs/index.md = nível 0 (raiz)
