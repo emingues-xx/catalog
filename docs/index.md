@@ -21,7 +21,7 @@ Sistema interno para cadastro de anúncios, dashboard administrativo e acompanha
 ## Arquitetura
 
 - [Visão Geral da Arquitetura](architecture/overview.md)
-- [Architecture Decision Records (ADRs)](architecture/adrs/index.md)
+- [Architecture Decision Records (ADRs)](architecture/adrs/index.md) 
 
 ## Organização
 

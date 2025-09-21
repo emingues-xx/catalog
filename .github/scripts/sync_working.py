@@ -31,8 +31,20 @@ class OutlineSyncWorking:
         
     def _load_mapping_config(self) -> Dict[str, Any]:
         """Carrega a configuração de mapeamento do arquivo YAML"""
-        mapping_file = Path('outline-mapping.yaml')
-        if not mapping_file.exists():
+        # Tentar diferentes caminhos para o arquivo de mapeamento
+        possible_paths = [
+            Path('outline-mapping.yaml'),
+            Path.cwd() / 'outline-mapping.yaml',
+            Path(__file__).parent.parent.parent / 'outline-mapping.yaml'
+        ]
+        
+        mapping_file = None
+        for path in possible_paths:
+            if path.exists():
+                mapping_file = path
+                break
+        
+        if not mapping_file:
             print("⚠️ Arquivo outline-mapping.yaml não encontrado, usando configuração padrão")
             return self._get_default_mapping()
         
@@ -233,19 +245,38 @@ class OutlineSyncWorking:
             print("❌ Falha na conexão com a API. Abortando sincronização.")
             return False
         
-        docs_dir = Path('docs')
-        if not docs_dir.exists():
+        # Tentar diferentes caminhos para o diretório docs
+        possible_docs_paths = [
+            Path('docs'),
+            Path.cwd() / 'docs',
+            Path(__file__).parent.parent.parent / 'docs'
+        ]
+        
+        docs_dir = None
+        for path in possible_docs_paths:
+            if path.exists():
+                docs_dir = path
+                break
+        
+        if not docs_dir:
             print("❌ Diretório 'docs' não encontrado")
             return False
+        
+        print(f"📁 Usando diretório docs: {docs_dir}")
         
         success_count = 0
         error_count = 0
         
         # Processar todos os arquivos .md
-        for md_file in docs_dir.rglob('*.md'):
-            file_path = str(md_file.relative_to(Path.cwd()))
-            
+        md_files = list(docs_dir.rglob('*.md'))
+        print(f"📄 Encontrados {len(md_files)} arquivos .md para processar")
+        
+        for md_file in md_files:
             try:
+                # Usar caminho relativo ao diretório docs
+                file_path = str(md_file.relative_to(docs_dir.parent))
+                print(f"📝 Processando: {file_path}")
+                
                 with open(md_file, 'r', encoding='utf-8') as f:
                     content = f.read()
                 
@@ -255,7 +286,7 @@ class OutlineSyncWorking:
                     error_count += 1
                     
             except Exception as e:
-                print(f"❌ Erro ao ler arquivo '{file_path}': {e}")
+                print(f"❌ Erro ao processar arquivo '{md_file}': {e}")
                 error_count += 1
         
         print(f"\n📊 Resumo da sincronização:")

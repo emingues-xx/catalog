@@ -29,6 +29,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pyyaml
 
+      - name: Test paths (debug)
+        run: python .github/scripts/test-paths.py
+
       - name: Check for documentation changes
         id: check-changes
         run: |
