@@ -21,6 +21,7 @@ spec:
   type: team
   profile:
     displayName: Squad Vitrine
+  children: []
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -33,3 +34,4 @@ spec:
   type: team
   profile:
     displayName: Squad Backoffice
+  children: []
