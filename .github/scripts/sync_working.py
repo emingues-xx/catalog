@@ -283,6 +283,7 @@ class OutlineSyncWorking:
                     # Adicionar parentId se especificado
                     if parent_document_id:
                         data['parentDocumentId'] = parent_document_id
+                        print(f"👨‍👩‍👧‍👦 Associando ao pai: {parent_document_title}")
                     
                     response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
                     
@@ -381,6 +382,98 @@ class OutlineSyncWorking:
         
         return header + content + footer
     
+    def _delete_all_documents_hierarchically(self) -> bool:
+        """Deleta todos os documentos em ordem hierárquica (filhos primeiro, depois pais)"""
+        try:
+            print("🗑️ Iniciando limpeza hierárquica de documentos...")
+            
+            # Listar todos os documentos
+            test_data = {"id": ""}
+            response = requests.post(
+                f'{self.api_url}/api/documents.list',
+                headers=self.headers,
+                json=test_data,
+                timeout=10
+            )
+            
+            if response.status_code != 200:
+                print(f"❌ Erro ao listar documentos: {response.status_code}")
+                return False
+            
+            data = response.json()
+            all_documents = data.get('data', [])
+            
+            if not all_documents:
+                print("✅ Nenhum documento encontrado para deletar")
+                return True
+            
+            print(f"📄 Encontrados {len(all_documents)} documentos para deletar")
+            
+            deleted_count = 0
+            max_rounds = 10
+            
+            for round_num in range(1, max_rounds + 1):
+                if not all_documents:
+                    break
+                
+                print(f"🔄 Round {round_num} - Documentos restantes: {len(all_documents)}")
+                
+                # Encontrar documentos sem filhos (folhas)
+                leaf_documents = []
+                for doc in all_documents:
+                    doc_id = doc.get('id')
+                    has_children = False
+                    
+                    # Verificar se algum outro documento tem este como pai
+                    for other_doc in all_documents:
+                        if other_doc.get('parentDocumentId') == doc_id:
+                            has_children = True
+                            break
+                    
+                    if not has_children:
+                        leaf_documents.append(doc)
+                        print(f"  📄 {doc.get('title', 'Sem título')} - sem filhos")
+                
+                if not leaf_documents:
+                    print("⚠️ Nenhum documento sem filhos encontrado. Deletando todos os restantes...")
+                    leaf_documents = all_documents
+                
+                # Deletar documentos sem filhos
+                for doc in leaf_documents:
+                    doc_id = doc.get('id')
+                    doc_title = doc.get('title', 'Sem título')
+                    
+                    delete_data = {
+                        'id': doc_id,
+                        'permanent': True
+                    }
+                    
+                    try:
+                        delete_response = requests.post(
+                            f'{self.api_url}/api/documents.delete',
+                            headers=self.headers,
+                            json=delete_data,
+                            timeout=10
+                        )
+                        
+                        if delete_response.status_code in [200, 201]:
+                            print(f"✅ Deletado: {doc_title}")
+                            deleted_count += 1
+                            # Remover da lista
+                            all_documents = [d for d in all_documents if d.get('id') != doc_id]
+                        else:
+                            print(f"❌ Erro ao deletar {doc_title}: {delete_response.status_code} - {delete_response.text}")
+                            
+                    except Exception as e:
+                        print(f"❌ Erro ao deletar {doc_title}: {e}")
+            
+            print(f"📊 Limpeza concluída: {deleted_count} documentos deletados")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Erro na limpeza hierárquica: {e}")
+            return False
+
     def sync_documents(self):
         """Sincroniza todos os documentos do diretório docs/"""
         print("🚀 Iniciando sincronização com Outline...")
@@ -462,6 +555,15 @@ def main():
     """Função principal"""
     try:
         syncer = OutlineSyncWorking()
+        
+        # Verificar se deve limpar antes da sincronização
+        clean_before_sync = os.getenv('CLEAN_BEFORE_SYNC', 'false').lower() == 'true'
+        
+        if clean_before_sync:
+            print("🧹 Modo de limpeza ativado. Deletando documentos existentes...")
+            if not syncer._delete_all_documents_hierarchically():
+                print("⚠️ Erro na limpeza, mas continuando com a sincronização...")
+        
         success = syncer.sync_documents()
         
         if success:

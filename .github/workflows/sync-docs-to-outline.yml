@@ -48,6 +48,7 @@ jobs:
           OUTLINE_API_TOKEN: ${{ secrets.OUTLINE_API_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
+          CLEAN_BEFORE_SYNC: ${{ vars.CLEAN_BEFORE_SYNC || 'false' }}
 
       - name: Comment on commit (if sync was successful)
         if: steps.check-changes.outputs.has_changes == 'true' && success()
