@@ -26,6 +26,25 @@ documents:
     tags: ["overview", "main"]
     description: "Documentação principal do domínio E-commerce de Veículos"
 
+  # Documentos pais (criados automaticamente)
+  "docs/systems/index.md":
+    title: "Sistemas"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    tags: ["system", "overview"]
+    description: "Documentação dos sistemas do domínio"
+
+  "docs/components/index.md":
+    title: "Componentes"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    tags: ["component", "overview"]
+    description: "Documentação dos componentes e bibliotecas"
+
+  "docs/guides/index.md":
+    title: "Guias"
+    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    tags: ["guide", "overview"]
+    description: "Guias e tutoriais"
+
   # Sistemas
   "docs/systems/vitrine-veiculos/index.md":
     title: "Vitrine de Veículos"
