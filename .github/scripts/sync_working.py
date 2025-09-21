@@ -179,28 +179,47 @@ class OutlineSyncWorking:
                 # Atualizar documento existente
                 data = {
                     'id': doc_id,
-                    'text': enhanced_content
+                    'text': enhanced_content,
+                    'readonly': True
                 }
                 
                 response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
                 
                 if response.status_code in [200, 201]:
-                    print(f"✅ Documento '{title}' atualizado com sucesso")
+                    print(f"✅ Documento '{title}' atualizado com sucesso (readonly)")
                     return True
                 else:
                     print(f"❌ Erro ao atualizar documento '{title}': {response.status_code} - {response.text}")
                     return False
             else:
-                # Criar novo documento (formato simples que funciona)
+                # Criar novo documento público e readonly
                 data = {
                     'title': title,
-                    'text': enhanced_content
+                    'text': enhanced_content,
+                    'publish': True,
+                    'collectionId': self.mapping_config['config']['default_collection_id']
                 }
                 
                 response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
                 
                 if response.status_code in [200, 201]:
-                    print(f"✅ Documento '{title}' criado com sucesso")
+                    doc_id = response.json().get('data', {}).get('id')
+                    print(f"✅ Documento '{title}' criado com sucesso (ID: {doc_id})")
+                    
+                    # Tentar tornar o documento readonly
+                    try:
+                        readonly_data = {
+                            'id': doc_id,
+                            'readonly': True
+                        }
+                        readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
+                        if readonly_response.status_code in [200, 201]:
+                            print(f"✅ Documento '{title}' configurado como readonly")
+                        else:
+                            print(f"⚠️ Não foi possível configurar readonly para '{title}': {readonly_response.status_code}")
+                    except Exception as e:
+                        print(f"⚠️ Erro ao configurar readonly para '{title}': {e}")
+                    
                     return True
                 else:
                     print(f"❌ Erro ao criar documento '{title}': {response.status_code} - {response.text}")
