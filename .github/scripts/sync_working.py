@@ -171,6 +171,46 @@ class OutlineSyncWorking:
         except Exception as e:
             print(f"❌ Erro ao buscar documento '{title}': {e}")
             return None
+
+    def _create_parent_document(self, title: str, collection_id: str) -> Optional[str]:
+        """Cria um documento pai vazio quando necessário"""
+        try:
+            # Conteúdo vazio para documento pai
+            empty_content = f"# {title}\n\n*Documento pai criado automaticamente*"
+            
+            data = {
+                'title': title,
+                'text': empty_content,
+                'publish': True,
+                'collectionId': collection_id
+            }
+            
+            response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
+            
+            if response.status_code in [200, 201]:
+                doc_id = response.json().get('data', {}).get('id')
+                print(f"✅ Documento pai '{title}' criado com sucesso (ID: {doc_id})")
+                
+                # Tornar readonly
+                try:
+                    readonly_data = {
+                        'id': doc_id,
+                        'readonly': True
+                    }
+                    readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
+                    if readonly_response.status_code in [200, 201]:
+                        print(f"✅ Documento pai '{title}' configurado como readonly")
+                except Exception as e:
+                    print(f"⚠️ Erro ao configurar readonly para '{title}': {e}")
+                
+                return doc_id
+            else:
+                print(f"❌ Erro ao criar documento pai '{title}': {response.status_code} - {response.text}")
+                return None
+                
+        except Exception as e:
+            print(f"❌ Erro ao criar documento pai '{title}': {e}")
+            return None
     
     def _create_or_update_document(self, file_path: str, content: str) -> bool:
         """Cria ou atualiza um documento no Outline"""
@@ -201,7 +241,8 @@ class OutlineSyncWorking:
             if parent_document_title:
                 parent_document_id = self._search_document(parent_document_title)
                 if not parent_document_id:
-                    print(f"⚠️ Documento pai '{parent_document_title}' não encontrado. Criando documento sem pai.")
+                    print(f"⚠️ Documento pai '{parent_document_title}' não encontrado. Criando documento pai vazio.")
+                    parent_document_id = self._create_parent_document(parent_document_title, collection_id)
             
             if doc_id:
                 # Atualizar documento existente

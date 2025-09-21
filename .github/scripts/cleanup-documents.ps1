@@ -1,4 +1,4 @@
-# Script para deletar todos os documentos atuais do Outline
+# Limpar todos os documentos do Outline
 
 $apiUrl = "https://outline-production-47e1.up.railway.app"
 $apiToken = "ol_api_1QaafZhDnPSgs9bzU4vV4LpydZ9A6hVYdcZuCK"
@@ -9,66 +9,42 @@ $headers = @{
     'Accept' = 'application/json'
 }
 
-Write-Host "Limpando documentos do Outline..."
-Write-Host ""
+Write-Host "Limpando todos os documentos do Outline..."
 
 try {
     # Listar todos os documentos
-    $listBody = '{"id": ""}'
-    $listResponse = Invoke-RestMethod -Uri "$apiUrl/api/documents.list" -Headers $headers -Method Post -Body $listBody
+    $body = '{"id": ""}'
+    $response = Invoke-RestMethod -Uri "$apiUrl/api/documents.list" -Headers $headers -Method Post -Body $body
     
-    if ($listResponse.ok) {
-        $documents = $listResponse.data
-        Write-Host "Encontrados $($documents.Count) documentos:"
-        
-        foreach ($doc in $documents) {
-            Write-Host "  - $($doc.title) (ID: $($doc.id))"
-        }
-        
-        Write-Host ""
-        Write-Host "Deletando documentos..."
+    if ($response.ok) {
+        $documents = $response.data
+        Write-Host "Encontrados $($documents.Count) documentos para deletar"
         
         foreach ($doc in $documents) {
             try {
                 $deleteBody = @{
                     id = $doc.id
+                    permanent = $true
                 } | ConvertTo-Json
                 
                 $deleteResponse = Invoke-RestMethod -Uri "$apiUrl/api/documents.delete" -Headers $headers -Method Post -Body $deleteBody
                 
                 if ($deleteResponse.ok) {
-                    Write-Host "Documento '$($doc.title)' deletado com sucesso"
+                    Write-Host "✅ Documento '$($doc.title)' deletado com sucesso"
                 } else {
-                    Write-Host "Erro ao deletar documento '$($doc.title)': $($deleteResponse.error)"
+                    Write-Host "❌ Erro ao deletar documento '$($doc.title)': $($deleteResponse.message)"
                 }
             } catch {
-                Write-Host "Erro ao deletar documento '$($doc.title)': $($_.Exception.Message)"
+                Write-Host "❌ Erro ao deletar documento '$($doc.title)': $($_.Exception.Message)"
             }
         }
-        
-        Write-Host ""
-        Write-Host "Verificando documentos restantes..."
-        
-        # Listar documentos restantes
-        $finalResponse = Invoke-RestMethod -Uri "$apiUrl/api/documents.list" -Headers $headers -Method Post -Body $listBody
-        
-        if ($finalResponse.ok) {
-            $remainingDocuments = $finalResponse.data
-            Write-Host "Documentos restantes: $($remainingDocuments.Count)"
-            
-            foreach ($doc in $remainingDocuments) {
-                Write-Host "  - $($doc.title) (ID: $($doc.id))"
-            }
-        }
-        
     } else {
-        Write-Host "Erro ao listar documentos: $($listResponse.error)"
+        Write-Host "❌ Erro ao listar documentos: $($response.message)"
     }
-    
 } catch {
-    Write-Host "Erro geral: $($_.Exception.Message)"
+    Write-Host "❌ Erro geral: $($_.Exception.Message)"
 }
 
 Write-Host ""
-Write-Host "Limpeza de documentos concluída!"
+Write-Host "Limpeza concluída!"
 Write-Host "Acesse o Outline: https://outline-production-47e1.up.railway.app"

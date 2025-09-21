@@ -31,4 +31,4 @@ Sistema interno para cadastro de anúncios, dashboard administrativo e acompanha
 
 ## Guias
 
-- [Como Contribuir](guides/contributing.md) 
+- [Como Contribuir](guides/contributing.md)     
