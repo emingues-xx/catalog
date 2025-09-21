@@ -383,7 +383,7 @@ class OutlineSyncWorking:
         return header + content + footer
     
     def _delete_all_documents_hierarchically(self) -> bool:
-        """Deleta todos os documentos em ordem hierárquica (filhos primeiro, depois pais)"""
+        """Deleta todos os documentos em ordem hierárquica (do maior nível para o menor)"""
         try:
             print("🗑️ Iniciando limpeza hierárquica de documentos...")
             
@@ -409,37 +409,27 @@ class OutlineSyncWorking:
             
             print(f"📄 Encontrados {len(all_documents)} documentos para deletar")
             
-            deleted_count = 0
-            max_rounds = 10
+            # Organizar documentos por nível hierárquico
+            documents_by_level = {}
+            for doc in all_documents:
+                title = doc.get('title', '')
+                level = self._get_document_level_by_title(title)
+                
+                if level not in documents_by_level:
+                    documents_by_level[level] = []
+                documents_by_level[level].append(doc)
             
-            for round_num in range(1, max_rounds + 1):
-                if not all_documents:
-                    break
+            print(f"📊 Documentos organizados por nível para deleção:")
+            for level in sorted(documents_by_level.keys(), reverse=True):
+                print(f"  Nível {level}: {len(documents_by_level[level])} documentos")
+            
+            deleted_count = 0
+            
+            # Deletar por níveis (do maior para o menor)
+            for level in sorted(documents_by_level.keys(), reverse=True):
+                print(f"\n🗑️ Deletando Nível {level} ({len(documents_by_level[level])} documentos)...")
                 
-                print(f"🔄 Round {round_num} - Documentos restantes: {len(all_documents)}")
-                
-                # Encontrar documentos sem filhos (folhas)
-                leaf_documents = []
-                for doc in all_documents:
-                    doc_id = doc.get('id')
-                    has_children = False
-                    
-                    # Verificar se algum outro documento tem este como pai
-                    for other_doc in all_documents:
-                        if other_doc.get('parentDocumentId') == doc_id:
-                            has_children = True
-                            break
-                    
-                    if not has_children:
-                        leaf_documents.append(doc)
-                        print(f"  📄 {doc.get('title', 'Sem título')} - sem filhos")
-                
-                if not leaf_documents:
-                    print("⚠️ Nenhum documento sem filhos encontrado. Deletando todos os restantes...")
-                    leaf_documents = all_documents
-                
-                # Deletar documentos sem filhos
-                for doc in leaf_documents:
+                for doc in documents_by_level[level]:
                     doc_id = doc.get('id')
                     doc_title = doc.get('title', 'Sem título')
                     
@@ -457,26 +447,99 @@ class OutlineSyncWorking:
                         )
                         
                         if delete_response.status_code in [200, 201]:
-                            print(f"✅ Deletado: {doc_title}")
+                            print(f"✅ Deletado: {doc_title} (Nível {level})")
                             deleted_count += 1
-                            # Remover da lista
-                            all_documents = [d for d in all_documents if d.get('id') != doc_id]
                         else:
                             print(f"❌ Erro ao deletar {doc_title}: {delete_response.status_code} - {delete_response.text}")
                             
                     except Exception as e:
                         print(f"❌ Erro ao deletar {doc_title}: {e}")
             
-            print(f"📊 Limpeza concluída: {deleted_count} documentos deletados")
+            print(f"\n📊 Limpeza hierárquica concluída: {deleted_count} documentos deletados")
             return True
             
         except Exception as e:
             print(f"❌ Erro na limpeza hierárquica: {e}")
             return False
 
+    def _get_document_level_by_title(self, title: str) -> int:
+        """Determina o nível hierárquico do documento baseado no título"""
+        # Nível 0: Documento raiz
+        if title == "E-commerce de Veículos - Documentação":
+            return 0
+        
+        # Nível 1: Documentos principais
+        if title in ["Sistemas", "Componentes", "Arquitetura", "Guias"]:
+            return 1
+        
+        # Nível 2: Sistemas e componentes específicos
+        if title in ["Vitrine de Veículos", "Backoffice de Veículos", "Vitrine Web", "Vitrine API", 
+                    "Vitrine BFF", "Backoffice Web", "Backoffice API", "Backoffice BFF", 
+                    "Pipelines E-commerce", "Sobre ADRs", "ADRs", "Guia de Contribuição", "Contributing"]:
+            return 2
+        
+        # Nível 3: Features, Arquitetura, Setup, etc.
+        if title in ["Features", "Arquitetura", "Setup", "API Reference", "API", "Architecture",
+                    "Automação - Pipelines", "Workflows - Pipelines"]:
+            return 3
+        
+        # Nível 4: Funcionalidades específicas
+        if title in ["Busca de Veículos", "Cadastro de Anúncios"]:
+            return 4
+        
+        # Default: nível 2
+        return 2
+
+    def _get_document_level(self, file_path: str) -> int:
+        """Determina o nível hierárquico do documento baseado no caminho"""
+        path_parts = file_path.split('/')
+        
+        # docs/index.md = nível 0 (raiz)
+        if file_path == "docs/index.md":
+            return 0
+        
+        # docs/systems/index.md, docs/components/index.md, etc. = nível 1
+        if len(path_parts) == 3 and path_parts[2] == "index.md":
+            return 1
+        
+        # docs/systems/vitrine-veiculos/index.md = nível 2
+        if len(path_parts) == 4 and path_parts[3] == "index.md":
+            return 2
+        
+        # docs/systems/vitrine-veiculos/features.md, arquitetura.md = nível 3
+        if len(path_parts) == 4 and path_parts[3] in ["features.md", "arquitetura.md", "setup.md", "api-reference.md", "automation.md", "workflows.md"]:
+            return 3
+        
+        # docs/systems/vitrine-veiculos/feature-busca-veiculos.md = nível 4
+        if len(path_parts) == 4 and path_parts[3].startswith("feature-"):
+            return 4
+        
+        # docs/components/vitrine-veiculos-web/arquitetura.md, setup.md = nível 3
+        if len(path_parts) == 5 and path_parts[4] in ["arquitetura.md", "setup.md", "api-reference.md", "automation.md", "workflows.md"]:
+            return 3
+        
+        # docs/architecture/overview.md = nível 1
+        if file_path == "docs/architecture/overview.md":
+            return 1
+        
+        # docs/architecture/sobre-adrs.md, docs/architecture/adrs/index.md = nível 2
+        if path_parts[1] == "architecture" and len(path_parts) >= 3:
+            return 2
+        
+        # docs/guides/index.md = nível 1
+        if file_path == "docs/guides/index.md":
+            return 1
+        
+        # docs/guides/contributing.md, docs/guides/guia-contribuicao.md = nível 2
+        if path_parts[1] == "guides" and len(path_parts) == 3:
+            return 2
+        
+        # Default: nível 2
+        return 2
+
     def sync_documents(self):
-        """Sincroniza todos os documentos do diretório docs/"""
-        print("🚀 Iniciando sincronização com Outline...")
+        """Sincroniza todos os documentos do diretório docs/ respeitando a hierarquia"""
+        print("🚀 Iniciando sincronização hierárquica com Outline...")
         
         # Testar conexão com API
         if not self._test_api_connection():
@@ -502,50 +565,48 @@ class OutlineSyncWorking:
         
         print(f"📁 Usando diretório docs: {docs_dir}")
         
-        success_count = 0
-        error_count = 0
-        
         # Processar todos os arquivos .md
         md_files = list(docs_dir.rglob('*.md'))
         print(f"📄 Encontrados {len(md_files)} arquivos .md para processar")
         
-        # Primeira passada: criar todos os documentos pais necessários
-        print("\n🔄 Primeira passada: Criando documentos pais...")
-        parent_titles = set()
+        # Organizar arquivos por nível hierárquico
+        files_by_level = {}
         for md_file in md_files:
             file_path = str(md_file.relative_to(docs_dir.parent))
-            mapping = self._get_document_mapping(file_path)
-            parent_document = mapping.get('parent_document')
-            if parent_document:
-                parent_titles.add(parent_document)
+            level = self._get_document_level(file_path)
+            
+            if level not in files_by_level:
+                files_by_level[level] = []
+            files_by_level[level].append((file_path, md_file))
         
-        for parent_title in parent_titles:
-            if not self._search_document(parent_title):
-                print(f"📄 Criando documento pai: {parent_title}")
-                collection_id = self.mapping_config['config']['default_collection_id']
-                self._create_parent_document(parent_title, collection_id)
+        print(f"📊 Documentos organizados por nível:")
+        for level in sorted(files_by_level.keys()):
+            print(f"  Nível {level}: {len(files_by_level[level])} documentos")
         
-        # Segunda passada: processar todos os documentos
-        print("\n🔄 Segunda passada: Processando todos os documentos...")
-        for md_file in md_files:
-            try:
-                # Usar caminho relativo ao diretório docs
-                file_path = str(md_file.relative_to(docs_dir.parent))
-                print(f"📝 Processando: {file_path}")
-                
-                with open(md_file, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                
-                if self._create_or_update_document(file_path, content):
-                    success_count += 1
-                else:
-                    error_count += 1
+        success_count = 0
+        error_count = 0
+        
+        # Processar por níveis (do menor para o maior)
+        for level in sorted(files_by_level.keys()):
+            print(f"\n🔄 Processando Nível {level} ({len(files_by_level[level])} documentos)...")
+            
+            for file_path, md_file in files_by_level[level]:
+                try:
+                    print(f"📝 Processando: {file_path} (Nível {level})")
                     
-            except Exception as e:
-                print(f"❌ Erro ao processar arquivo '{md_file}': {e}")
-                error_count += 1
+                    with open(md_file, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    
+                    if self._create_or_update_document(file_path, content):
+                        success_count += 1
+                    else:
+                        error_count += 1
+                        
+                except Exception as e:
+                    print(f"❌ Erro ao processar arquivo '{file_path}': {e}")
+                    error_count += 1
         
-        print(f"\n📊 Resumo da sincronização:")
+        print(f"\n📊 Resumo da sincronização hierárquica:")
         print(f"✅ Documentos sincronizados com sucesso: {success_count}")
         print(f"❌ Documentos com erro: {error_count}")
         
