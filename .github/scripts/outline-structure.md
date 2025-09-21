@@ -2,61 +2,73 @@
 
 ## 📁 Organização das Coleções
 
-A documentação é organizada em uma estrutura hierárquica automática baseada no caminho dos arquivos:
+A documentação é organizada em uma estrutura hierárquica automática baseada no caminho dos arquivos, seguindo o padrão estabelecido:
 
 ```
-docs (Coleção Raiz)
+Docs (Coleção Raiz)
 ├── Arquitetura
 │   ├── docs/architecture/overview.md
 │   └── docs/architecture/adrs/index.md
 ├── Sistemas
-│   ├── Sistema Vitrine Veículos
+│   ├── Vitrine de Veículos
 │   │   ├── docs/systems/vitrine-veiculos/index.md
-│   │   ├── docs/systems/vitrine-veiculos/arquitetura.md
-│   │   └── docs/systems/vitrine-veiculos/feature-busca-veiculos.md
-│   └── Sistema Backoffice Veículos
+│   │   ├── Arquitetura
+│   │   │   └── docs/systems/vitrine-veiculos/arquitetura.md
+│   │   └── Features
+│   │       └── Busca de Veículos
+│   │           └── docs/systems/vitrine-veiculos/feature-busca-veiculos.md
+│   └── Backoffice de Veículos
 │       ├── docs/systems/backoffice-veiculos/index.md
-│       ├── docs/systems/backoffice-veiculos/arquitetura.md
-│       └── docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md
+│       ├── Arquitetura
+│       │   └── docs/systems/backoffice-veiculos/arquitetura.md
+│       └── Features
+│           └── Cadastro de Anúncios
+│               └── docs/systems/backoffice-veiculos/feature-cadastro-anuncio.md
 ├── Componentes
-│   ├── Componente Vitrine Veículos Web
+│   ├── Vitrine Veículos Web
 │   │   ├── docs/components/vitrine-veiculos-web/index.md
-│   │   ├── docs/components/vitrine-veiculos-web/architecture.md
-│   │   └── docs/components/vitrine-veiculos-web/setup.md
-│   ├── Componente Vitrine Veículos Api
+│   │   ├── Arquitetura
+│   │   │   └── docs/components/vitrine-veiculos-web/architecture.md
+│   │   └── Setup
+│   │       └── docs/components/vitrine-veiculos-web/setup.md
+│   ├── Vitrine Veículos Api
 │   │   ├── docs/components/vitrine-veiculos-api/index.md
-│   │   └── docs/components/vitrine-veiculos-api/api.md
-│   ├── Componente Vitrine Veículos Bff
-│   │   └── docs/components/vitrine-veiculos-bff/index.md
-│   └── Componente Ecommerce Veículos Pipelines
+│   │   └── API
+│   │       └── docs/components/vitrine-veiculos-api/api.md
+│   └── Ecommerce Veículos Pipelines
 │       ├── docs/components/ecommerce-veiculos-pipelines/index.md
-│       ├── docs/components/ecommerce-veiculos-pipelines/automation.md
-│       └── docs/components/ecommerce-veiculos-pipelines/workflows.md
+│       ├── Automação
+│       │   └── docs/components/ecommerce-veiculos-pipelines/automation.md
+│       └── Workflows
+│           └── docs/components/ecommerce-veiculos-pipelines/workflows.md
 └── Guias
-    └── docs/guides/contributing.md
+    └── Contribuindo
+        └── docs/guides/contributing.md
 ```
 
 ## 🎯 Mapeamento Automático de Documentos
 
 ### Regras de Hierarquia
 
-O sistema cria automaticamente a hierarquia baseada no caminho do arquivo:
+O sistema cria automaticamente a hierarquia baseada no caminho do arquivo, seguindo o padrão estabelecido:
 
-- **`docs/index.md`** → Coleção: `docs`
-- **`docs/architecture/*`** → Coleção: `docs >> Arquitetura`
-- **`docs/systems/sistema-name/*`** → Coleção: `docs >> Sistemas >> Sistema Sistema Name`
-- **`docs/components/component-name/*`** → Coleção: `docs >> Componentes >> Componente Component Name`
-- **`docs/guides/*`** → Coleção: `docs >> Guias`
+- **`docs/index.md`** → Coleção: `Docs`
+- **`docs/architecture/*`** → Coleção: `Docs >> Arquitetura`
+- **`docs/systems/sistema-name/*`** → Coleção: `Docs >> Sistemas >> Sistema Name`
+- **`docs/components/component-name/*`** → Coleção: `Docs >> Componentes >> Component Name`
+- **`docs/guides/*`** → Coleção: `Docs >> Guias`
 
 ### Exemplos de Mapeamento
 
 | Arquivo | Hierarquia | Coleção Final |
 |---------|------------|---------------|
-| `docs/index.md` | `docs` | `docs` |
-| `docs/architecture/overview.md` | `docs >> Arquitetura` | `Arquitetura` |
-| `docs/systems/vitrine-veiculos/index.md` | `docs >> Sistemas >> Sistema Vitrine Veículos` | `Sistema Vitrine Veículos` |
-| `docs/components/vitrine-veiculos-web/architecture.md` | `docs >> Componentes >> Componente Vitrine Veículos Web` | `Componente Vitrine Veículos Web` |
-| `docs/guides/contributing.md` | `docs >> Guias` | `Guias` |
+| `docs/index.md` | `Docs` | `Docs` |
+| `docs/architecture/overview.md` | `Docs >> Arquitetura` | `Arquitetura` |
+| `docs/systems/vitrine-veiculos/index.md` | `Docs >> Sistemas >> Vitrine de Veículos` | `Vitrine de Veículos` |
+| `docs/systems/vitrine-veiculos/arquitetura.md` | `Docs >> Sistemas >> Vitrine de Veículos >> Arquitetura` | `Arquitetura` |
+| `docs/systems/vitrine-veiculos/feature-busca-veiculos.md` | `Docs >> Sistemas >> Vitrine de Veículos >> Features >> Busca de Veículos` | `Busca de Veículos` |
+| `docs/components/vitrine-veiculos-web/architecture.md` | `Docs >> Componentes >> Vitrine Veículos Web >> Arquitetura` | `Arquitetura` |
+| `docs/guides/contributing.md` | `Docs >> Guias >> Contribuindo` | `Contribuindo` |
 
 ## 🔄 Processo de Sincronização
 
