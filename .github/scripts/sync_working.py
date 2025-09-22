@@ -186,8 +186,16 @@ class OutlineSyncWorking:
                 print(f"❌ ID de mapeamento '{mapping_id}' não encontrado")
                 return None
             
+            print(f"🔍 Buscando documento '{target_title}' (ID: {mapping_id})")
+            
             # Buscar o documento pelo título
-            return self._search_document(target_title)
+            doc_id = self._search_document(target_title)
+            if doc_id:
+                print(f"✅ Documento '{target_title}' encontrado (ID: {doc_id})")
+            else:
+                print(f"❌ Documento '{target_title}' não encontrado no Outline")
+            
+            return doc_id
             
         except Exception as e:
             print(f"❌ Erro ao buscar documento por ID '{mapping_id}': {e}")
@@ -455,11 +463,11 @@ class OutlineSyncWorking:
             
             print(f"📄 Encontrados {len(all_documents)} documentos para deletar")
             
-            # Organizar documentos por nível hierárquico
+            # Organizar documentos por nível hierárquico usando o mapeamento
             documents_by_level = {}
             for doc in all_documents:
                 title = doc.get('title', '')
-                level = self._get_document_level_by_title(title)
+                level = self._get_document_level_by_mapping_title(title)
                 
                 if level not in documents_by_level:
                     documents_by_level[level] = []
@@ -479,6 +487,8 @@ class OutlineSyncWorking:
                     doc_id = doc.get('id')
                     doc_title = doc.get('title', 'Sem título')
                     
+                    print(f"  🗑️ Deletando: {doc_title} (ID: {doc_id})")
+                    
                     delete_data = {
                         'id': doc_id,
                         'permanent': True
@@ -493,13 +503,13 @@ class OutlineSyncWorking:
                         )
                         
                         if delete_response.status_code in [200, 201]:
-                            print(f"✅ Deletado: {doc_title} (Nível {level})")
+                            print(f"    ✅ Deletado com sucesso")
                             deleted_count += 1
                         else:
-                            print(f"❌ Erro ao deletar {doc_title}: {delete_response.status_code} - {delete_response.text}")
+                            print(f"    ❌ Erro ao deletar: {delete_response.status_code} - {delete_response.text}")
                             
                     except Exception as e:
-                        print(f"❌ Erro ao deletar {doc_title}: {e}")
+                        print(f"    ❌ Erro ao deletar: {e}")
             
             print(f"\n📊 Limpeza hierárquica concluída: {deleted_count} documentos deletados")
             return True
@@ -535,6 +545,24 @@ class OutlineSyncWorking:
         
         # Default: nível 2
         return 2
+    
+    def _get_document_level_by_mapping_title(self, title: str) -> int:
+        """Determina o nível hierárquico do documento baseado no título usando o mapeamento"""
+        try:
+            # Buscar o documento pelo título no mapeamento
+            for file_path, mapping in self.mapping_config.get('documents', {}).items():
+                if mapping.get('title') == title:
+                    level = mapping.get('level')
+                    if level is not None:
+                        return level
+            
+            # Se não encontrou no mapeamento, usar fallback
+            print(f"⚠️ Documento '{title}' não encontrado no mapeamento, usando fallback")
+            return self._get_document_level_by_title(title)
+            
+        except Exception as e:
+            print(f"❌ Erro ao buscar nível por título '{title}': {e}")
+            return self._get_document_level_by_title(title)
 
     def _get_document_level(self, file_path: str) -> int:
         """Determina o nível hierárquico do documento baseado na propriedade level do mapeamento"""
