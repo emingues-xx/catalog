@@ -34,6 +34,7 @@ documents:
     title: "Sistemas"
     level: 1
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_id: "doc-root"
     tags: ["system", "overview"]
     description: "Documentação dos sistemas do domínio"
 
