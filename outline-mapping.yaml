@@ -42,6 +42,7 @@ documents:
     title: "Componentes"
     level: 1
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_id: "doc-root"
     tags: ["component", "overview"]
     description: "Documentação dos componentes e bibliotecas"
 
@@ -50,6 +51,7 @@ documents:
     title: "Arquitetura"
     level: 1
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    parent_id: "doc-root"
     tags: ["architecture", "overview"]
     description: "Documentação de arquitetura e decisões técnicas"
 

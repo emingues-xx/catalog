@@ -23,7 +23,7 @@ docs/
 - **Tom técnico mas acessível**: Explique conceitos complexos de forma clara
 - **Português brasileiro**: Use a norma culta, evite gírias
 - **Presente do indicativo**: "O sistema processa" ao invés de "processará"
-- **Voz ativa**: "A API retorna dados" ao invés de "dados são retornados"
+- **Voz ativa**: "A API retorna dados" ao invés de "dados são retornados"  
 
 #### Formatação
 - **Títulos**: Use hierarquia clara (H1 > H2 > H3)
