@@ -186,14 +186,14 @@ class OutlineSyncWorking:
                 print(f"❌ ID de mapeamento '{mapping_id}' não encontrado")
                 return None
             
-            print(f"🔍 Buscando documento '{target_title}' (ID: {mapping_id})")
+            print(f"🔍 Buscando documento pai (ID: {mapping_id}) -> '{target_title}'")
             
             # Buscar o documento pelo título
             doc_id = self._search_document(target_title)
             if doc_id:
-                print(f"✅ Documento '{target_title}' encontrado (ID: {doc_id})")
+                print(f"✅ Documento pai encontrado (ID: {mapping_id}) -> Outline ID: {doc_id}")
             else:
-                print(f"❌ Documento '{target_title}' não encontrado no Outline")
+                print(f"❌ Documento pai não encontrado (ID: {mapping_id}) -> '{target_title}'")
             
             return doc_id
             
@@ -241,7 +241,7 @@ class OutlineSyncWorking:
             
             if response.status_code in [200, 201]:
                 doc_id = response.json().get('data', {}).get('id')
-                print(f"✅ Documento pai '{title}' criado com sucesso (ID: {doc_id})")
+                print(f"✅ Documento pai criado com sucesso -> '{title}' (Outline ID: {doc_id})")
                 
                 # Tornar readonly
                 try:
@@ -251,7 +251,7 @@ class OutlineSyncWorking:
                     }
                     readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
                     if readonly_response.status_code in [200, 201]:
-                        print(f"✅ Documento pai '{title}' configurado como readonly")
+                        print(f"✅ Documento pai configurado como readonly -> '{title}'")
                 except Exception as e:
                     print(f"⚠️ Erro ao configurar readonly para '{title}': {e}")
                 
@@ -280,19 +280,12 @@ class OutlineSyncWorking:
             collection_id = mapping.get('collection_id', self.mapping_config['config']['default_collection_id'])
             parent_mapping_id = self._get_document_parent(file_path)
             
-            print(f"📄 Processando documento: '{title}'")
+            # Obter o ID do mapeamento do documento atual
+            current_mapping_id = mapping.get('id', 'sem-id')
+            print(f"📄 Processando documento: '{title}' (ID: {current_mapping_id})")
             print(f"📁 Coleção: {collection_id}")
             if parent_mapping_id:
-                # Buscar o título do documento pai para exibir
-                parent_title = None
-                for fp, mp in self.mapping_config.get('documents', {}).items():
-                    if mp.get('id') == parent_mapping_id:
-                        parent_title = mp.get('title')
-                        break
-                if parent_title:
-                    print(f"👨‍👩‍👧‍👦 Documento pai: '{parent_title}' (ID: {parent_mapping_id})")
-                else:
-                    print(f"👨‍👩‍👧‍👦 Documento pai ID: {parent_mapping_id}")
+                print(f"👨‍👩‍👧‍👦 Documento pai ID: {parent_mapping_id}")
             
             # Buscar documento existente
             doc_id = self._search_document(title)
@@ -309,7 +302,7 @@ class OutlineSyncWorking:
                             parent_title = mp.get('title')
                             break
                     if parent_title:
-                        print(f"⚠️ Documento pai '{parent_title}' não encontrado. Criando documento pai vazio.")
+                        print(f"⚠️ Documento pai não encontrado (ID: {parent_mapping_id}) -> '{parent_title}'. Criando documento pai vazio.")
                         parent_document_id = self._create_parent_document(parent_title, collection_id)
                     else:
                         print(f"⚠️ Documento pai com ID '{parent_mapping_id}' não encontrado no mapeamento.")
@@ -363,10 +356,10 @@ class OutlineSyncWorking:
                     response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
                     
                     if response.status_code in [200, 201]:
-                        print(f"✅ Documento '{title}' atualizado com sucesso (readonly)")
+                        print(f"✅ Documento atualizado com sucesso (ID: {current_mapping_id}) -> '{title}' (readonly)")
                         return True
                     else:
-                        print(f"❌ Erro ao atualizar documento '{title}': {response.status_code} - {response.text}")
+                        print(f"❌ Erro ao atualizar documento (ID: {current_mapping_id}) -> '{title}': {response.status_code} - {response.text}")
                         return False
             else:
                 # Criar novo documento público e readonly
@@ -385,7 +378,7 @@ class OutlineSyncWorking:
                 
                 if response.status_code in [200, 201]:
                     doc_id = response.json().get('data', {}).get('id')
-                    print(f"✅ Documento '{title}' criado com sucesso (ID: {doc_id})")
+                    print(f"✅ Documento criado com sucesso (ID: {current_mapping_id}) -> '{title}' (Outline ID: {doc_id})")
                     
                     # Tentar tornar o documento readonly
                     try:
@@ -395,15 +388,15 @@ class OutlineSyncWorking:
                         }
                         readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
                         if readonly_response.status_code in [200, 201]:
-                            print(f"✅ Documento '{title}' configurado como readonly")
+                            print(f"✅ Documento configurado como readonly (ID: {current_mapping_id}) -> '{title}'")
                         else:
-                            print(f"⚠️ Não foi possível configurar readonly para '{title}': {readonly_response.status_code}")
+                            print(f"⚠️ Não foi possível configurar readonly (ID: {current_mapping_id}) -> '{title}': {readonly_response.status_code}")
                     except Exception as e:
-                        print(f"⚠️ Erro ao configurar readonly para '{title}': {e}")
+                        print(f"⚠️ Erro ao configurar readonly (ID: {current_mapping_id}) -> '{title}': {e}")
                     
                     return True
                 else:
-                    print(f"❌ Erro ao criar documento '{title}': {response.status_code} - {response.text}")
+                    print(f"❌ Erro ao criar documento (ID: {current_mapping_id}) -> '{title}': {response.status_code} - {response.text}")
                     return False
                 
         except Exception as e:
