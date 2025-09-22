@@ -184,29 +184,9 @@ class OutlineSyncWorking:
                 print(f"🔍 Documento pai encontrado em cache (ID: {mapping_id}) -> Outline ID: {outline_id}")
                 return outline_id
             
-            # Buscar o título do documento pelo ID do mapeamento
-            target_title = None
-            for file_path, mapping in self.mapping_config.get('documents', {}).items():
-                if mapping.get('id') == mapping_id:
-                    target_title = mapping.get('title')
-                    break
-            
-            if not target_title:
-                print(f"❌ ID de mapeamento '{mapping_id}' não encontrado")
-                return None
-            
-            print(f"🔍 Buscando documento pai (ID: {mapping_id}) -> '{target_title}'")
-            
-            # Buscar o documento pelo título
-            doc_id = self._search_document(target_title)
-            if doc_id:
-                # Armazenar no cache
-                self.mapping_id_to_outline_id[mapping_id] = doc_id
-                print(f"✅ Documento pai encontrado (ID: {mapping_id}) -> Outline ID: {doc_id}")
-            else:
-                print(f"❌ Documento pai não encontrado (ID: {mapping_id}) -> '{target_title}'")
-            
-            return doc_id
+            # NÃO buscar por título - apenas retornar None se não estiver no cache
+            print(f"❌ Documento pai não encontrado no cache (ID: {mapping_id}) - será criado automaticamente")
+            return None
             
         except Exception as e:
             print(f"❌ Erro ao buscar documento por ID '{mapping_id}': {e}")
@@ -316,10 +296,10 @@ class OutlineSyncWorking:
                             parent_title = mp.get('title')
                             break
                     if parent_title:
-                        print(f"⚠️ Documento pai não encontrado (ID: {parent_mapping_id}) -> '{parent_title}'. Criando documento pai vazio.")
+                        print(f"🔧 Criando documento pai automaticamente (ID: {parent_mapping_id}) -> '{parent_title}'")
                         parent_document_id = self._create_parent_document(parent_title, collection_id, parent_mapping_id)
                     else:
-                        print(f"⚠️ Documento pai com ID '{parent_mapping_id}' não encontrado no mapeamento.")
+                        print(f"❌ Documento pai com ID '{parent_mapping_id}' não encontrado no mapeamento.")
             
             if doc_id:
                 # Verificar se o documento está na coleção correta
