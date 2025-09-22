@@ -291,10 +291,10 @@ documents:
     tags: ["architecture", "adr", "decisions"]
     description: "Architecture Decision Records"
 
-  # Guias - Contributing (Nível 2)
+  # Guias - ribuributing (Nível 2)
   "docs/guides/contributing.md":
     id: "doc-contributing"
-    title: "Contribuindo"
+    title: "Contribuição"
     level: 2
     collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
     parent_id: "doc-guides"
