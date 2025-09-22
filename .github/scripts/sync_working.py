@@ -29,6 +29,9 @@ class OutlineSyncWorking:
         # Carregar configuração de mapeamento
         self.mapping_config = self._load_mapping_config()
         
+        # Cache para armazenar IDs do Outline para cada ID do mapeamento
+        self.mapping_id_to_outline_id = {}
+        
     def _load_mapping_config(self) -> Dict[str, Any]:
         """Carrega a configuração de mapeamento do arquivo YAML"""
         # Tentar diferentes caminhos para o arquivo de mapeamento
@@ -175,6 +178,12 @@ class OutlineSyncWorking:
     def _search_document_by_mapping_id(self, mapping_id: str) -> Optional[str]:
         """Busca um documento existente no Outline pelo ID do mapeamento"""
         try:
+            # Verificar se já temos o ID do Outline em cache
+            if mapping_id in self.mapping_id_to_outline_id:
+                outline_id = self.mapping_id_to_outline_id[mapping_id]
+                print(f"🔍 Documento pai encontrado em cache (ID: {mapping_id}) -> Outline ID: {outline_id}")
+                return outline_id
+            
             # Buscar o título do documento pelo ID do mapeamento
             target_title = None
             for file_path, mapping in self.mapping_config.get('documents', {}).items():
@@ -191,6 +200,8 @@ class OutlineSyncWorking:
             # Buscar o documento pelo título
             doc_id = self._search_document(target_title)
             if doc_id:
+                # Armazenar no cache
+                self.mapping_id_to_outline_id[mapping_id] = doc_id
                 print(f"✅ Documento pai encontrado (ID: {mapping_id}) -> Outline ID: {doc_id}")
             else:
                 print(f"❌ Documento pai não encontrado (ID: {mapping_id}) -> '{target_title}'")
@@ -224,7 +235,7 @@ class OutlineSyncWorking:
             print(f"❌ Erro ao obter informações do documento '{doc_id}': {e}")
             return None
 
-    def _create_parent_document(self, title: str, collection_id: str) -> Optional[str]:
+    def _create_parent_document(self, title: str, collection_id: str, mapping_id: str = None) -> Optional[str]:
         """Cria um documento pai vazio quando necessário"""
         try:
             # Conteúdo vazio para documento pai
@@ -241,6 +252,9 @@ class OutlineSyncWorking:
             
             if response.status_code in [200, 201]:
                 doc_id = response.json().get('data', {}).get('id')
+                # Armazenar no cache se mapping_id foi fornecido
+                if mapping_id:
+                    self.mapping_id_to_outline_id[mapping_id] = doc_id
                 print(f"✅ Documento pai criado com sucesso -> '{title}' (Outline ID: {doc_id})")
                 
                 # Tornar readonly
@@ -303,7 +317,7 @@ class OutlineSyncWorking:
                             break
                     if parent_title:
                         print(f"⚠️ Documento pai não encontrado (ID: {parent_mapping_id}) -> '{parent_title}'. Criando documento pai vazio.")
-                        parent_document_id = self._create_parent_document(parent_title, collection_id)
+                        parent_document_id = self._create_parent_document(parent_title, collection_id, parent_mapping_id)
                     else:
                         print(f"⚠️ Documento pai com ID '{parent_mapping_id}' não encontrado no mapeamento.")
             
@@ -378,6 +392,8 @@ class OutlineSyncWorking:
                 
                 if response.status_code in [200, 201]:
                     doc_id = response.json().get('data', {}).get('id')
+                    # Armazenar no cache
+                    self.mapping_id_to_outline_id[current_mapping_id] = doc_id
                     print(f"✅ Documento criado com sucesso (ID: {current_mapping_id}) -> '{title}' (Outline ID: {doc_id})")
                     
                     # Tentar tornar o documento readonly
