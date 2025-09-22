@@ -215,7 +215,7 @@ class OutlineSyncWorking:
             print(f"❌ Erro ao obter informações do documento '{doc_id}': {e}")
             return None
 
-    def _create_parent_document(self, title: str, collection_id: str, mapping_id: str = None) -> Optional[str]:
+    def _create_parent_document(self, title: str, collection_id: str, mapping_id: str = None, parent_document_id: str = None) -> Optional[str]:
         """Cria um documento pai vazio quando necessário"""
         try:
             # Conteúdo vazio para documento pai
@@ -227,6 +227,10 @@ class OutlineSyncWorking:
                 'publish': True,
                 'collectionId': collection_id
             }
+            
+            # Adicionar parentDocumentId se especificado
+            if parent_document_id:
+                data['parentDocumentId'] = parent_document_id
             
             response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
             
@@ -297,7 +301,16 @@ class OutlineSyncWorking:
                             break
                     if parent_title:
                         print(f"🔧 Criando documento pai automaticamente (ID: {parent_mapping_id}) -> '{parent_title}'")
-                        parent_document_id = self._create_parent_document(parent_title, collection_id, parent_mapping_id)
+                        # Buscar o pai do documento pai para criar a hierarquia correta
+                        parent_of_parent_id = None
+                        for fp, mp in self.mapping_config.get('documents', {}).items():
+                            if mp.get('id') == parent_mapping_id:
+                                parent_of_parent_mapping_id = mp.get('parent_id')
+                                if parent_of_parent_mapping_id:
+                                    parent_of_parent_id = self._search_document_by_mapping_id(parent_of_parent_mapping_id)
+                                break
+                        
+                        parent_document_id = self._create_parent_document(parent_title, collection_id, parent_mapping_id, parent_of_parent_id)
                     else:
                         print(f"❌ Documento pai com ID '{parent_mapping_id}' não encontrado no mapeamento.")
             
