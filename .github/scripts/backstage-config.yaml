@@ -1,0 +1,95 @@
+# Configuração do Backstage TechDocs
+# Este arquivo define como os componentes devem ser configurados no Backstage
+
+# Configurações gerais
+backstage:
+  url: "http://localhost:7007"  # URL do Backstage
+  token: "${BACKSTAGE_TOKEN}"   # Token de autenticação
+  
+# Configurações dos componentes
+components:
+  # Componentes de Vitrine
+  vitrine-veiculos-web:
+    name: "vitrine-veiculos-web"
+    type: "frontend"
+    owner: "vitrine-team"
+    lifecycle: "production"
+    description: "Componente web da vitrine de veículos"
+    docs_path: "docs/components/vitrine-veiculos-web"
+    
+  vitrine-veiculos-api:
+    name: "vitrine-veiculos-api"
+    type: "backend"
+    owner: "vitrine-team"
+    lifecycle: "production"
+    description: "API da vitrine de veículos"
+    docs_path: "docs/components/vitrine-veiculos-api"
+    
+  vitrine-veiculos-bff:
+    name: "vitrine-veiculos-bff"
+    type: "backend"
+    owner: "vitrine-team"
+    lifecycle: "production"
+    description: "BFF (Backend for Frontend) da vitrine de veículos"
+    docs_path: "docs/components/vitrine-veiculos-bff"
+    
+  # Componentes de Backoffice
+  backoffice-veiculos-web:
+    name: "backoffice-veiculos-web"
+    type: "frontend"
+    owner: "backoffice-team"
+    lifecycle: "production"
+    description: "Componente web do backoffice de veículos"
+    docs_path: "docs/components/backoffice-veiculos-web"
+    
+  backoffice-veiculos-api:
+    name: "backoffice-veiculos-api"
+    type: "backend"
+    owner: "backoffice-team"
+    lifecycle: "production"
+    description: "API do backoffice de veículos"
+    docs_path: "docs/components/backoffice-veiculos-api"
+    
+  backoffice-veiculos-bff:
+    name: "backoffice-veiculos-bff"
+    type: "backend"
+    owner: "backoffice-team"
+    lifecycle: "production"
+    description: "BFF (Backend for Frontend) do backoffice de veículos"
+    docs_path: "docs/components/backoffice-veiculos-bff"
+    
+  # Componentes de Infraestrutura
+  ecommerce-veiculos-pipelines:
+    name: "ecommerce-veiculos-pipelines"
+    type: "infrastructure"
+    owner: "platform-team"
+    lifecycle: "production"
+    description: "Pipelines de CI/CD do e-commerce de veículos"
+    docs_path: "docs/components/ecommerce-veiculos-pipelines"
+
+# Configurações de documentação
+documentation:
+  # Formato dos arquivos de documentação
+  format: "markdown"
+  
+  # Estrutura esperada
+  structure:
+    - "index.md"           # Documentação principal
+    - "architecture.md"    # Arquitetura (opcional)
+    - "setup.md"          # Setup (opcional)
+    - "api.md"            # API (opcional)
+    - "api-reference.md"  # Referência da API (opcional)
+  
+  # Metadados obrigatórios
+  required_metadata:
+    - "title"
+    - "description"
+    - "owner"
+    - "type"
+    - "lifecycle"
+  
+  # Tags padrão
+  default_tags:
+    - "documentation"
+    - "techdocs"
+    - "component"
