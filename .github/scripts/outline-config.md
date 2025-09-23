@@ -3,8 +3,8 @@
 ## 🔗 Informações da Instância
 
 **URL da Instância**: https://outline-production-cebc.up.railway.app  
-**Coleção Principal**: docs-KS6TJUuX5p  
-**URL da Coleção**: https://outline-production-cebc.up.railway.app/collection/docs-KS6TJUuX5p/recent
+**Coleção Principal**: d236ae05-812e-426a-a125-75653888903e  
+**URL da Coleção**: https://outline-production-cebc.up.railway.app/collection/d236ae05-812e-426a-a125-75653888903e/recent
 
 ## 🔐 Secrets Necessários no GitHub
 
@@ -22,7 +22,7 @@ Name: OUTLINE_API_URL
 Value: https://outline-production-cebc.up.railway.app
 ```
 
-**Nota**: A URL da API é: `https://outline-production-cebc.up.railway.app` (sem o prefixo `/api`)
+**Nota**: A URL da API é: `https://outline-production-cebc.up.railway.app` (os endpoints usam o prefixo `/api`)
 
 ## 🎯 Como Obter o Token de API
 
@@ -62,7 +62,7 @@ Após configurar os secrets, você pode testar:
 - [ ] Token de API criado com permissões adequadas
 - [ ] Secret `OUTLINE_API_URL` configurado: `https://outline-production-cebc.up.railway.app`
 - [ ] Secret `OUTLINE_API_TOKEN` configurado com o token real
-- [ ] Arquivo `outline-mapping.yaml` configurado com ID correto: `docs-KS6TJUuX5p`
+- [ ] Arquivo `outline-mapping.yaml` configurado com ID correto: `d236ae05-812e-426a-a125-75653888903e`
 - [ ] Teste realizado com sucesso
 
 ## 🚨 Troubleshooting

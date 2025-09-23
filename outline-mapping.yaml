@@ -4,7 +4,7 @@
 # Configurações globais
 config:
   # ID da coleção "Docs" no Outline
-  default_collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+  default_collection_id: "d236ae05-812e-426a-a125-75653888903e"
   
   # Template para títulos de documentos
   title_template: "{title}"
@@ -24,7 +24,7 @@ documents:
     id: "doc-root"
     title: "E-commerce de Veículos - Documentação"
     level: 0
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     tags: ["overview", "main"]
     description: "Documentação principal do domínio E-commerce de Veículos"
 
@@ -33,7 +33,7 @@ documents:
     id: "doc-systems"
     title: "Sistemas"
     level: 1
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-root"
     tags: ["system", "overview"]
     description: "Documentação dos sistemas do domínio"
@@ -42,7 +42,7 @@ documents:
     id: "doc-components"
     title: "Componentes"
     level: 1
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-root"
     tags: ["component", "overview"]
     description: "Documentação dos componentes e bibliotecas"
@@ -51,7 +51,7 @@ documents:
     id: "doc-architecture"
     title: "Arquitetura"
     level: 1
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-root"
     tags: ["architecture", "overview"]
     description: "Documentação de arquitetura e decisões técnicas"
@@ -60,7 +60,7 @@ documents:
     id: "doc-guides"
     title: "Guias"
     level: 1
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     tags: ["guide", "overview"]
     description: "Guias e tutoriais"
 
@@ -69,7 +69,7 @@ documents:
     id: "doc-vitrine-veiculos"
     title: "Vitrine de Veículos"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-systems"
     tags: ["system", "vitrine", "frontend"]
     description: "Documentação do sistema de vitrine de veículos"
@@ -79,7 +79,7 @@ documents:
     id: "doc-vitrine-features"
     title: "Features"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-veiculos"
     tags: ["system", "vitrine", "features"]
     description: "Funcionalidades do sistema de vitrine"
@@ -89,7 +89,7 @@ documents:
     id: "doc-vitrine-busca-veiculos"
     title: "Busca de Veículos"
     level: 4
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-features"
     tags: ["system", "vitrine", "feature", "search"]
     description: "Documentação da funcionalidade de busca de veículos"
@@ -99,7 +99,7 @@ documents:
     id: "doc-vitrine-arquitetura"
     title: "Arquitetura"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-veiculos"
     tags: ["system", "vitrine", "architecture"]
     description: "Arquitetura detalhada do sistema de vitrine"
@@ -109,7 +109,7 @@ documents:
     id: "doc-backoffice-veiculos"
     title: "Backoffice de Veículos"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-systems"
     tags: ["system", "backoffice", "admin"]
     description: "Documentação do sistema de backoffice de veículos"
@@ -119,7 +119,7 @@ documents:
     id: "doc-backoffice-features"
     title: "Features"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-backoffice-veiculos"
     tags: ["system", "backoffice", "features"]
     description: "Funcionalidades do sistema de backoffice"
@@ -129,7 +129,7 @@ documents:
     id: "doc-backoffice-cadastro-anuncio"
     title: "Cadastro de Anúncios"
     level: 4
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-backoffice-features"
     tags: ["system", "backoffice", "feature", "ads"]
     description: "Documentação da funcionalidade de cadastro de anúncios"
@@ -139,7 +139,7 @@ documents:
     id: "doc-backoffice-arquitetura"
     title: "Arquitetura"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-backoffice-veiculos"
     tags: ["system", "backoffice", "architecture"]
     description: "Arquitetura detalhada do sistema de backoffice"
@@ -149,7 +149,7 @@ documents:
     id: "doc-vitrine-web"
     title: "Vitrine Web"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "vitrine", "web", "frontend"]
     description: "Documentação do componente web da vitrine"
@@ -159,7 +159,7 @@ documents:
     id: "doc-vitrine-web-architecture"
     title: "Arquitetura"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-web"
     tags: ["component", "vitrine", "web", "architecture"]
     description: "Arquitetura do componente web da vitrine"
@@ -169,7 +169,7 @@ documents:
     id: "doc-vitrine-web-setup"
     title: "Setup"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-web"
     tags: ["component", "vitrine", "web", "setup"]
     description: "Guia de configuração do componente web da vitrine"
@@ -179,7 +179,7 @@ documents:
     id: "doc-vitrine-api"
     title: "Vitrine API"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "vitrine", "api", "backend"]
     description: "Documentação da API da vitrine"
@@ -189,7 +189,7 @@ documents:
     id: "doc-vitrine-api-reference"
     title: "API Reference"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-api"
     tags: ["component", "vitrine", "api", "reference"]
     description: "Referência da API da vitrine"
@@ -199,7 +199,7 @@ documents:
     id: "doc-vitrine-api-docs"
     title: "API"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-vitrine-api"
     tags: ["component", "vitrine", "api", "documentation"]
     description: "Documentação da API da vitrine"
@@ -209,7 +209,7 @@ documents:
     id: "doc-vitrine-bff"
     title: "Vitrine BFF"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "vitrine", "bff", "backend"]
     description: "Documentação do BFF da vitrine"
@@ -219,7 +219,7 @@ documents:
     id: "doc-backoffice-web"
     title: "Backoffice Web"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "backoffice", "web", "admin"]
     description: "Documentação do componente web do backoffice"
@@ -229,7 +229,7 @@ documents:
     id: "doc-backoffice-api"
     title: "Backoffice API"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "backoffice", "api", "admin"]
     description: "Documentação da API do backoffice"
@@ -239,7 +239,7 @@ documents:
     id: "doc-backoffice-bff"
     title: "Backoffice BFF"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "backoffice", "bff", "admin"]
     description: "Documentação do BFF do backoffice"
@@ -249,7 +249,7 @@ documents:
     id: "doc-pipelines-ecommerce"
     title: "Pipelines E-commerce"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-components"
     tags: ["component", "pipelines", "ci-cd", "automation"]
     description: "Documentação dos pipelines de CI/CD"
@@ -259,7 +259,7 @@ documents:
     id: "doc-pipelines-automation"
     title: "Automação - Pipelines"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-pipelines-ecommerce"
     tags: ["component", "pipelines", "automation"]
     description: "Documentação da automação dos pipelines"
@@ -269,7 +269,7 @@ documents:
     id: "doc-pipelines-workflows"
     title: "Workflows - Pipelines"
     level: 3
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-pipelines-ecommerce"
     tags: ["component", "pipelines", "workflows"]
     description: "Documentação dos workflows dos pipelines"
@@ -279,7 +279,7 @@ documents:
     id: "doc-sobre-adrs"
     title: "Sobre ADRs"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-architecture"
     tags: ["architecture", "adr", "decisions"]
     description: "Documentação sobre Architecture Decision Records"
@@ -289,7 +289,7 @@ documents:
     id: "doc-adrs"
     title: "ADRs"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-architecture"
     tags: ["architecture", "adr", "decisions"]
     description: "Architecture Decision Records"
@@ -299,7 +299,7 @@ documents:
     id: "doc-contributing"
     title: "Contribuição"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-guides"
     tags: ["guide", "contributing", "development"]
     description: "Guia para contribuir com o projeto"
@@ -309,7 +309,7 @@ documents:
     id: "doc-guia-contribuicao"
     title: "Guia de Contribuição"
     level: 2
-    collection_id: "5c78f84a-f721-47cc-a983-2eb05e6bf246"
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-guides"
     tags: ["guide", "contributing", "development"]
     description: "Guia para contribuir com o projeto"

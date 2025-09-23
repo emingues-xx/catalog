@@ -19,11 +19,10 @@ https://outline-production-cebc.up.railway.app
 ```
 
 **❌ Incorreto:**
-- `https://outline-production-cebc.up.railway.app/api` (com /api)
 - `https://outline-production-cebc.up.railway.app/` (com barra final)
 
 **✅ Correto:**
-- `https://outline-production-cebc.up.railway.app` (sem prefixo /api)
+- `https://outline-production-cebc.up.railway.app` (os endpoints usam /api automaticamente)
 
 ### 2. Testar Conectividade
 
