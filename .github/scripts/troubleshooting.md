@@ -15,15 +15,15 @@
 
 A URL deve ser:
 ```
-https://outline-production-47e1.up.railway.app
+https://outline-production-cebc.up.railway.app
 ```
 
 **❌ Incorreto:**
-- `https://outline-production-47e1.up.railway.app/api` (com /api)
-- `https://outline-production-47e1.up.railway.app/` (com barra final)
+- `https://outline-production-cebc.up.railway.app/api` (com /api)
+- `https://outline-production-cebc.up.railway.app/` (com barra final)
 
 **✅ Correto:**
-- `https://outline-production-47e1.up.railway.app`
+- `https://outline-production-cebc.up.railway.app` (sem prefixo /api)
 
 ### 2. Testar Conectividade
 
@@ -39,7 +39,7 @@ python .github/scripts/test-outline-api.py
 
 ### 3. Verificar o Token de API
 
-1. Acesse: https://outline-production-47e1.up.railway.app
+1. Acesse: https://outline-production-cebc.up.railway.app
 2. Vá para **Settings** > **API Tokens**
 3. Verifique se o token existe e está ativo
 4. Confirme as permissões:
@@ -64,7 +64,7 @@ Isso listará todas as coleções disponíveis e mostrará os IDs corretos.
 
 No GitHub Secrets, configure:
 ```
-OUTLINE_API_URL: https://outline-production-47e1.up.railway.app
+OUTLINE_API_URL: https://outline-production-cebc.up.railway.app
 ```
 
 ### Solução 2: Atualizar o Token

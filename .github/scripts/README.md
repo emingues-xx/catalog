@@ -14,8 +14,8 @@ Este diretório contém scripts e configurações para sincronizar automaticamen
 
 Vá para **Settings > Secrets and variables > Actions** no seu repositório e adicione:
 
-- `OUTLINE_API_URL`: URL da API do seu Outline (ex: `https://your-outline.com/api`)
-- `OUTLINE_API_TOKEN`: Token de API do Outline
+- `OUTLINE_API_URL`: URL da API do seu Outline (ex: `https://outline-production-cebc.up.railway.app`)
+- `OUTLINE_API_TOKEN`: Token de API do Outline (ex: `ol_api_2yNCdA9PywEilrGBTTZswHV5hYemUhIRMTgi4A`)
 
 ### 2. Configurar o Arquivo de Mapeamento
 

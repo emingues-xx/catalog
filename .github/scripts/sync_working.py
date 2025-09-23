@@ -14,8 +14,8 @@ from typing import Dict, List, Optional, Any
 
 class OutlineSyncWorking:
     def __init__(self):
-        self.api_url = "https://outline-production-47e1.up.railway.app"
-        self.api_token = os.getenv('OUTLINE_API_TOKEN', 'ol_api_tekTu1JQZ5x6DryFECHKN6mXfdB8weVcAjKJxN')
+        self.api_url = os.getenv('OUTLINE_API_URL', 'https://outline-production-cebc.up.railway.app')
+        self.api_token = os.getenv('OUTLINE_API_TOKEN', 'ol_api_2yNCdA9PywEilrGBTTZswHV5hYemUhIRMTgi4A')
         
         if not self.api_token:
             raise ValueError("OUTLINE_API_TOKEN deve estar definido")
@@ -105,7 +105,7 @@ class OutlineSyncWorking:
             # Testar com documents.list
             test_data = {"id": ""}
             response = requests.post(
-                f'{self.api_url}/api/documents.list',
+                f'{self.api_url}/documents.list',
                 headers=self.headers,
                 json=test_data,
                 timeout=10
@@ -118,7 +118,7 @@ class OutlineSyncWorking:
                 
                 # Testar collections.list também
                 collections_response = requests.post(
-                    f'{self.api_url}/api/collections.list',
+                    f'{self.api_url}/collections.list',
                     headers=self.headers,
                     json=test_data,
                     timeout=10
@@ -157,7 +157,7 @@ class OutlineSyncWorking:
         try:
             test_data = {"id": ""}
             response = requests.post(
-                f'{self.api_url}/api/documents.list',
+                f'{self.api_url}/documents.list',
                 headers=self.headers,
                 json=test_data,
                 timeout=10
@@ -197,7 +197,7 @@ class OutlineSyncWorking:
         try:
             test_data = {"id": ""}
             response = requests.post(
-                f'{self.api_url}/api/documents.list',
+                f'{self.api_url}/documents.list',
                 headers=self.headers,
                 json=test_data,
                 timeout=10
@@ -232,7 +232,7 @@ class OutlineSyncWorking:
             if parent_document_id:
                 data['parentDocumentId'] = parent_document_id
             
-            response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
+            response = requests.post(f'{self.api_url}/documents.create', headers=self.headers, json=data)
             
             if response.status_code in [200, 201]:
                 doc_id = response.json().get('data', {}).get('id')
@@ -247,7 +247,7 @@ class OutlineSyncWorking:
                         'id': doc_id,
                         'readonly': True
                     }
-                    readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
+                    readonly_response = requests.post(f'{self.api_url}/documents.update', headers=self.headers, json=readonly_data)
                     if readonly_response.status_code in [200, 201]:
                         print(f"✅ Documento pai configurado como readonly -> '{title}'")
                 except Exception as e:
@@ -339,7 +339,7 @@ class OutlineSyncWorking:
                         if parent_title:
                             print(f"👨‍👩‍👧‍👦 Associando ao pai: {parent_title}")
                     
-                    response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
+                    response = requests.post(f'{self.api_url}/documents.update', headers=self.headers, json=data)
                     
                     if response.status_code in [200, 201]:
                         print(f"✅ Documento '{title}' migrado para nova coleção com sucesso")
@@ -360,7 +360,7 @@ class OutlineSyncWorking:
                     if parent_document_id:
                         data['parentDocumentId'] = parent_document_id
                     
-                    response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
+                    response = requests.post(f'{self.api_url}/documents.update', headers=self.headers, json=data)
                     
                     if response.status_code in [200, 201]:
                         print(f"✅ Documento atualizado com sucesso (ID: {current_mapping_id}) -> '{title}' (readonly)")
@@ -381,7 +381,7 @@ class OutlineSyncWorking:
                 if parent_document_id:
                     data['parentDocumentId'] = parent_document_id
                 
-                response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
+                response = requests.post(f'{self.api_url}/documents.create', headers=self.headers, json=data)
                 
                 if response.status_code in [200, 201]:
                     doc_id = response.json().get('data', {}).get('id')
@@ -395,7 +395,7 @@ class OutlineSyncWorking:
                             'id': doc_id,
                             'readonly': True
                         }
-                        readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
+                        readonly_response = requests.post(f'{self.api_url}/documents.update', headers=self.headers, json=readonly_data)
                         if readonly_response.status_code in [200, 201]:
                             print(f"✅ Documento configurado como readonly (ID: {current_mapping_id}) -> '{title}'")
                         else:
@@ -446,7 +446,7 @@ class OutlineSyncWorking:
             # Listar todos os documentos
             test_data = {"id": ""}
             response = requests.post(
-                f'{self.api_url}/api/documents.list',
+                f'{self.api_url}/documents.list',
                 headers=self.headers,
                 json=test_data,
                 timeout=10
@@ -498,7 +498,7 @@ class OutlineSyncWorking:
                     
                     try:
                         delete_response = requests.post(
-                            f'{self.api_url}/api/documents.delete',
+                            f'{self.api_url}/documents.delete',
                             headers=self.headers,
                             json=delete_data,
                             timeout=10

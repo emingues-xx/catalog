@@ -2,9 +2,9 @@
 
 ## 🔗 Informações da Instância
 
-**URL da Instância**: https://outline-production-47e1.up.railway.app  
+**URL da Instância**: https://outline-production-cebc.up.railway.app  
 **Coleção Principal**: docs-KS6TJUuX5p  
-**URL da Coleção**: https://outline-production-47e1.up.railway.app/collection/docs-KS6TJUuX5p/recent
+**URL da Coleção**: https://outline-production-cebc.up.railway.app/collection/docs-KS6TJUuX5p/recent
 
 ## 🔐 Secrets Necessários no GitHub
 
@@ -13,14 +13,20 @@ Configure os seguintes secrets no seu repositório GitHub:
 ### 1. OUTLINE_API_TOKEN
 ```
 Name: OUTLINE_API_TOKEN
-Value: ol_api_1QaafZhDnPSgs9bzU4vV4LpydZ9A6hVYdcZuCK
+Value: ol_api_2yNCdA9PywEilrGBTTZswHV5hYemUhIRMTgi4A
 ```
 
-**Nota**: A URL da API é fixa: `https://outline-production-47e1.up.railway.app`
+### 2. OUTLINE_API_URL
+```
+Name: OUTLINE_API_URL
+Value: https://outline-production-cebc.up.railway.app
+```
+
+**Nota**: A URL da API é: `https://outline-production-cebc.up.railway.app` (sem o prefixo `/api`)
 
 ## 🎯 Como Obter o Token de API
 
-1. Acesse sua instância do Outline: https://outline-production-47e1.up.railway.app
+1. Acesse sua instância do Outline: https://outline-production-cebc.up.railway.app
 2. Faça login com sua conta
 3. Vá para **Settings** (Configurações)
 4. Clique em **API Tokens**
@@ -54,7 +60,7 @@ Após configurar os secrets, você pode testar:
 
 - [ ] Instância do Outline acessível
 - [ ] Token de API criado com permissões adequadas
-- [ ] Secret `OUTLINE_API_URL` configurado: `https://outline-production-47e1.up.railway.app/api`
+- [ ] Secret `OUTLINE_API_URL` configurado: `https://outline-production-cebc.up.railway.app`
 - [ ] Secret `OUTLINE_API_TOKEN` configurado com o token real
 - [ ] Arquivo `outline-mapping.yaml` configurado com ID correto: `docs-KS6TJUuX5p`
 - [ ] Teste realizado com sucesso
