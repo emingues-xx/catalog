@@ -19,7 +19,7 @@ O sistema permite que usuários naveguem, pesquisem e visualizem detalhes dos ve
 
 ### API (vitrine-veiculos-api)  
 - **Tecnologia**: Node.js
-- **Responsabilidade**: API para consultas públicas   
+- **Responsabilidade**: API para consultas públicas
 - **Funcionalidades**:
   - Endpoints de listagem
   - Sistema de filtros
