@@ -304,6 +304,72 @@ class OutlineSync:
                 max_level = level
         return max_level
     
+    def _delete_all_documents(self) -> bool:
+        """Deleta todos os documentos da collection"""
+        try:
+            print("🗑️  Deletando todos os documentos existentes...")
+            
+            # Buscar todos os documentos
+            test_data = {"id": ""}
+            response = requests.post(
+                f'{self.api_url}/api/documents.list',
+                headers=self.headers,
+                json=test_data,
+                timeout=10
+            )
+            
+            if response.status_code != 200:
+                print(f"❌ Erro ao buscar documentos para deletar: {response.status_code}")
+                return False
+            
+            data = response.json()
+            documents = data.get('data', [])
+            
+            if not documents:
+                print("ℹ️  Nenhum documento encontrado para deletar")
+                return True
+            
+            print(f"📋 Encontrados {len(documents)} documentos para deletar")
+            
+            # Deletar cada documento
+            deleted_count = 0
+            error_count = 0
+            
+            for doc in documents:
+                doc_id = doc['id']
+                doc_title = doc['title']
+                
+                try:
+                    delete_data = {"id": doc_id}
+                    delete_response = requests.post(
+                        f'{self.api_url}/api/documents.delete',
+                        headers=self.headers,
+                        json=delete_data,
+                        timeout=10
+                    )
+                    
+                    if delete_response.status_code == 200:
+                        print(f"   ✅ Deletado: {doc_title}")
+                        deleted_count += 1
+                    else:
+                        print(f"   ❌ Erro ao deletar {doc_title}: {delete_response.status_code}")
+                        error_count += 1
+                        
+                except Exception as e:
+                    print(f"   ❌ Erro ao deletar {doc_title}: {e}")
+                    error_count += 1
+            
+            print(f"📊 Resumo da deleção:")
+            print(f"   ✅ Deletados: {deleted_count}")
+            print(f"   ❌ Erros: {error_count}")
+            print(f"   📋 Total: {len(documents)}")
+            
+            return error_count == 0
+            
+        except Exception as e:
+            print(f"❌ Erro ao deletar documentos: {e}")
+            return False
+    
     def sync_all_documents(self) -> bool:
         """Sincroniza todos os documentos seguindo a hierarquia"""
         print("🚀 Iniciando sincronização de documentos...")
@@ -312,6 +378,18 @@ class OutlineSync:
         if not self._test_api_connection():
             print("❌ Falha na conexão com a API. Abortando sincronização.")
             return False
+        
+        # Verificar se deve deletar documentos existentes
+        clean_before_sync = os.getenv('CLEAN_BEFORE_SYNC', 'true').lower() == 'true'
+        
+        if clean_before_sync:
+            # Deletar todos os documentos existentes primeiro
+            print("\n🧹 Limpando documentos existentes...")
+            if not self._delete_all_documents():
+                print("⚠️  Aviso: Alguns documentos não foram deletados, mas continuando...")
+            print("\n📝 Iniciando criação de novos documentos...")
+        else:
+            print("\n📝 Iniciando sincronização (sem limpeza)...")
         
         print("\n📊 Estatísticas do mapeamento:")
         total_docs = len(self.mapping_config.get('documents', []))
