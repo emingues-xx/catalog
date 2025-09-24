@@ -16,7 +16,7 @@ Aplicação web responsiva que oferece a experiência pública de navegação, b
 ## Características Principais
 
 - 🚀 **Performance**: SSR/SSG com Next.js para carregamento rápido
-- 🔍 **SEO Otimizado**: Meta tags dinâmicas e estrutura semântica  
+- 🔍 **SEO Otimizado**: Meta tags dinâmicas e estrutura semântica   
 - 📱 **Responsivo**: Design adaptável para mobile, tablet e desktop
 - ♿ **Acessível**: WCAG 2.1 AA compliance
 - 🎨 **Design System**: Componentes reutilizáveis e consistentes

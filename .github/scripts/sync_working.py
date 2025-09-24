@@ -304,10 +304,10 @@ class OutlineSync:
                 max_level = level
         return max_level
     
-    def _delete_all_documents(self) -> bool:
-        """Deleta todos os documentos da collection"""
+    def _delete_all_documents_hierarchically(self) -> bool:
+        """Deleta todos os documentos da collection obedecendo hierarquia (maior para menor nível)"""
         try:
-            print("🗑️  Deletando todos os documentos existentes...")
+            print("🗑️  Deletando todos os documentos existentes (hierarquicamente)...")
             
             # Buscar todos os documentos
             test_data = {"id": ""}
@@ -331,33 +331,49 @@ class OutlineSync:
             
             print(f"📋 Encontrados {len(documents)} documentos para deletar")
             
-            # Deletar cada documento
+            # Organizar documentos por nível (maior para menor)
+            documents_by_level = {}
+            for doc in documents:
+                level = self._get_document_level_from_outline(doc)
+                if level not in documents_by_level:
+                    documents_by_level[level] = []
+                documents_by_level[level].append(doc)
+            
+            # Deletar por níveis (do maior para o menor)
+            max_level = max(documents_by_level.keys()) if documents_by_level else 0
             deleted_count = 0
             error_count = 0
             
-            for doc in documents:
-                doc_id = doc['id']
-                doc_title = doc['title']
+            for level in range(max_level, -1, -1):  # Do maior para o menor
+                if level not in documents_by_level:
+                    continue
                 
-                try:
-                    delete_data = {"id": doc_id}
-                    delete_response = requests.post(
-                        f'{self.api_url}/api/documents.delete',
-                        headers=self.headers,
-                        json=delete_data,
-                        timeout=10
-                    )
+                level_docs = documents_by_level[level]
+                print(f"📁 Deletando nível {level} ({len(level_docs)} documentos):")
+                
+                for doc in level_docs:
+                    doc_id = doc['id']
+                    doc_title = doc['title']
                     
-                    if delete_response.status_code == 200:
-                        print(f"   ✅ Deletado: {doc_title}")
-                        deleted_count += 1
-                    else:
-                        print(f"   ❌ Erro ao deletar {doc_title}: {delete_response.status_code}")
-                        error_count += 1
+                    try:
+                        delete_data = {"id": doc_id}
+                        delete_response = requests.post(
+                            f'{self.api_url}/api/documents.delete',
+                            headers=self.headers,
+                            json=delete_data,
+                            timeout=10
+                        )
                         
-                except Exception as e:
-                    print(f"   ❌ Erro ao deletar {doc_title}: {e}")
-                    error_count += 1
+                        if delete_response.status_code == 200:
+                            print(f"   ✅ Deletado: {doc_title}")
+                            deleted_count += 1
+                        else:
+                            print(f"   ❌ Erro ao deletar {doc_title}: {delete_response.status_code}")
+                            error_count += 1
+                            
+                    except Exception as e:
+                        print(f"   ❌ Erro ao deletar {doc_title}: {e}")
+                        error_count += 1
             
             print(f"📊 Resumo da deleção:")
             print(f"   ✅ Deletados: {deleted_count}")
@@ -369,6 +385,31 @@ class OutlineSync:
         except Exception as e:
             print(f"❌ Erro ao deletar documentos: {e}")
             return False
+    
+    def _get_document_level_from_outline(self, doc: Dict) -> int:
+        """Determina o nível de um documento do Outline baseado na hierarquia"""
+        doc_title = doc.get('title', '')
+        
+        # Tentar encontrar o documento no mapeamento pelo título
+        for mapping_doc in self.mapping_config.get('documents', []):
+            if mapping_doc.get('title') == doc_title:
+                return mapping_doc.get('level', 0)
+        
+        # Se não encontrou no mapeamento, usar heurística baseada na estrutura
+        if doc.get('parentDocumentId'):
+            # Documento com parent - assumir pelo menos nível 1
+            # Vamos tentar determinar o nível baseado no título
+            if any(keyword in doc_title.lower() for keyword in ['features', 'arquitetura', 'setup', 'api', 'workflows']):
+                return 4  # Documentos específicos são nível 4
+            elif any(keyword in doc_title.lower() for keyword in ['vitrine', 'backoffice', 'pipelines', 'shared', 'ui-components', 'mongodb']):
+                return 3  # Componentes são nível 3
+            elif any(keyword in doc_title.lower() for keyword in ['sistemas', 'componentes', 'arquitetura', 'guias', 'adrs', 'contribuindo']):
+                return 2  # Seções principais são nível 2
+            else:
+                return 1  # Outros documentos com parent
+        else:
+            # Documento sem parent - provavelmente nível 0 (raiz)
+            return 0
     
     def sync_all_documents(self) -> bool:
         """Sincroniza todos os documentos seguindo a hierarquia"""
@@ -383,9 +424,9 @@ class OutlineSync:
         clean_before_sync = os.getenv('CLEAN_BEFORE_SYNC', 'true').lower() == 'true'
         
         if clean_before_sync:
-            # Deletar todos os documentos existentes primeiro
+            # Deletar todos os documentos existentes primeiro (hierarquicamente)
             print("\n🧹 Limpando documentos existentes...")
-            if not self._delete_all_documents():
+            if not self._delete_all_documents_hierarchically():
                 print("⚠️  Aviso: Alguns documentos não foram deletados, mas continuando...")
             print("\n📝 Iniciando criação de novos documentos...")
         else:
