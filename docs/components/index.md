@@ -15,3 +15,4 @@ Esta seção contém a documentação dos componentes e bibliotecas do domínio 
 ## Arquitetura
 
 Os componentes seguem uma arquitetura modular e são organizados por responsabilidade dentro do domínio. 
+
