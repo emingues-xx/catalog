@@ -101,7 +101,7 @@ documents:
 
   # Nível 3 - Arquitetura dos sistemas
   - id: "doc-vitrine-arquitetura"
-    title: "Arquitetura - Vitrine de Veículos"
+    title: "Arquitetura"
     file_path: "docs/systems/vitrine-veiculos/arquitetura.md"
     level: 3
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -110,7 +110,7 @@ documents:
     description: "Arquitetura do sistema de vitrine de veículos"
 
   - id: "doc-backoffice-arquitetura"
-    title: "Arquitetura - Backoffice de Veículos"
+    title: "Arquitetura"
     file_path: "docs/systems/backoffice-veiculos/arquitetura.md"
     level: 3
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -120,7 +120,7 @@ documents:
 
   # Nível 3 - Features (usando index.md das pastas)
   - id: "doc-vitrine-features"
-    title: "Features - Vitrine de Veículos"
+    title: "Features"
     file_path: "docs/systems/vitrine-veiculos/features/index.md"
     level: 3
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -129,7 +129,7 @@ documents:
     description: "Funcionalidades do sistema de vitrine de veículos"
 
   - id: "doc-backoffice-features"
-    title: "Features - Backoffice de Veículos"
+    title: "Features"
     file_path: "docs/systems/backoffice-veiculos/features/index.md"
     level: 3
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -225,7 +225,7 @@ documents:
 
   # Nível 4 - Documentação específica dos componentes
   - id: "doc-vitrine-web-architecture"
-    title: "Arquitetura - Vitrine Web"
+    title: "Arquitetura"
     file_path: "docs/components/vitrine-veiculos-web/architecture.md"
     level: 4
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -234,7 +234,7 @@ documents:
     description: "Arquitetura do componente web da vitrine"
 
   - id: "doc-vitrine-web-setup"
-    title: "Setup - Vitrine Web"
+    title: "Setup"
     file_path: "docs/components/vitrine-veiculos-web/setup.md"
     level: 4
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -243,7 +243,7 @@ documents:
     description: "Guia de configuração do componente web da vitrine"
 
   - id: "doc-vitrine-api-reference"
-    title: "Referência da API - Vitrine"
+    title: "Referência da API"
     file_path: "docs/components/vitrine-veiculos-api/api-reference.md"
     level: 4
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
@@ -252,7 +252,7 @@ documents:
     description: "Referência completa da API da vitrine"
 
   - id: "doc-vitrine-api-docs"
-    title: "Documentação da API - Vitrine"
+    title: "Documentação da API"
     file_path: "docs/components/vitrine-veiculos-api/api.md"
     level: 4
     collection_id: "d236ae05-812e-426a-a125-75653888903e"

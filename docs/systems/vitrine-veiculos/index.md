@@ -24,7 +24,7 @@ O sistema permite que usuários naveguem, pesquisem e visualizem detalhes dos ve
   - Endpoints de listagem
   - Sistema de filtros
   - Busca por critérios
-  - Cache de dados
+  - Cache de dados   
 
 ### BFF (vitrine-veiculos-bff)
 - **Tecnologia**: Node.js  
