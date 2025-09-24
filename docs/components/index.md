@@ -10,7 +10,7 @@ Esta seção contém a documentação dos componentes e bibliotecas do domínio 
 - **Backoffice Web**: Componente web do backoffice
 - **Backoffice API**: API do backoffice
 - **Backoffice BFF**: Backend for Frontend do backoffice
-- **Pipelines E-commerce**: Pipelines de CI/CD
+- **Pipelines E-commerce**: Pipelines de CI/CD   
 
 ## Arquitetura
 

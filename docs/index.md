@@ -26,8 +26,8 @@ Sistema interno para cadastro de anúncios, dashboard administrativo e acompanha
 ## Organização
 
 - **Tribo E-commerce**: Responsável pelo domínio completo
-  - **Squad Vitrine**: Desenvolvimento da vitrine pública
-  - **Squad Backoffice**: Desenvolvimento do sistema administrativo
+  - **Squad Vitrine**: Desenvolvimento da vitrine pública.
+  - **Squad Backoffice**: Desenvolvimento do sistema administrativo.
 
 ## Guias
 
