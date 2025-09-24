@@ -1,13 +1,13 @@
-# vitrine-veiculos-web
-
-![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/vitrine-veiculos-web/ci.yml?branch=main)
-![Version](https://img.shields.io/github/v/release/emingues-xx/vitrine-veiculos-web)
-![License](https://img.shields.io/github/license/emingues-xx/vitrine-veiculos-web)
-![Tech Stack](https://img.shields.io/badge/React-18-blue)
-![Tech Stack](https://img.shields.io/badge/Next.js-14-black)
-![Tech Stack](https://img.shields.io/badge/TypeScript-5-blue)
+# Vitrine de Veículos - Web
 
 Frontend da vitrine pública de veículos - interface React/Next.js otimizada para SEO e performance.
+
+## Status do Projeto
+
+- **Build Status**: [![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/vitrine-veiculos-web/ci.yml?branch=main)](https://github.com/emingues-xx/vitrine-veiculos-web/actions)
+- **Versão**: [![Version](https://img.shields.io/github/v/release/emingues-xx/vitrine-veiculos-web)](https://github.com/emingues-xx/vitrine-veiculos-web/releases)
+- **Licença**: [![License](https://img.shields.io/github/license/emingues-xx/vitrine-veiculos-web)](https://github.com/emingues-xx/vitrine-veiculos-web/blob/main/LICENSE)
+- **Tecnologias**: React 18, Next.js 14, TypeScript 5
 
 ## Descrição
 

@@ -1,13 +1,13 @@
-# vitrine-veiculos-bff
-
-![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/vitrine-veiculos-bff/ci.yml?branch=main)
-![Version](https://img.shields.io/github/v/release/emingues-xx/vitrine-veiculos-bff)
-![License](https://img.shields.io/github/license/emingues-xx/vitrine-veiculos-bff)
-![Tech Stack](https://img.shields.io/badge/Node.js-18-green)
-![Tech Stack](https://img.shields.io/badge/Express-4-blue)
-![Tech Stack](https://img.shields.io/badge/TypeScript-5-blue)
+# Vitrine de Veículos - BFF
 
 Backend for Frontend que otimiza dados da vitrine para o frontend web.
+
+## Status do Projeto
+
+- **Build Status**: [![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/vitrine-veiculos-bff/ci.yml?branch=main)](https://github.com/emingues-xx/vitrine-veiculos-bff/actions)
+- **Versão**: [![Version](https://img.shields.io/github/v/release/emingues-xx/vitrine-veiculos-bff)](https://github.com/emingues-xx/vitrine-veiculos-bff/releases)
+- **Licença**: [![License](https://img.shields.io/github/license/emingues-xx/vitrine-veiculos-bff)](https://github.com/emingues-xx/vitrine-veiculos-bff/blob/main/LICENSE)
+- **Tecnologias**: Node.js 18, Express 4, TypeScript 5
 
 ## Descrição
 

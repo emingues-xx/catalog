@@ -1,13 +1,13 @@
-# vitrine-veiculos-api
-
-![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/vitrine-veiculos-api/ci.yml?branch=main)
-![Version](https://img.shields.io/github/v/release/emingues-xx/vitrine-veiculos-api)
-![License](https://img.shields.io/github/license/emingues-xx/vitrine-veiculos-api)
-![Tech Stack](https://img.shields.io/badge/Node.js-18-green)
-![Tech Stack](https://img.shields.io/badge/Fastify-4-blue)
-![Tech Stack](https://img.shields.io/badge/TypeScript-5-blue)
+# Vitrine de Veículos - API
 
 API Node.js para consultas públicas, busca e filtros de veículos da vitrine.
+
+## Status do Projeto
+
+- **Build Status**: [![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/vitrine-veiculos-api/ci.yml?branch=main)](https://github.com/emingues-xx/vitrine-veiculos-api/actions)
+- **Versão**: [![Version](https://img.shields.io/github/v/release/emingues-xx/vitrine-veiculos-api)](https://github.com/emingues-xx/vitrine-veiculos-api/releases)
+- **Licença**: [![License](https://img.shields.io/github/license/emingues-xx/vitrine-veiculos-api)](https://github.com/emingues-xx/vitrine-veiculos-api/blob/main/LICENSE)
+- **Tecnologias**: Node.js 18, Fastify 4, TypeScript 5
 
 ## Descrição
 

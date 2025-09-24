@@ -1,13 +1,13 @@
-# ecommerce-veiculos-pipelines
-
-![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/ecommerce-veiculos-pipelines/ci.yml?branch=main)
-![Version](https://img.shields.io/github/v/release/emingues-xx/ecommerce-veiculos-pipelines)
-![License](https://img.shields.io/github/license/emingues-xx/ecommerce-veiculos-pipelines)
-![Tech Stack](https://img.shields.io/badge/GitHub_Actions-✓-green)
-![Tech Stack](https://img.shields.io/badge/Claude_API-✓-blue)
-![Tech Stack](https://img.shields.io/badge/Python-3.9+-yellow)
+# E-commerce Veículos - Pipelines
 
 Workflows de CI/CD e automação inteligente de documentação para todo o domínio E-commerce de Veículos.
+
+## Status do Projeto
+
+- **Build Status**: [![Build Status](https://img.shields.io/github/actions/workflow/status/emingues-xx/ecommerce-veiculos-pipelines/ci.yml?branch=main)](https://github.com/emingues-xx/ecommerce-veiculos-pipelines/actions)
+- **Versão**: [![Version](https://img.shields.io/github/v/release/emingues-xx/ecommerce-veiculos-pipelines)](https://github.com/emingues-xx/ecommerce-veiculos-pipelines/releases)
+- **Licença**: [![License](https://img.shields.io/github/license/emingues-xx/ecommerce-veiculos-pipelines)](https://github.com/emingues-xx/ecommerce-veiculos-pipelines/blob/main/LICENSE)
+- **Tecnologias**: GitHub Actions, Claude API, Python 3.9+
 
 ## Descrição
 
