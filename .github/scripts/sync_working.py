@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Script de sincronização que funciona com a API do Outline
-Versão simplificada que usa apenas a coleção existente
+Script de sincronização para Outline
+Sincroniza documentos locais com Outline seguindo hierarquia definida no mapping
 """
 
 import os
@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 
-class OutlineSyncWorking:
+class OutlineSync:
     def __init__(self):
         self.api_url = os.getenv('OUTLINE_API_URL', 'https://outline-production-cebc.up.railway.app')
         self.api_token = os.getenv('OUTLINE_API_TOKEN', 'ol_api_2yNCdA9PywEilrGBTTZswHV5hYemUhIRMTgi4A')
@@ -34,7 +34,6 @@ class OutlineSyncWorking:
         
     def _load_mapping_config(self) -> Dict[str, Any]:
         """Carrega a configuração de mapeamento do arquivo YAML"""
-        # Tentar diferentes caminhos para o arquivo de mapeamento
         possible_paths = [
             Path('outline-mapping.yaml'),
             Path.cwd() / 'outline-mapping.yaml',
@@ -48,60 +47,18 @@ class OutlineSyncWorking:
                 break
         
         if not mapping_file:
-            print("⚠️ Arquivo outline-mapping.yaml não encontrado, usando configuração padrão")
-            return self._get_default_mapping()
+            raise FileNotFoundError("Arquivo outline-mapping.yaml não encontrado")
+        
+        print(f"📄 Carregando mapeamento de: {mapping_file}")
         
         with open(mapping_file, 'r', encoding='utf-8') as f:
             return yaml.safe_load(f)
     
-    def _get_default_mapping(self) -> Dict[str, Any]:
-        """Retorna configuração padrão caso o arquivo de mapeamento não exista"""
-        return {
-            'config': {
-                'default_collection_id': '5c78f84a-f721-47cc-a983-2eb05e6bf246',  # Coleção "Docs"
-                'default_tags': ['backstage', 'documentation']
-            },
-            'documents': {},
-            'collections': {}
-        }
-    
-    def _get_document_mapping(self, file_path: str) -> Dict[str, Any]:
-        """Obtém o mapeamento específico para um documento"""
-        return self.mapping_config.get('documents', {}).get(file_path, {})
-    
-    def _get_document_parent(self, file_path: str) -> Optional[str]:
-        """Obtém o ID do documento pai baseado no mapeamento YAML"""
-        mapping = self._get_document_mapping(file_path)
-        
-        if not mapping:
-            return None
-        
-        return mapping.get('parent_id')
-    
-    def _get_document_title(self, file_path: str, file_name: str) -> str:
-        """Obtém o título do documento no Outline"""
-        mapping = self._get_document_mapping(file_path)
-        if 'title' in mapping:
-            return mapping['title']
-        
-        # Gerar título baseado no nome do arquivo
-        title = file_name.replace('.md', '').replace('_', ' ').replace('-', ' ')
-        return title.title()
-    
-    def _get_document_tags(self, file_path: str) -> List[str]:
-        """Obtém as tags do documento"""
-        mapping = self._get_document_mapping(file_path)
-        default_tags = self.mapping_config['config'].get('default_tags', [])
-        return mapping.get('tags', default_tags)
-    
-    def _get_document_description(self, file_path: str) -> str:
-        """Obtém a descrição do documento"""
-        mapping = self._get_document_mapping(file_path)
-        return mapping.get('description', '')
-    
     def _test_api_connection(self) -> bool:
         """Testa a conexão com a API"""
         try:
+            print("🔗 Testando conexão com Outline API...")
+            
             # Testar com documents.list
             test_data = {"id": ""}
             response = requests.post(
@@ -130,585 +87,276 @@ class OutlineSyncWorking:
                     print(f"✅ Coleções acessíveis - {len(collections)} coleções encontradas")
                     
                     # Verificar se a coleção padrão existe
-                    default_collection_id = self.mapping_config['config']['default_collection_id']
-                    collection_exists = any(col.get('id') == default_collection_id for col in collections)
-                    
+                    default_collection_id = self.mapping_config.get('default_collection_id')
+                    collection_exists = any(c['id'] == default_collection_id for c in collections)
                     if collection_exists:
                         print(f"✅ Coleção padrão encontrada: {default_collection_id}")
                     else:
-                        print(f"⚠️ Coleção padrão não encontrada: {default_collection_id}")
-                        print("Coleções disponíveis:")
-                        for col in collections:
-                            print(f"  - {col.get('id')}: {col.get('name')}")
-                
-                return True
-            else:
-                print(f"❌ Erro na API: {response.status_code} - {response.text}")
-                return False
-                
-        except Exception as e:
-            print(f"❌ Erro de conexão: {e}")
-            return False
-    
-    
-    
-    def _search_document(self, title: str) -> Optional[str]:
-        """Busca um documento existente no Outline pelo título"""
-        try:
-            test_data = {"id": ""}
-            response = requests.post(
-                f'{self.api_url}/api/documents.list',
-                headers=self.headers,
-                json=test_data,
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                documents = data.get('data', [])
-                for doc in documents:
-                    if doc.get('title') == title:
-                        return doc.get('id')
-            
-            return None
-        except Exception as e:
-            print(f"❌ Erro ao buscar documento '{title}': {e}")
-            return None
-    
-    def _search_document_by_mapping_id(self, mapping_id: str) -> Optional[str]:
-        """Busca um documento existente no Outline pelo ID do mapeamento"""
-        try:
-            # Verificar se já temos o ID do Outline em cache
-            if mapping_id in self.mapping_id_to_outline_id:
-                outline_id = self.mapping_id_to_outline_id[mapping_id]
-                print(f"🔍 Documento pai encontrado em cache (ID: {mapping_id}) -> Outline ID: {outline_id}")
-                return outline_id
-            
-            # NÃO buscar por título - apenas retornar None se não estiver no cache
-            print(f"❌ Documento pai não encontrado no cache (ID: {mapping_id}) - será criado automaticamente")
-            return None
-            
-        except Exception as e:
-            print(f"❌ Erro ao buscar documento por ID '{mapping_id}': {e}")
-            return None
-
-    def _get_document_info(self, doc_id: str) -> Optional[Dict[str, Any]]:
-        """Obtém informações de um documento pelo ID"""
-        try:
-            test_data = {"id": ""}
-            response = requests.post(
-                f'{self.api_url}/api/documents.list',
-                headers=self.headers,
-                json=test_data,
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                documents = data.get('data', [])
-                for doc in documents:
-                    if doc.get('id') == doc_id:
-                        return doc
-            
-            return None
-        except Exception as e:
-            print(f"❌ Erro ao obter informações do documento '{doc_id}': {e}")
-            return None
-
-    def _create_parent_document(self, title: str, collection_id: str, mapping_id: str = None, parent_document_id: str = None) -> Optional[str]:
-        """Cria um documento pai vazio quando necessário"""
-        try:
-            # Conteúdo vazio para documento pai
-            empty_content = f"# {title}\n\n*Documento pai criado automaticamente*"
-            
-            data = {
-                'title': title,
-                'text': empty_content,
-                'publish': True,
-                'collectionId': collection_id
-            }
-            
-            # Adicionar parentDocumentId se especificado
-            if parent_document_id:
-                data['parentDocumentId'] = parent_document_id
-            
-            response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
-            
-            if response.status_code in [200, 201]:
-                doc_id = response.json().get('data', {}).get('id')
-                # Armazenar no cache se mapping_id foi fornecido
-                if mapping_id:
-                    self.mapping_id_to_outline_id[mapping_id] = doc_id
-                print(f"✅ Documento pai criado com sucesso -> '{title}' (Outline ID: {doc_id})")
-                
-                # Tornar readonly
-                try:
-                    readonly_data = {
-                        'id': doc_id,
-                        'readonly': True
-                    }
-                    readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
-                    if readonly_response.status_code in [200, 201]:
-                        print(f"✅ Documento pai configurado como readonly -> '{title}'")
-                except Exception as e:
-                    print(f"⚠️ Erro ao configurar readonly para '{title}': {e}")
-                
-                return doc_id
-            else:
-                print(f"❌ Erro ao criar documento pai '{title}': {response.status_code} - {response.text}")
-                return None
-                
-        except Exception as e:
-            print(f"❌ Erro ao criar documento pai '{title}': {e}")
-            return None
-    
-    def _create_or_update_document(self, file_path: str, content: str) -> bool:
-        """Cria ou atualiza um documento no Outline"""
-        try:
-            file_name = Path(file_path).name
-            title = self._get_document_title(file_path, file_name)
-            tags = self._get_document_tags(file_path)
-            description = self._get_document_description(file_path)
-            
-            # Adicionar metadados ao conteúdo
-            enhanced_content = self._enhance_content(content, file_path, tags)
-            
-            # Obter coleção e documento pai
-            mapping = self._get_document_mapping(file_path)
-            collection_id = mapping.get('collection_id', self.mapping_config['config']['default_collection_id'])
-            parent_mapping_id = self._get_document_parent(file_path)
-            
-            # Obter o ID do mapeamento do documento atual
-            current_mapping_id = mapping.get('id', 'sem-id')
-            print(f"📄 Processando documento: '{title}' (ID: {current_mapping_id})")
-            print(f"📁 Coleção: {collection_id}")
-            if parent_mapping_id:
-                print(f"👨‍👩‍👧‍👦 Documento pai ID: {parent_mapping_id}")
-            
-            # Buscar documento existente
-            doc_id = self._search_document(title)
-            
-            # Buscar ID do documento pai se especificado
-            parent_document_id = None
-            if parent_mapping_id:
-                parent_document_id = self._search_document_by_mapping_id(parent_mapping_id)
-                if not parent_document_id:
-                    # Buscar o título do documento pai para criar
-                    parent_title = None
-                    for fp, mp in self.mapping_config.get('documents', {}).items():
-                        if mp.get('id') == parent_mapping_id:
-                            parent_title = mp.get('title')
-                            break
-                    if parent_title:
-                        print(f"🔧 Criando documento pai automaticamente (ID: {parent_mapping_id}) -> '{parent_title}'")
-                        # Buscar o pai do documento pai para criar a hierarquia correta
-                        parent_of_parent_id = None
-                        for fp, mp in self.mapping_config.get('documents', {}).items():
-                            if mp.get('id') == parent_mapping_id:
-                                parent_of_parent_mapping_id = mp.get('parent_id')
-                                if parent_of_parent_mapping_id:
-                                    parent_of_parent_id = self._search_document_by_mapping_id(parent_of_parent_mapping_id)
-                                break
-                        
-                        parent_document_id = self._create_parent_document(parent_title, collection_id, parent_mapping_id, parent_of_parent_id)
-                    else:
-                        print(f"❌ Documento pai com ID '{parent_mapping_id}' não encontrado no mapeamento.")
-            
-            if doc_id:
-                # Verificar se o documento está na coleção correta
-                doc_info = self._get_document_info(doc_id)
-                if doc_info and doc_info.get('collectionId') != collection_id:
-                    print(f"🔄 Migrando documento '{title}' para nova coleção")
-                    # Forçar migração para nova coleção
-                    data = {
-                        'id': doc_id,
-                        'text': enhanced_content,
-                        'readonly': True,
-                        'collectionId': collection_id
-                    }
-                    
-                    # Adicionar parentId se especificado
-                    if parent_document_id:
-                        data['parentDocumentId'] = parent_document_id
-                        # Buscar o título do documento pai para exibir
-                        parent_title = None
-                        for fp, mp in self.mapping_config.get('documents', {}).items():
-                            if mp.get('id') == parent_mapping_id:
-                                parent_title = mp.get('title')
-                                break
-                        if parent_title:
-                            print(f"👨‍👩‍👧‍👦 Associando ao pai: {parent_title}")
-                    
-                    response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
-                    
-                    if response.status_code in [200, 201]:
-                        print(f"✅ Documento '{title}' migrado para nova coleção com sucesso")
-                        return True
-                    else:
-                        print(f"❌ Erro ao migrar documento '{title}': {response.status_code} - {response.text}")
-                        return False
-                else:
-                    # Atualizar documento existente na coleção correta
-                    data = {
-                        'id': doc_id,
-                        'text': enhanced_content,
-                        'readonly': True,
-                        'collectionId': collection_id
-                    }
-                    
-                    # Adicionar parentId se especificado
-                    if parent_document_id:
-                        data['parentDocumentId'] = parent_document_id
-                    
-                    response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=data)
-                    
-                    if response.status_code in [200, 201]:
-                        print(f"✅ Documento atualizado com sucesso (ID: {current_mapping_id}) -> '{title}' (readonly)")
-                        return True
-                    else:
-                        print(f"❌ Erro ao atualizar documento (ID: {current_mapping_id}) -> '{title}': {response.status_code} - {response.text}")
-                        return False
-            else:
-                # Criar novo documento público e readonly
-                data = {
-                    'title': title,
-                    'text': enhanced_content,
-                    'publish': True,
-                    'collectionId': collection_id
-                }
-                
-                # Adicionar parentId se especificado
-                if parent_document_id:
-                    data['parentDocumentId'] = parent_document_id
-                
-                response = requests.post(f'{self.api_url}/api/documents.create', headers=self.headers, json=data)
-                
-                if response.status_code in [200, 201]:
-                    doc_id = response.json().get('data', {}).get('id')
-                    # Armazenar no cache
-                    self.mapping_id_to_outline_id[current_mapping_id] = doc_id
-                    print(f"✅ Documento criado com sucesso (ID: {current_mapping_id}) -> '{title}' (Outline ID: {doc_id})")
-                    
-                    # Tentar tornar o documento readonly
-                    try:
-                        readonly_data = {
-                            'id': doc_id,
-                            'readonly': True
-                        }
-                        readonly_response = requests.post(f'{self.api_url}/api/documents.update', headers=self.headers, json=readonly_data)
-                        if readonly_response.status_code in [200, 201]:
-                            print(f"✅ Documento configurado como readonly (ID: {current_mapping_id}) -> '{title}'")
-                        else:
-                            print(f"⚠️ Não foi possível configurar readonly (ID: {current_mapping_id}) -> '{title}': {readonly_response.status_code}")
-                    except Exception as e:
-                        print(f"⚠️ Erro ao configurar readonly (ID: {current_mapping_id}) -> '{title}': {e}")
+                        print(f"⚠️  Coleção padrão não encontrada: {default_collection_id}")
                     
                     return True
                 else:
-                    print(f"❌ Erro ao criar documento (ID: {current_mapping_id}) -> '{title}': {response.status_code} - {response.text}")
+                    print(f"❌ Erro ao acessar coleções: {collections_response.status_code}")
                     return False
+            else:
+                print(f"❌ Erro na conexão: {response.status_code}")
+                print(f"Resposta: {response.text}")
+                return False
                 
         except Exception as e:
-            print(f"❌ Erro ao processar documento '{file_path}': {e}")
+            print(f"❌ Erro ao testar conexão: {e}")
             return False
     
-    def _enhance_content(self, content: str, file_path: str, tags: List[str]) -> str:
-        """Adiciona metadados e informações extras ao conteúdo"""
-        github_repo = os.getenv('GITHUB_REPOSITORY', '')
-        github_sha = os.getenv('GITHUB_SHA', '')
-        
-        # Adicionar cabeçalho com informações do repositório
-        header = f"""---
-*Documento sincronizado automaticamente do repositório [{github_repo}](https://github.com/{github_repo})*
-*Última atualização: commit {github_sha[:8] if github_sha else 'N/A'}*
-*Arquivo original: `{file_path}`*
-
----
-
-"""
-        
-        # Adicionar rodapé com tags
-        footer = f"""
-
----
-
-**Tags:** {', '.join([f'`{tag}`' for tag in tags])}
-**Fonte:** [{github_repo}](https://github.com/{github_repo}/blob/main/{file_path})
-"""
-        
-        return header + content + footer
-    
-    def _delete_all_documents_hierarchically(self) -> bool:
-        """Deleta todos os documentos em ordem hierárquica (do maior nível para o menor)"""
+    def _get_document_by_mapping_id(self, mapping_id: str) -> Optional[Dict]:
+        """Busca um documento no Outline pelo ID do mapeamento"""
         try:
-            print("🗑️ Iniciando limpeza hierárquica de documentos...")
-            
-            # Listar todos os documentos
             test_data = {"id": ""}
             response = requests.post(
-                f'{self.api_url}/documents.list',
+                f'{self.api_url}/api/documents.list',
                 headers=self.headers,
                 json=test_data,
                 timeout=10
             )
             
-            if response.status_code != 200:
-                print(f"❌ Erro ao listar documentos: {response.status_code}")
-                return False
-            
-            data = response.json()
-            all_documents = data.get('data', [])
-            
-            if not all_documents:
-                print("✅ Nenhum documento encontrado para deletar")
-                return True
-            
-            print(f"📄 Encontrados {len(all_documents)} documentos para deletar")
-            
-            # Organizar documentos por nível hierárquico usando o mapeamento
-            documents_by_level = {}
-            for doc in all_documents:
-                title = doc.get('title', '')
-                level = self._get_document_level_by_mapping_title(title)
+            if response.status_code == 200:
+                data = response.json()
+                documents = data.get('data', [])
                 
-                if level not in documents_by_level:
-                    documents_by_level[level] = []
-                documents_by_level[level].append(doc)
-            
-            print(f"📊 Documentos organizados por nível para deleção:")
-            for level in sorted(documents_by_level.keys(), reverse=True):
-                print(f"  Nível {level}: {len(documents_by_level[level])} documentos")
-            
-            deleted_count = 0
-            
-            # Deletar por níveis (do maior para o menor)
-            for level in sorted(documents_by_level.keys(), reverse=True):
-                print(f"\n🗑️ Deletando Nível {level} ({len(documents_by_level[level])} documentos)...")
+                # Buscar pelo ID do mapeamento no cache
+                if mapping_id in self.mapping_id_to_outline_id:
+                    outline_id = self.mapping_id_to_outline_id[mapping_id]
+                    for doc in documents:
+                        if doc['id'] == outline_id:
+                            return doc
                 
-                for doc in documents_by_level[level]:
-                    doc_id = doc.get('id')
-                    doc_title = doc.get('title', 'Sem título')
-                    
-                    print(f"  🗑️ Deletando: {doc_title} (ID: {doc_id})")
-                    
-                    delete_data = {
-                        'id': doc_id,
-                        'permanent': True
-                    }
-                    
-                    try:
-                        delete_response = requests.post(
-                            f'{self.api_url}/api/documents.delete',
-                            headers=self.headers,
-                            json=delete_data,
-                            timeout=10
-                        )
-                        
-                        if delete_response.status_code in [200, 201]:
-                            print(f"    ✅ Deletado com sucesso")
-                            deleted_count += 1
-                        else:
-                            print(f"    ❌ Erro ao deletar: {delete_response.status_code} - {delete_response.text}")
-                            
-                    except Exception as e:
-                        print(f"    ❌ Erro ao deletar: {e}")
-            
-            print(f"\n📊 Limpeza hierárquica concluída: {deleted_count} documentos deletados")
-            return True
-            
+                return None
+            else:
+                print(f"❌ Erro ao buscar documentos: {response.status_code}")
+                return None
+                
         except Exception as e:
-            print(f"❌ Erro na limpeza hierárquica: {e}")
-            return False
-
-    def _get_document_level_by_title(self, title: str) -> int:
-        """Determina o nível hierárquico do documento baseado no título"""
-        # Nível 0: Documento raiz
-        if title == "E-commerce de Veículos - Documentação":
-            return 0
-        
-        # Nível 1: Documentos principais
-        if title in ["Sistemas", "Componentes", "Arquitetura", "Guias"]:
-            return 1
-        
-        # Nível 2: Sistemas e componentes específicos
-        if title in ["Vitrine de Veículos", "Backoffice de Veículos", "Vitrine Web", "Vitrine API", 
-                    "Vitrine BFF", "Backoffice Web", "Backoffice API", "Backoffice BFF", 
-                    "Pipelines E-commerce", "Sobre ADRs", "ADRs", "Guia de Contribuição", "Contributing"]:
-            return 2
-        
-        # Nível 3: Features, Arquitetura, Setup, etc.
-        if title in ["Features", "Arquitetura", "Setup", "API Reference", "API", "Architecture",
-                    "Automação - Pipelines", "Workflows - Pipelines"]:
-            return 3
-        
-        # Nível 4: Funcionalidades específicas
-        if title in ["Busca de Veículos", "Cadastro de Anúncios"]:
-            return 4
-        
-        # Default: nível 2
-        return 2
+            print(f"❌ Erro ao buscar documento {mapping_id}: {e}")
+            return None
     
-    def _get_document_level_by_mapping_title(self, title: str) -> int:
-        """Determina o nível hierárquico do documento baseado no título usando o mapeamento"""
+    def _get_document_parent_id(self, mapping_id: str) -> Optional[str]:
+        """Obtém o ID do documento pai no Outline"""
+        doc_config = self._get_document_config(mapping_id)
+        if not doc_config or not doc_config.get('parent_id'):
+            return None
+        
+        parent_mapping_id = doc_config['parent_id']
+        
+        # Se o pai já foi criado, retornar seu ID do Outline
+        if parent_mapping_id in self.mapping_id_to_outline_id:
+            return self.mapping_id_to_outline_id[parent_mapping_id]
+        
+        return None
+    
+    def _get_document_config(self, mapping_id: str) -> Optional[Dict]:
+        """Obtém a configuração de um documento pelo ID do mapeamento"""
+        for doc in self.mapping_config.get('documents', []):
+            if doc.get('id') == mapping_id:
+                return doc
+        return None
+    
+    def _read_file_content(self, file_path: str) -> str:
+        """Lê o conteúdo de um arquivo"""
         try:
-            # Buscar o documento pelo título no mapeamento
-            for file_path, mapping in self.mapping_config.get('documents', {}).items():
-                if mapping.get('title') == title:
-                    level = mapping.get('level')
-                    if level is not None:
-                        return level
+            # Tentar diferentes caminhos
+            possible_paths = [
+                Path(file_path),
+                Path.cwd() / file_path,
+                Path(__file__).parent.parent.parent / file_path
+            ]
             
-            # Se não encontrou no mapeamento, usar fallback
-            print(f"⚠️ Documento '{title}' não encontrado no mapeamento, usando fallback")
-            return self._get_document_level_by_title(title)
+            for path in possible_paths:
+                if path.exists():
+                    with open(path, 'r', encoding='utf-8') as f:
+                        return f.read()
+            
+            print(f"⚠️  Arquivo não encontrado: {file_path}")
+            return f"# Documento não encontrado\n\nArquivo: {file_path}\n\nEste arquivo não foi encontrado no sistema de arquivos."
             
         except Exception as e:
-            print(f"❌ Erro ao buscar nível por título '{title}': {e}")
-            return self._get_document_level_by_title(title)
-
-    def _get_document_level(self, file_path: str) -> int:
-        """Determina o nível hierárquico do documento baseado na propriedade level do mapeamento"""
-        mapping = self._get_document_mapping(file_path)
+            print(f"❌ Erro ao ler arquivo {file_path}: {e}")
+            return f"# Erro ao carregar documento\n\nErro: {e}\n\nArquivo: {file_path}"
+    
+    def _create_document(self, doc_config: Dict) -> Optional[str]:
+        """Cria um novo documento no Outline"""
+        try:
+            mapping_id = doc_config['id']
+            title = doc_config['title']
+            file_path = doc_config['file_path']
+            collection_id = doc_config.get('collection_id', self.mapping_config.get('default_collection_id'))
+            parent_id = self._get_document_parent_id(mapping_id)
+            
+            print(f"📝 Criando documento: {mapping_id} - {title}")
+            if parent_id:
+                print(f"   📁 Pai: {parent_id}")
+            
+            # Ler conteúdo do arquivo
+            content = self._read_file_content(file_path)
+            
+            # Preparar dados para criação
+            data = {
+                'title': title,
+                'text': content,
+                'collectionId': collection_id,
+                'publish': True
+            }
+            
+            if parent_id:
+                data['parentDocumentId'] = parent_id
+            
+            # Criar documento
+            response = requests.post(
+                f'{self.api_url}/api/documents.create',
+                headers=self.headers,
+                json=data,
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                outline_id = result['data']['id']
+                
+                # Armazenar no cache
+                self.mapping_id_to_outline_id[mapping_id] = outline_id
+                
+                print(f"✅ Documento criado: {title} (ID: {outline_id})")
+                return outline_id
+            else:
+                print(f"❌ Erro ao criar documento {title}: {response.status_code}")
+                print(f"Resposta: {response.text}")
+                return None
+                
+        except Exception as e:
+            print(f"❌ Erro ao criar documento {doc_config.get('id', 'unknown')}: {e}")
+            return None
+    
+    def _update_document(self, doc_config: Dict, outline_doc: Dict) -> bool:
+        """Atualiza um documento existente no Outline"""
+        try:
+            mapping_id = doc_config['id']
+            title = doc_config['title']
+            file_path = doc_config['file_path']
+            outline_id = outline_doc['id']
+            
+            print(f"🔄 Atualizando documento: {mapping_id} - {title}")
+            
+            # Ler conteúdo do arquivo
+            content = self._read_file_content(file_path)
+            
+            # Preparar dados para atualização
+            data = {
+                'id': outline_id,
+                'title': title,
+                'text': content,
+                'append': False
+            }
+            
+            # Atualizar documento
+            response = requests.post(
+                f'{self.api_url}/api/documents.update',
+                headers=self.headers,
+                json=data,
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                print(f"✅ Documento atualizado: {title}")
+                return True
+            else:
+                print(f"❌ Erro ao atualizar documento {title}: {response.status_code}")
+                print(f"Resposta: {response.text}")
+                return False
+                
+        except Exception as e:
+            print(f"❌ Erro ao atualizar documento {doc_config.get('id', 'unknown')}: {e}")
+            return False
+    
+    def _sync_document(self, doc_config: Dict) -> bool:
+        """Sincroniza um documento individual"""
+        mapping_id = doc_config['id']
+        title = doc_config['title']
         
-        # Se o mapeamento tem a propriedade level, usar ela
-        if 'level' in mapping:
-            return mapping['level']
+        # Verificar se o documento já existe
+        existing_doc = self._get_document_by_mapping_id(mapping_id)
         
-        # Fallback: calcular baseado no caminho (para compatibilidade)
-        path_parts = file_path.split('/')
+        if existing_doc:
+            # Documento existe, atualizar
+            return self._update_document(doc_config, existing_doc)
+        else:
+            # Documento não existe, criar
+            outline_id = self._create_document(doc_config)
+            return outline_id is not None
+    
+    def _get_documents_by_level(self, level: int) -> List[Dict]:
+        """Obtém todos os documentos de um nível específico"""
+        return [doc for doc in self.mapping_config.get('documents', []) if doc.get('level') == level]
+    
+    def _get_max_level(self) -> int:
+        """Obtém o nível máximo dos documentos"""
+        max_level = 0
+        for doc in self.mapping_config.get('documents', []):
+            level = doc.get('level', 0)
+            if level > max_level:
+                max_level = level
+        return max_level
+    
+    def sync_all_documents(self) -> bool:
+        """Sincroniza todos os documentos seguindo a hierarquia"""
+        print("🚀 Iniciando sincronização de documentos...")
         
-        # docs/index.md = nível 0 (raiz)
-        if file_path == "docs/index.md":
-            return 0
-        
-        # docs/systems/index.md, docs/components/index.md, etc. = nível 1
-        if len(path_parts) == 3 and path_parts[2] == "index.md":
-            return 1
-        
-        # docs/systems/vitrine-veiculos/index.md = nível 2
-        if len(path_parts) == 4 and path_parts[3] == "index.md":
-            return 2
-        
-        # docs/systems/vitrine-veiculos/features.md, arquitetura.md = nível 3
-        if len(path_parts) == 4 and path_parts[3] in ["features.md", "arquitetura.md", "setup.md", "api-reference.md", "automation.md", "workflows.md"]:
-            return 3
-        
-        # docs/systems/vitrine-veiculos/feature-busca-veiculos.md = nível 4
-        if len(path_parts) == 4 and path_parts[3].startswith("feature-"):
-            return 4
-        
-        # docs/components/vitrine-veiculos-web/arquitetura.md, setup.md = nível 3
-        if len(path_parts) == 5 and path_parts[4] in ["arquitetura.md", "setup.md", "api-reference.md", "api.md", "automation.md", "workflows.md"]:
-            return 3
-        
-        # docs/architecture/overview.md = nível 1
-        if file_path == "docs/architecture/overview.md":
-            return 1
-        
-        # docs/architecture/sobre-adrs.md, docs/architecture/adrs/index.md = nível 2
-        if path_parts[1] == "architecture" and len(path_parts) >= 3:
-            return 2
-        
-        # docs/guides/index.md = nível 1
-        if file_path == "docs/guides/index.md":
-            return 1
-        
-        # docs/guides/contributing.md, docs/guides/guia-contribuicao.md = nível 2
-        if path_parts[1] == "guides" and len(path_parts) == 3:
-            return 2
-        
-        # Default: nível 2
-        return 2
-
-    def sync_documents(self):
-        """Sincroniza todos os documentos do diretório docs/ respeitando a hierarquia"""
-        print("🚀 Iniciando sincronização hierárquica com Outline...")
-        
-        # Testar conexão com API
+        # Testar conexão primeiro
         if not self._test_api_connection():
             print("❌ Falha na conexão com a API. Abortando sincronização.")
             return False
         
-        # Tentar diferentes caminhos para o diretório docs
-        possible_docs_paths = [
-            Path('docs'),
-            Path.cwd() / 'docs',
-            Path(__file__).parent.parent.parent / 'docs'
-        ]
+        print("\n📊 Estatísticas do mapeamento:")
+        total_docs = len(self.mapping_config.get('documents', []))
+        print(f"   Total de documentos: {total_docs}")
         
-        docs_dir = None
-        for path in possible_docs_paths:
-            if path.exists():
-                docs_dir = path
-                break
+        max_level = self._get_max_level()
+        print(f"   Níveis: 0 a {max_level}")
         
-        if not docs_dir:
-            print("❌ Diretório 'docs' não encontrado")
-            return False
-        
-        print(f"📁 Usando diretório docs: {docs_dir}")
-        
-        # Processar todos os arquivos .md
-        md_files = list(docs_dir.rglob('*.md'))
-        print(f"📄 Encontrados {len(md_files)} arquivos .md para processar")
-        
-        # Organizar arquivos por nível hierárquico
-        files_by_level = {}
-        for md_file in md_files:
-            file_path = str(md_file.relative_to(docs_dir.parent))
-            level = self._get_document_level(file_path)
-            
-            if level not in files_by_level:
-                files_by_level[level] = []
-            files_by_level[level].append((file_path, md_file))
-        
-        print(f"📊 Documentos organizados por nível:")
-        for level in sorted(files_by_level.keys()):
-            print(f"  Nível {level}: {len(files_by_level[level])} documentos")
-        
+        # Sincronizar por níveis (do menor para o maior)
         success_count = 0
         error_count = 0
         
-        # Processar por níveis (do menor para o maior)
-        for level in sorted(files_by_level.keys()):
-            print(f"\n🔄 Processando Nível {level} ({len(files_by_level[level])} documentos)...")
+        for level in range(max_level + 1):
+            level_docs = self._get_documents_by_level(level)
+            if not level_docs:
+                continue
             
-            for file_path, md_file in files_by_level[level]:
-                try:
-                    print(f"📝 Processando: {file_path} (Nível {level})")
-                    
-                    with open(md_file, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                    
-                    if self._create_or_update_document(file_path, content):
-                        success_count += 1
-                    else:
-                        error_count += 1
-                        
-                except Exception as e:
-                    print(f"❌ Erro ao processar arquivo '{file_path}': {e}")
+            print(f"\n📁 Processando nível {level} ({len(level_docs)} documentos):")
+            
+            for doc_config in level_docs:
+                mapping_id = doc_config['id']
+                title = doc_config['title']
+                
+                print(f"   🔄 {mapping_id}: {title}")
+                
+                if self._sync_document(doc_config):
+                    success_count += 1
+                else:
                     error_count += 1
         
-        print(f"\n📊 Resumo da sincronização hierárquica:")
-        print(f"✅ Documentos sincronizados com sucesso: {success_count}")
-        print(f"❌ Documentos com erro: {error_count}")
+        print(f"\n📈 Resumo da sincronização:")
+        print(f"   ✅ Sucessos: {success_count}")
+        print(f"   ❌ Erros: {error_count}")
+        print(f"   📊 Total: {success_count + error_count}")
         
         return error_count == 0
 
 def main():
     """Função principal"""
     try:
-        syncer = OutlineSyncWorking()
+        print("🎯 Outline Sync - Sincronização de Documentos")
+        print("=" * 50)
         
-        # Verificar se deve limpar antes da sincronização
-        clean_before_sync = os.getenv('CLEAN_BEFORE_SYNC', 'false').lower() == 'true'
-        
-        if clean_before_sync:
-            print("🧹 Modo de limpeza ativado. Deletando documentos existentes...")
-            if not syncer._delete_all_documents_hierarchically():
-                print("⚠️ Erro na limpeza, mas continuando com a sincronização...")
-        
-        success = syncer.sync_documents()
+        sync = OutlineSync()
+        success = sync.sync_all_documents()
         
         if success:
             print("\n🎉 Sincronização concluída com sucesso!")
@@ -718,8 +366,8 @@ def main():
             sys.exit(1)
             
     except Exception as e:
-        print(f"💥 Erro fatal: {e}")
+        print(f"\n💥 Erro fatal: {e}")
         sys.exit(1)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

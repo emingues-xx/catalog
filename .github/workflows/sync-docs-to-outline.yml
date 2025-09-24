@@ -45,6 +45,7 @@ jobs:
         if: steps.check-changes.outputs.has_changes == 'true'
         run: python .github/scripts/sync_working.py
         env:
+          OUTLINE_API_URL: ${{ secrets.OUTLINE_API_URL }}
           OUTLINE_API_TOKEN: ${{ secrets.OUTLINE_API_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
