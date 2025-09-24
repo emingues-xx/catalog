@@ -5,6 +5,9 @@ metadata:
   title: Backoffice de Veículos
   description: Sistema interno para cadastro de anúncios, dashboard e acompanhamento de vendas.
   tags: [backoffice, anuncios, vendas]
+  annotations:
+    github.com/project-slug: emingues-xx/catalog
+    backstage.io/source-location: url:https://github.com/emingues-xx/catalog
 spec:
   owner: squad-backoffice
   domain: ecommerce-veiculos

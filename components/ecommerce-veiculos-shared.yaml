@@ -7,8 +7,15 @@ metadata:
   tags: [library, typescript, shared, utils]
   annotations:
     github.com/project-slug: emingues-xx/ecommerce-veiculos-shared
+    backstage.io/source-location: url:https://github.com/emingues-xx/ecommerce-veiculos-shared
 spec:
   type: library
   lifecycle: production
   owner: tribe-ecommerce
   system: ecommerce-veiculos
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs/components/ecommerce-veiculos-shared

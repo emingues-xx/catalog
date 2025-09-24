@@ -7,6 +7,7 @@ metadata:
   tags: [frontend, react, nextjs, backoffice, admin]
   annotations:
     github.com/project-slug: emingues-xx/backoffice-veiculos-web
+    backstage.io/source-location: url:https://github.com/emingues-xx/backoffice-veiculos-web
 spec:
   type: website
   lifecycle: production
@@ -16,3 +17,9 @@ spec:
     - component:backoffice-veiculos-bff
     - component:ecommerce-veiculos-ui-components
     - component:ecommerce-veiculos-shared
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs/components/backoffice-veiculos-web

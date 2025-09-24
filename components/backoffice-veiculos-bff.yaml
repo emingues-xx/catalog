@@ -7,6 +7,7 @@ metadata:
   tags: [backend, nodejs, bff, backoffice, admin]
   annotations:
     github.com/project-slug: emingues-xx/backoffice-veiculos-bff
+    backstage.io/source-location: url:https://github.com/emingues-xx/backoffice-veiculos-bff
 spec:
   type: service
   lifecycle: production
@@ -19,3 +20,9 @@ spec:
   dependsOn:
     - component:backoffice-veiculos-api
     - component:ecommerce-veiculos-shared
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs/components/backoffice-veiculos-bff

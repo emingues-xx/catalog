@@ -6,8 +6,16 @@ metadata:
   description: Documentação completa da plataforma de e-commerce de veículos
   annotations:
     backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: emingues-xx/catalog
+    backstage.io/source-location: url:https://github.com/emingues-xx/catalog
 spec:
   type: documentation
   lifecycle: production
   owner: development-team
   system: ecommerce-veiculos
+  techdocs:
+    builder: mkdocs
+    generator: techdocs
+    publisher:
+      type: local
+      target: ./docs

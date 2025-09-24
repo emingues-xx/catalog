@@ -5,6 +5,9 @@ metadata:
   title: Vendas de Veículos — Vitrine
   description: Sistema responsável pela vitrine (catálogo público), busca e exibição de veículos para venda.
   tags: [vitrine, catalogo, busca]
+  annotations:
+    github.com/project-slug: emingues-xx/catalog
+    backstage.io/source-location: url:https://github.com/emingues-xx/catalog
 spec:
   owner: squad-vitrine
   domain: ecommerce-veiculos
