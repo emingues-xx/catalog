@@ -17,6 +17,7 @@ spec:
     - backoffice-veiculos-api
   dependsOn:
     - component:ecommerce-veiculos-shared
+    - resource:mongodb
   techdocs:
     builder: mkdocs
     generator: techdocs

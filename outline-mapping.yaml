@@ -204,6 +204,15 @@ documents:
     tags: ["component", "pipelines", "cicd", "automation"]
     description: "Pipelines de CI/CD para e-commerce de veículos"
 
+  - id: "doc-mongodb"
+    title: "MongoDB Database"
+    file_path: "docs/components/mongodb/index.md"
+    level: 3
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-components"
+    tags: ["component", "database", "mongodb", "storage"]
+    description: "Banco de dados MongoDB para armazenamento de dados"
+
   # Nível 4 - Features específicas
   - id: "doc-vitrine-busca-veiculos"
     title: "Busca de Veículos"
