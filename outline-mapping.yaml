@@ -45,9 +45,9 @@ documents:
   - id: "doc-guides"
     title: "Guias"
     file_path: "docs/guides/index.md"
-    level: 1
+    level: 0
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
-    parent_id: "doc-root"
+    parent_id: null
     tags: ["guides", "tutorials"]
     description: "Guias e tutoriais para desenvolvedores"
 
@@ -84,7 +84,7 @@ documents:
   - id: "doc-contributing"
     title: "Como Contribuir"
     file_path: "docs/guides/contributing.md"
-    level: 2
+    level: 1
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-guides"
     tags: ["contributing", "development"]
@@ -93,7 +93,7 @@ documents:
   - id: "doc-guia-contribuicao"
     title: "Guia de Contribuição"
     file_path: "docs/guides/guia-contribuicao.md"
-    level: 2
+    level: 1
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-guides"
     tags: ["contributing", "development", "portuguese"]

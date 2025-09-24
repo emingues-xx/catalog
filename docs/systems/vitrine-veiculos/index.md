@@ -15,7 +15,7 @@ O sistema permite que usuários naveguem, pesquisem e visualizem detalhes dos ve
   - Listagem de veículos
   - Filtros de busca
   - Detalhes do veículo
-  - Galeria de imagens
+  - Galeria de imagens 
 
 ### API (vitrine-veiculos-api)  
 - **Tecnologia**: Node.js
