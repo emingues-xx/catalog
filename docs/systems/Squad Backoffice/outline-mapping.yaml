@@ -1,0 +1,5 @@
+system:
+  name: Squad Backoffice
+  components:
+    - name: backoffice-veiculos-api
+      path: ../../components/backoffice-veiculos-api/index.md
