@@ -286,3 +286,30 @@ documents:
     parent_id: "doc-pipelines"
     tags: ["workflows", "pipelines", "cicd", "processes"]
     description: "Workflows dos pipelines de CI/CD"
+
+  - id: "doc-backoffice-api-architecture"
+    title: "Arquitetura"
+    file_path: "docs/components/backoffice-veiculos-api/architecture.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-api"
+    tags: ["architecture", "api", "backoffice", "design"]
+    description: "Arquitetura da API do backoffice de veículos"
+
+  - id: "doc-backoffice-api-reference"
+    title: "Referência da API"
+    file_path: "docs/components/backoffice-veiculos-api/api-reference.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-api"
+    tags: ["api", "reference", "backoffice", "documentation"]
+    description: "Referência completa da API do backoffice"
+
+  - id: "doc-backoffice-api-installation"
+    title: "Instalação"
+    file_path: "docs/components/backoffice-veiculos-api/installation.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-api"
+    tags: ["installation", "setup", "backoffice", "api"]
+    description: "Guia de instalação da API do backoffice"

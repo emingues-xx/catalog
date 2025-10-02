@@ -1,15 +1,23 @@
-﻿# Index
+# Backoffice Veículos API
 
-Este documento esta sendo criado automaticamente.
+## Visão Geral
 
-## Descricao
+API backend responsável por gerenciar operações administrativas relacionadas a veículos no sistema de backoffice.
 
-Documentacao para Index.
+## Propósito
 
-## Conteudo
+Fornecer endpoints para:
+- Cadastro e gerenciamento de veículos
+- Consultas e filtros de dados veiculares
+- Operações administrativas do backoffice
+- Integração com sistemas internos
 
-*Este arquivo sera atualizado com o conteudo real em breve.*
+## Tecnologias Utilizadas
 
----
+- Backend API (REST)
+- Gerenciamento de dados veiculares
+- Autenticação e autorização
 
-*Documento criado automaticamente pelo sistema de sincronizacao.*
+## Links Úteis
+
+- [Repositório](https://github.com/emingues-xx/backoffice-veiculos-api.git)
