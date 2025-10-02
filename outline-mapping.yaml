@@ -313,3 +313,48 @@ documents:
     parent_id: "doc-backoffice-api"
     tags: ["installation", "setup", "backoffice", "api"]
     description: "Guia de instalação da API do backoffice"
+
+  - id: "doc-backoffice-bff-architecture"
+    title: "Arquitetura"
+    file_path: "docs/components/backoffice-veiculos-bff/architecture.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-bff"
+    tags: ["architecture", "bff", "backoffice", "design"]
+    description: "Arquitetura do BFF do backoffice de veículos"
+
+  - id: "doc-backoffice-bff-installation"
+    title: "Instalação"
+    file_path: "docs/components/backoffice-veiculos-bff/installation.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-bff"
+    tags: ["installation", "setup", "backoffice", "bff"]
+    description: "Guia de instalação do BFF do backoffice"
+
+  - id: "doc-backoffice-web-architecture"
+    title: "Arquitetura"
+    file_path: "docs/components/backoffice-veiculos-web/architecture.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-web"
+    tags: ["architecture", "web", "backoffice", "design"]
+    description: "Arquitetura do componente web do backoffice"
+
+  - id: "doc-backoffice-web-installation"
+    title: "Instalação"
+    file_path: "docs/components/backoffice-veiculos-web/installation.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-web"
+    tags: ["installation", "setup", "backoffice", "web"]
+    description: "Guia de instalação do componente web do backoffice"
+
+  - id: "doc-backoffice-web-user-guide"
+    title: "Guia do Usuário"
+    file_path: "docs/components/backoffice-veiculos-web/user-guide.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-web"
+    tags: ["guide", "user", "backoffice", "web"]
+    description: "Guia do usuário do componente web do backoffice"

@@ -1,15 +1,32 @@
-﻿# Index
+# backoffice-veiculos-bff
 
-Este documento esta sendo criado automaticamente.
+## Visão Geral
 
-## Descricao
+O **backoffice-veiculos-bff** é uma aplicação BFF (Backend for Frontend) que atua como camada intermediária entre o frontend do backoffice de veículos e os serviços de backend, fornecendo uma interface otimizada e adaptada às necessidades específicas da interface de usuário.
 
-Documentacao para Index.
+## Propósito
 
-## Conteudo
+Este componente tem como objetivo:
 
-*Este arquivo sera atualizado com o conteudo real em breve.*
+- Agregar dados de múltiplos serviços backend em uma única interface
+- Otimizar requisições e reduzir a complexidade do frontend
+- Fornecer endpoints customizados para operações do backoffice de veículos
+- Garantir segurança e validação de dados entre frontend e backend
 
----
+## Funcionalidades Principais
 
-*Documento criado automaticamente pelo sistema de sincronizacao.*
+- Gestão de cadastro e consulta de veículos
+- Agregação de dados de diferentes microserviços
+- Transformação e adaptação de dados para consumo do frontend
+- Orquestração de chamadas a serviços backend
+
+## Tecnologias Utilizadas
+
+- Node.js / TypeScript
+- Framework backend (Express/NestJS)
+- REST API
+- Integração com microserviços
+
+## Links Úteis
+
+- [Repositório](https://github.com/emingues-xx/backoffice-veiculos-bff.git)

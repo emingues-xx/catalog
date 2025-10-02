@@ -18,19 +18,31 @@ O sistema **backoffice-veiculos** foi desenvolvido para:
 
 ## Componentes do Sistema
 
-### API (backoffice-veiculos-api)
-- **Tecnologia**: Node.js
-- **Repositório**: https://github.com/emingues-xx/backoffice-veiculos-api.git
-- **Responsabilidade**: API principal para todas operações administrativas do sistema
+### 1. BFF - Backend for Frontend (backoffice-veiculos-bff)
+- **Tipo**: Application
+- **Repositório**: https://github.com/emingues-xx/backoffice-veiculos-bff.git
+- **Responsabilidade**: Camada intermediária que orquestra chamadas entre o frontend e serviços backend
 - **Funcionalidades**:
-  - CRUD completo de anúncios de veículos
-  - Gestão de usuários e vendedores
-  - Controle de permissões baseado em roles (RBAC)
-  - Auditoria completa de ações administrativas
-  - Endpoints para dashboards e relatórios
-  - Upload e gestão de imagens de veículos
-  - Integração com sistemas externos
-- **Documentação**: [Ver documentação detalhada](../components/backoffice-veiculos-api/index.md)
+  - Agregação de dados de múltiplas APIs
+  - Transformação de dados para formato otimizado do frontend
+  - Gerenciamento de sessão e autenticação
+  - Cache de requisições para melhor performance
+  - Manipulação de regras de negócio específicas da interface
+  - Endpoints customizados para necessidades da aplicação web
+- **Documentação**: [Ver documentação detalhada](../components/backoffice-veiculos-bff/index.md)
+
+### 2. Frontend Web (backoffice-veiculos-web)
+- **Tipo**: Web Frontend
+- **Repositório**: https://github.com/emingues-xx/backoffice-veiculos-web.git
+- **Responsabilidade**: Interface web do sistema administrativo de veículos
+- **Funcionalidades**:
+  - Interface responsiva e intuitiva para gestão de anúncios
+  - Dashboard com métricas e indicadores de vendas
+  - Formulários de cadastro e edição de veículos
+  - Sistema de upload e gerenciamento de imagens
+  - Controle de usuários e permissões
+  - Relatórios e visualizações de dados
+- **Documentação**: [Ver documentação detalhada](../components/backoffice-veiculos-web/index.md)
 
 ## Funcionalidades Principais
 
@@ -94,7 +106,11 @@ Administração de acessos e permissões:
 ```
 [Usuário Administrativo]
        ↓
-[backoffice-veiculos-api] → Operações CRUD, Validações, Autenticação
+[backoffice-veiculos-web] → Interface do usuário
+       ↓
+[backoffice-veiculos-bff] → Orquestração e agregação de dados
+       ↓
+[APIs Backend] → Operações CRUD, Validações, Autenticação
        ↓
 [Banco de Dados] → Persistência de dados
        ↓
@@ -111,35 +127,58 @@ Administração de acessos e permissões:
 
 ## Tecnologias e Frameworks
 
-### Backend (API)
+### Frontend Web (backoffice-veiculos-web)
+- **Framework**: React ou Next.js
+- **Linguagem**: TypeScript/JavaScript
+- **Gerenciamento de Estado**: Redux, Context API ou Zustand
+- **UI Components**: Material-UI, Ant Design ou biblioteca customizada
+- **Comunicação HTTP**: Axios ou Fetch API
+- **Roteamento**: React Router
+- **Formulários**: React Hook Form ou Formik
+- **Gráficos**: Chart.js ou Recharts
+
+### BFF (backoffice-veiculos-bff)
 - **Runtime**: Node.js
 - **Framework**: Express.js ou NestJS
+- **Linguagem**: TypeScript/JavaScript
 - **Autenticação**: JWT (JSON Web Tokens)
-- **Banco de Dados**: PostgreSQL/MySQL
-- **ORM**: Prisma ou TypeORM
 - **Validação**: Joi ou class-validator
-- **Upload de Arquivos**: Multer
+- **Cache**: Redis
 - **Documentação API**: Swagger/OpenAPI
+
+### Infraestrutura Compartilhada
+- **Banco de Dados**: PostgreSQL/MySQL
+- **Storage**: AWS S3 ou similar para imagens
+- **Mensageria**: RabbitMQ ou Kafka (se aplicável)
 
 ### Ferramentas de Desenvolvimento
 - **Controle de Versão**: Git/GitHub
 - **CI/CD**: GitHub Actions
 - **Containerização**: Docker
 - **Monitoramento**: Logs estruturados e APM
+- **Testes**: Jest, React Testing Library
 
 ## Guia de Navegação
 
 ### Documentação dos Componentes
-- **[backoffice-veiculos-api](../components/backoffice-veiculos-api/index.md)**: Documentação completa da API principal
-  - [Referência da API](../components/backoffice-veiculos-api/api-reference.md): Endpoints, parâmetros e exemplos
-  - [Arquitetura](../components/backoffice-veiculos-api/architecture.md): Estrutura técnica e padrões utilizados
-  - [Instalação e Configuração](../components/backoffice-veiculos-api/installation.md): Guia de setup e deploy
+
+#### 1. Frontend Web
+- **[backoffice-veiculos-web](../components/backoffice-veiculos-web/index.md)**: Documentação completa da aplicação web
+  - [Arquitetura](../components/backoffice-veiculos-web/architecture.md): Estrutura de componentes e fluxo de dados
+  - [Instalação e Configuração](../components/backoffice-veiculos-web/installation.md): Guia de setup e desenvolvimento
+  - [Guia do Usuário](../components/backoffice-veiculos-web/user-guide.md): Como usar a interface
+
+#### 2. BFF - Backend for Frontend
+- **[backoffice-veiculos-bff](../components/backoffice-veiculos-bff/index.md)**: Documentação completa do BFF
+  - [Arquitetura](../components/backoffice-veiculos-bff/architecture.md): Estrutura técnica e padrões utilizados
+  - [Instalação e Configuração](../components/backoffice-veiculos-bff/installation.md): Guia de setup e deploy
 
 ### Como Usar Esta Documentação
 1. **Iniciantes**: Comece pela visão geral do sistema (esta página)
-2. **Desenvolvedores**: Consulte a arquitetura e referência da API
-3. **DevOps**: Veja o guia de instalação e configuração
-4. **Product Owners**: Foque nas funcionalidades principais e perfis de acesso
+2. **Desenvolvedores Frontend**: Consulte a documentação do backoffice-veiculos-web
+3. **Desenvolvedores Backend**: Consulte a documentação do backoffice-veiculos-bff
+4. **DevOps**: Veja os guias de instalação e configuração de ambos os componentes
+5. **Product Owners**: Foque nas funcionalidades principais e perfis de acesso
 
 ## Time Responsável
 
