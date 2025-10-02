@@ -8,7 +8,7 @@ O domínio de E-commerce de Veículos concentra todas as capacidades relacionada
 
 ## Sistemas
 
-### 🛍️ Vitrine de Veículos 
+### 🛍️ Vitrine de Veículos  
 Sistema responsável pela experiência pública dos usuários, incluindo catálogo, busca e exibição de veículos disponíveis.
 
 [📖 Documentação da Vitrine](systems/vitrine-veiculos/index.md)
