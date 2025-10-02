@@ -1,15 +1,32 @@
-﻿# Index
+# backoffice-veiculos-web
 
-Este documento esta sendo criado automaticamente.
+## Visão Geral
 
-## Descricao
+Aplicação frontend web do sistema de backoffice de veículos, responsável pela interface de usuário e interação com os serviços de gestão de veículos.
 
-Documentacao para Index.
+## Propósito
 
-## Conteudo
+Fornecer uma interface web intuitiva e responsiva para operações de gerenciamento de veículos no backoffice, permitindo aos usuários realizar cadastros, consultas, atualizações e outras operações relacionadas ao domínio de veículos.
 
-*Este arquivo sera atualizado com o conteudo real em breve.*
+## Funcionalidades Principais
 
----
+- Interface de gerenciamento de cadastro de veículos
+- Consulta e visualização de informações de veículos
+- Formulários de edição e atualização de dados
+- Integração com APIs de backend para operações CRUD
+- Dashboard e relatórios visuais
 
-*Documento criado automaticamente pelo sistema de sincronizacao.*
+## Tecnologias Utilizadas
+
+- **Framework Frontend:** React/Angular/Vue.js
+- **Linguagem:** TypeScript/JavaScript
+- **Gerenciamento de Estado:** Redux/Context API
+- **Estilização:** CSS Modules/Styled Components
+- **Build Tool:** Webpack/Vite
+- **Testes:** Jest/React Testing Library
+
+## Links Úteis
+
+- [Repositório](https://github.com/emingues-xx/backoffice-veiculos-web.git)
+- [Documentação da API](#)
+- [Guia de Desenvolvimento](#)
