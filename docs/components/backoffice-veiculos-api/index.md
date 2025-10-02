@@ -1,15 +1,30 @@
-﻿# Index
+# backoffice-veiculos-api
 
-Este documento esta sendo criado automaticamente.
+API Node.js para gerenciamento de anúncios de veículos, incluindo CRUD de anúncios, usuários e acompanhamento de vendas.
 
-## Descricao
+## Tecnologias
 
-Documentacao para Index.
+- Node.js
+- Express
+- MongoDB/PostgreSQL
+- REST API
 
-## Conteudo
+## Repositório
 
-*Este arquivo sera atualizado com o conteudo real em breve.*
+[https://github.com/emingues-xx/backoffice-veiculos-api.git](https://github.com/emingues-xx/backoffice-veiculos-api.git)
 
----
+## Instalação
 
-*Documento criado automaticamente pelo sistema de sincronizacao.*
+```bash
+# Clone o repositório
+git clone https://github.com/emingues-xx/backoffice-veiculos-api.git
+
+# Instale as dependências
+npm install
+
+# Configure as variáveis de ambiente
+cp .env.example .env
+
+# Inicie o servidor
+npm start
+```
