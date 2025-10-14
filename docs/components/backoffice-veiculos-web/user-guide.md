@@ -1,8 +1,12 @@
 # Guia do Usuário - Backoffice Veículos Web
 
+## Status do Projeto
+
+🚧 **EM DESENVOLVIMENTO** - Este guia descreve as funcionalidades planejadas para o Backoffice Veículos Web.
+
 ## Visão Geral
 
-O Backoffice Veículos Web é uma aplicação frontend para gerenciamento de veículos, permitindo cadastro, consulta, edição e exclusão de informações de veículos através de uma interface web intuitiva.
+O Backoffice Veículos Web é uma aplicação frontend Node.js/TypeScript em desenvolvimento para gerenciamento de veículos, que permitirá cadastro, consulta, edição e exclusão de informações de veículos através de uma interface web intuitiva.
 
 ## Como Acessar
 
@@ -10,38 +14,39 @@ O Backoffice Veículos Web é uma aplicação frontend para gerenciamento de ve�
 2. Acesse a URL da aplicação (fornecida pelo administrador)
 3. Faça login com suas credenciais
 
-## Funcionalidades Principais
+## Funcionalidades Principais (Planejadas)
 
-### 1. Listagem de Veículos
-- Visualize todos os veículos cadastrados em uma tabela
-- Filtre veículos por marca, modelo, ano ou placa
-- Ordene os resultados por diferentes campos
-- Navegue entre páginas de resultados
+### 🚧 1. Dashboard Administrativo (Em Desenvolvimento)
+- Visão geral das métricas de vendas
+- Gráficos e indicadores de performance
+- Relatórios de anúncios ativos/inativos
+- Estatísticas por vendedor e período
 
-### 2. Cadastro de Veículos
-- Adicione novos veículos ao sistema
-- Preencha informações como:
-  - Placa
-  - Marca
-  - Modelo
-  - Ano de fabricação
-  - Cor
-  - Quilometragem
-  - Status
+### 🚧 2. Gestão de Anúncios (Em Desenvolvimento)
+- Interface de cadastro de novos anúncios
+- Edição e atualização de informações
+- Upload e gerenciamento de imagens
+- Controle de status (ativo/inativo/vendido)
+- Filtros e busca avançada
 
-### 3. Edição de Veículos
-- Atualize informações de veículos existentes
-- Modifique dados cadastrais
-- Altere status do veículo
+### 🚧 3. Consulta de Vendas (Em Desenvolvimento)
+- Relatórios de vendas por período, vendedor e categoria
+- Métricas de performance e conversão
+- Análise de tendências com gráficos
+- Comparativos entre vendedores e períodos
+- Exportação de dados em PDF, Excel e CSV
 
-### 4. Exclusão de Veículos
-- Remove veículos do sistema
-- Confirmação antes da exclusão
+### 🚧 4. Gestão de Usuários (Em Desenvolvimento)
+- Cadastro de vendedores e operadores
+- Controle de permissões e roles
+- Auditoria de ações dos usuários
+- Gerenciamento de perfis
 
-### 5. Busca e Filtros
-- Pesquisa rápida por placa ou modelo
-- Filtros avançados por múltiplos critérios
+### 🚧 5. Busca e Filtros (Em Desenvolvimento)
+- Pesquisa rápida por múltiplos critérios
+- Filtros avançados por data, vendedor, marca, modelo
 - Exportação de dados filtrados
+- Paginação e ordenação de resultados
 
 ## Guia Passo a Passo
 

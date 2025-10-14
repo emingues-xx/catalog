@@ -6,8 +6,8 @@ metadata:
   description: Painel administrativo React/Next.js para gestão de anúncios e vendas
   tags: [frontend, react, nextjs, backoffice, admin]
   annotations:
-    github.com/project-slug: emingues-xx/backoffice-veiculos-web
-    backstage.io/source-location: url:https://github.com/emingues-xx/backoffice-veiculos-web
+    github.com/project-slug: emingues-xx/vitrine-veiculos-web
+    backstage.io/source-location: url:https://github.com/emingues-xx/vitrine-veiculos-web
 spec:
   type: website
   lifecycle: production

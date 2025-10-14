@@ -1,29 +1,35 @@
 # Arquitetura - Backoffice Veículos Web
 
+## Status do Projeto
+
+🚧 **EM DESENVOLVIMENTO** - Este componente está em fase inicial de desenvolvimento com estrutura básica implementada.
+
 ## Visão Geral
 
-O **backoffice-veiculos-web** é uma aplicação frontend desenvolvida para gerenciamento de veículos no backoffice. A arquitetura segue padrões modernos de desenvolvimento web, priorizando componentização, reutilização de código e manutenibilidade.
+O **backoffice-veiculos-web** é uma aplicação frontend Node.js/TypeScript em desenvolvimento para gerenciamento de veículos no backoffice. A arquitetura segue padrões modernos de desenvolvimento web, priorizando componentização, reutilização de código e manutenibilidade.
 
 ## Estrutura de Componentes
 
-### Organização de Diretórios
+### Estrutura Atual (Skeleton)
 
 ```
 src/
-├── components/          # Componentes reutilizáveis
-│   ├── common/         # Componentes genéricos (botões, inputs, cards)
-│   ├── forms/          # Formulários de cadastro e edição
-│   ├── tables/         # Tabelas de listagem de veículos
-│   └── layout/         # Componentes de layout (header, sidebar, footer)
-├── pages/              # Páginas da aplicação
-│   ├── vehicles/       # Páginas relacionadas a veículos
+├── components/          # ✅ Estrutura básica criada
+│   ├── ui/             # Componentes de interface
+│   ├── forms/          # Formulários
+│   ├── charts/         # Gráficos e visualizações
+│   └── layout/         # Layout e navegação
+├── pages/              # ✅ Estrutura básica criada
 │   ├── dashboard/      # Dashboard principal
-│   └── auth/           # Páginas de autenticação
-├── services/           # Camada de comunicação com APIs
-├── store/              # Gerenciamento de estado
-├── utils/              # Funções utilitárias
-├── hooks/              # Custom hooks React
-└── styles/             # Estilos globais e temas
+│   ├── anuncios/       # Gestão de anúncios
+│   ├── usuarios/       # Gestão de usuários
+│   └── relatorios/     # Relatórios
+├── services/           # ✅ Estrutura básica criada
+├── hooks/              # ✅ Estrutura básica criada
+├── store/              # ✅ Estrutura básica criada
+├── utils/              # ✅ Estrutura básica criada
+├── types/              # ✅ Estrutura básica criada
+└── styles/             # ✅ Estrutura básica criada
 ```
 
 ### Hierarquia de Componentes
@@ -137,10 +143,19 @@ Deploy
 
 ### Variáveis de Ambiente
 
-```
-REACT_APP_API_URL=<url-do-bff>
-REACT_APP_ENV=<development|staging|production>
-REACT_APP_VERSION=<versão-da-aplicação>
+```bash
+# API Backend
+NEXT_PUBLIC_API_URL=https://backoffice-veiculos-bff.railway.app
+NEXT_PUBLIC_API_VERSION=v1
+
+# Autenticação
+NEXT_PUBLIC_JWT_SECRET=your-jwt-secret
+NEXT_PUBLIC_TOKEN_KEY=backoffice_token
+
+# Configurações
+NEXT_PUBLIC_APP_NAME=Backoffice Veículos
+NEXT_PUBLIC_APP_VERSION=1.0.0
+NODE_ENV=production
 ```
 
 ## Segurança

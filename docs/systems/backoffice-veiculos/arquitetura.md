@@ -1,78 +1,103 @@
 # Arquitetura - Backoffice de Veículos
 
+## Status do Projeto
+
+🚧 **EM DESENVOLVIMENTO** - Esta documentação descreve a arquitetura planejada para o sistema de backoffice de veículos.
+
 ## Visão Geral
 
-O sistema de backoffice de veículos é uma solução baseada em arquitetura moderna de aplicações web, projetada para gerenciar o cadastro, manutenção e operações relacionadas a veículos. A arquitetura segue os princípios de separação de responsabilidades, baixo acoplamento e alta coesão, garantindo escalabilidade, manutenibilidade e resiliência através de uma arquitetura frontend-backend desacoplada.
+O sistema de backoffice de veículos é uma solução baseada em arquitetura moderna de aplicações web em desenvolvimento, projetada para gerenciar o cadastro, manutenção e operações relacionadas a veículos. A arquitetura segue os princípios de separação de responsabilidades, baixo acoplamento e alta coesão, garantindo escalabilidade, manutenibilidade e resiliência através de uma arquitetura frontend-backend desacoplada.
 
 ## Componentes do Sistema
 
-O sistema é composto por dois componentes principais que trabalham de forma integrada:
+O sistema é composto por três componentes principais que trabalham de forma integrada:
 
-### backoffice-veiculos-bff (Backend For Frontend)
+### 1. backoffice-veiculos-api (API Backend)
 
-Backend For Frontend responsável por fornecer APIs REST otimizadas para o frontend, agregando dados, aplicando regras de negócio e gerenciando integrações com sistemas externos.
+API RESTful Node.js/TypeScript responsável pelas operações de backend, gerenciamento de dados e regras de negócio.
 
-**Repositório:** https://github.com/emingues-xx/backoffice-veiculos-bff.git
+**Repositório:** https://github.com/emingues-xx/backoffice-veiculos-api
 
-**Tipo:** Application (BFF)
+**Tipo:** Service
 
-**Responsabilidades:**
-- Gerenciamento do ciclo de vida de veículos
-- Validação de regras de negócio
-- Exposição de endpoints REST otimizados para o frontend
-- Agregação de dados de múltiplas fontes
-- Integração com banco de dados e serviços externos
-- Autenticação e autorização de usuários
-- Transformação de dados para o formato do frontend
-
-### backoffice-veiculos-web
-
-Interface web responsável pela interação do usuário com o sistema, fornecendo uma experiência moderna e responsiva para gestão de veículos.
-
-**Repositório:** https://github.com/emingues-xx/backoffice-veiculos-web.git
-
-**Tipo:** Web Frontend
+**Tecnologias:** Node.js, TypeScript, Express.js, MongoDB
 
 **Responsabilidades:**
-- Interface de usuário responsiva e moderna
+- CRUD completo de anúncios de veículos
+- Gestão de usuários e vendedores
+- Acompanhamento de vendas e métricas
+- Autenticação JWT e controle de permissões
+- Upload e gerenciamento de imagens
+- Integração com sistemas externos
+
+### 2. backoffice-veiculos-bff (Backend For Frontend)
+
+Backend For Frontend Node.js/TypeScript responsável por agregar dados, otimizar requisições e fornecer APIs específicas para o frontend.
+
+**Repositório:** https://github.com/emingues-xx/backoffice-veiculos-bff
+
+**Tipo:** Service
+
+**Tecnologias:** Node.js, TypeScript, Express.js, Redis
+
+**Responsabilidades:**
+- Agregação de dados de múltiplas APIs
+- Transformação de dados para formato otimizado do frontend
+- Cache Redis para melhor performance
+- Rate limiting e throttling
+- Endpoints customizados para necessidades da aplicação web
+- Tratamento de erros e fallbacks
+
+### 3. backoffice-veiculos-web (Frontend Web)
+
+Interface web React/Next.js/TypeScript responsável pela interação do usuário com o sistema.
+
+**Repositório:** https://github.com/emingues-xx/vitrine-veiculos-web
+
+**Tipo:** Website
+
+**Tecnologias:** React, Next.js, TypeScript
+
+**Responsabilidades:**
+- Interface responsiva e intuitiva para gestão de anúncios
+- Dashboard com métricas e indicadores de vendas
 - Formulários de cadastro e edição de veículos
-- Visualização de listagens e detalhes
-- Validação de dados no cliente
-- Gestão de estado da aplicação
-- Comunicação com o BFF via REST API
-- Experiência do usuário (UX) otimizada
+- Sistema de upload e gerenciamento de imagens
+- Controle de usuários e permissões
+- Relatórios e visualizações de dados
 
 ## Diagrama de Arquitetura
 
-### Visão Geral do Sistema
+### Visão Geral do Sistema (Atual)
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │                         Usuários Finais                          │
-│              (Gestores de Frota, Operadores)                     │
+│              (Administradores, Vendedores, Operadores)           │
 └───────────────────────────┬──────────────────────────────────────┘
                             │
                             │ HTTPS
                             │
 ┌───────────────────────────▼──────────────────────────────────────┐
 │                   backoffice-veiculos-web                        │
-│                      (Web Frontend)                              │
+│                      (React/Next.js)                             │
 │  ┌────────────────────────────────────────────────────────┐     │
 │  │  UI Components Layer                                    │     │
-│  │  - Pages (Listagem, Cadastro, Edição, Detalhes)        │     │
-│  │  - Components (Forms, Tables, Modals, Cards)           │     │
-│  │  - Layouts (Dashboard, Auth)                           │     │
+│  │  - Dashboard (Métricas, Gráficos)                      │     │
+│  │  - Anúncios (Listagem, Cadastro, Edição)               │     │
+│  │  - Vendas (Consulta, Relatórios)                       │     │
+│  │  - Usuários (Gestão, Permissões)                       │     │
 │  └────────────────────────┬───────────────────────────────┘     │
 │                           │                                      │
 │  ┌────────────────────────▼───────────────────────────────┐     │
 │  │  State Management                                       │     │
-│  │  - Redux/Context API/Zustand                           │     │
-│  │  - Global State, User Session, Cache                   │     │
+│  │  - Redux Toolkit/Zustand                               │     │
+│  │  - Global State, User Session                          │     │
 │  └────────────────────────┬───────────────────────────────┘     │
 │                           │                                      │
 │  ┌────────────────────────▼───────────────────────────────┐     │
 │  │  API Client Layer                                       │     │
-│  │  - Axios/Fetch                                         │     │
+│  │  - Axios                                               │     │
 │  │  - Request/Response Interceptors                       │     │
 │  │  - Error Handling, Retry Logic                         │     │
 │  └────────────────────────┬───────────────────────────────┘     │
@@ -81,23 +106,14 @@ Interface web responsável pela interação do usuário com o sistema, fornecend
                             │ REST API (JSON)
                             │
 ┌───────────────────────────▼──────────────────────────────────────┐
-│                   API Gateway / Load Balancer                    │
-│                   (NGINX / AWS ALB / Kong)                       │
-│  - Rate Limiting                                                 │
-│  - SSL Termination                                               │
-│  - Request Routing                                               │
-└───────────────────────────┬──────────────────────────────────────┘
-                            │
-                            │
-┌───────────────────────────▼──────────────────────────────────────┐
 │                   backoffice-veiculos-bff                        │
 │                     (Backend For Frontend)                       │
 │  ┌────────────────────────────────────────────────────────┐     │
 │  │  Controllers Layer                                      │     │
-│  │  - VeiculosController (CRUD endpoints)                 │     │
-│  │  - ManutencaoController (Manutenção de veículos)       │     │
-│  │  - RelatoriosController (Relatórios e dashboards)      │     │
-│  │  - AuthController (Autenticação e autorização)         │     │
+│  │  - DashboardController (Métricas, KPIs)                │     │
+│  │  - AnunciosController (CRUD de anúncios)               │     │
+│  │  - VendasController (Consulta de vendas)               │     │
+│  │  - UsuariosController (Gestão de usuários)             │     │
 │  └────────────────────────┬───────────────────────────────┘     │
 │                           │                                      │
 │  ┌────────────────────────▼───────────────────────────────┐     │
@@ -105,105 +121,131 @@ Interface web responsável pela interação do usuário com o sistema, fornecend
 │  │  - Authentication (JWT Validation)                     │     │
 │  │  - Authorization (RBAC)                                │     │
 │  │  - Request Validation                                  │     │
-│  │  - Logging & Tracing                                   │     │
 │  │  - Error Handling                                      │     │
 │  └────────────────────────┬───────────────────────────────┘     │
 │                           │                                      │
 │  ┌────────────────────────▼───────────────────────────────┐     │
 │  │  Business Logic Layer (Services)                       │     │
-│  │  - VeiculosService (Lógica de negócio de veículos)    │     │
-│  │  - ValidationService (Validações complexas)            │     │
-│  │  - IntegrationService (Integrações externas)           │     │
-│  │  - NotificationService (Notificações)                  │     │
-│  │  - ReportService (Geração de relatórios)               │     │
+│  │  - DashboardService (Agregação de métricas)            │     │
+│  │  - AnunciosService (Lógica de anúncios)                │     │
+│  │  - VendasService (Análise de vendas)                   │     │
+│  │  - CacheService (Gerenciamento de cache)               │     │
+│  └────────────────────────┬───────────────────────────────┘     │
+└───────────────────────────┼──────────────────────────────────────┘
+                            │
+                            │ REST API (JSON)
+                            │
+┌───────────────────────────▼──────────────────────────────────────┐
+│                   backoffice-veiculos-api                        │
+│                        (API Backend)                             │
+│  ┌────────────────────────────────────────────────────────┐     │
+│  │  Controllers Layer                                      │     │
+│  │  - AnunciosController (CRUD endpoints)                 │     │
+│  │  - VendasController (Gestão de vendas)                 │     │
+│  │  - UsuariosController (Gestão de usuários)             │     │
+│  │  - AuthController (Autenticação)                       │     │
+│  └────────────────────────┬───────────────────────────────┘     │
+│                           │                                      │
+│  ┌────────────────────────▼───────────────────────────────┐     │
+│  │  Business Logic Layer (Services)                       │     │
+│  │  - AnunciosService (Regras de negócio)                 │     │
+│  │  - VendasService (Processamento de vendas)             │     │
+│  │  - UsuariosService (Gestão de usuários)                │     │
+│  │  - AuthService (Autenticação e autorização)            │     │
 │  └────────────────────────┬───────────────────────────────┘     │
 │                           │                                      │
 │  ┌────────────────────────▼───────────────────────────────┐     │
 │  │  Data Access Layer                                      │     │
-│  │  - VeiculosRepository                                  │     │
-│  │  - ManutencaoRepository                                │     │
-│  │  - ORM/Query Builder (TypeORM/Prisma/Sequelize)       │     │
-│  │  - Database Migrations                                 │     │
+│  │  - AnunciosRepository                                  │     │
+│  │  - VendasRepository                                    │     │
+│  │  - UsuariosRepository                                  │     │
+│  │  - MongoDB Driver                                      │     │
 │  └────────────────────────┬───────────────────────────────┘     │
 └───────────────────────────┼──────────────────────────────────────┘
                             │
           ┌─────────────────┼─────────────────┐
           │                 │                 │
 ┌─────────▼────────┐  ┌─────▼──────┐  ┌──────▼─────────┐
-│   Database       │  │   Cache    │  │  Message Queue │
-│  (PostgreSQL)    │  │  (Redis)   │  │  (RabbitMQ/    │
-│                  │  │            │  │   AWS SQS)     │
-│  - veiculos      │  │  - Session │  │                │
-│  - manutencoes   │  │  - Data    │  │  - Events      │
-│  - usuarios      │  │  - Queries │  │  - Async Jobs  │
+│   Database       │  │   Cache    │  │   Storage      │
+│   (MongoDB)      │  │  (Redis)   │  │  (Railway/S3)  │
+│                  │  │            │  │                │
+│  - anuncios      │  │  - Session │  │  - Images      │
+│  - vendas        │  │  - Data    │  │  - Documents   │
+│  - usuarios      │  │  - Queries │  │  - Backups     │
 └──────────────────┘  └────────────┘  └────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────┐
-│                      Serviços Externos                           │
+│                      Deploy & CI/CD                              │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
-│  │   DETRAN     │  │   RENAVAM    │  │  Sistema de  │          │
-│  │     API      │  │     API      │  │   Frotas     │          │
+│  │   Railway    │  │ GitHub Actions│  │   Docker     │          │
+│  │   (Deploy)   │  │   (CI/CD)     │  │ (Container)  │          │
 │  └──────────────┘  └──────────────┘  └──────────────┘          │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
 ## Fluxo de Dados
 
-### 1. Cadastro de Veículo
+### 1. Cadastro de Anúncio (Atual)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ 1. Usuário preenche formulário de cadastro                     │
+│ 1. Usuário preenche formulário de cadastro de anúncio          │
 │    backoffice-veiculos-web                                      │
 └────────────────────────┬────────────────────────────────────────┘
                          │
-                         │ POST /api/veiculos
-                         │ { placa, marca, modelo, ano, ... }
+                         │ POST /api/anuncios
+                         │ { marca, modelo, ano, preco, ... }
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
-│ 2. API Gateway                                                  │
-│    - Validação de rate limiting                                │
-│    - SSL/TLS termination                                       │
-└────────────────────────┬────────────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────────────┐
-│ 3. backoffice-veiculos-bff                                      │
+│ 2. backoffice-veiculos-bff                                      │
 │                                                                 │
-│    3.1. Authentication Middleware                               │
+│    2.1. Authentication Middleware                               │
 │         - Valida JWT token                                     │
 │         - Verifica permissões (RBAC)                           │
 │                                                                 │
-│    3.2. Request Validation Middleware                          │
+│    2.2. Request Validation Middleware                          │
 │         - Valida schema da requisição                          │
 │         - Sanitiza inputs                                      │
 │                                                                 │
-│    3.3. VeiculosController.create()                            │
+│    2.3. AnunciosController.create()                            │
 │         - Recebe requisição                                    │
 │         - Delega para service                                  │
 │                                                                 │
-│    3.4. VeiculosService.cadastrarVeiculo()                     │
+│    2.4. AnunciosService.cadastrarAnuncio()                     │
+│         - Valida regras de negócio                             │
+│         - Chama API backend                                    │
+│                                                                 │
+│    2.5. Cache                                                  │
+│         - Invalida cache de listagem                           │
+│         - Armazena novo anúncio em cache                       │
+│                                                                 │
+│    2.6. Response                                               │
+│         - Status: 201 Created                                  │
+│         - Body: { id, marca, modelo, ... }                     │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ POST /api/anuncios
+                         │
+┌────────────────────────▼────────────────────────────────────────┐
+│ 3. backoffice-veiculos-api                                      │
+│                                                                 │
+│    3.1. Authentication Middleware                               │
+│         - Valida JWT token                                     │
+│                                                                 │
+│    3.2. AnunciosController.create()                            │
+│                                                                 │
+│    3.3. AnunciosService.cadastrarAnuncio()                     │
 │         - Valida regras de negócio:                            │
-│           * Placa única                                        │
 │           * Dados obrigatórios                                 │
 │           * Formato de dados                                   │
-│         - Integra com serviços externos (DETRAN)               │
-│         - Enriquece dados do veículo                           │
 │                                                                 │
-│    3.5. VeiculosRepository.save()                              │
-│         - Persiste no banco de dados                           │
-│         - Retorna veículo criado com ID                        │
+│    3.4. AnunciosRepository.save()                              │
+│         - Persiste no MongoDB                                  │
+│         - Retorna anúncio criado com ID                        │
 │                                                                 │
-│    3.6. Cache                                                  │
-│         - Invalida cache de listagem                           │
-│         - Armazena novo veículo em cache                       │
-│                                                                 │
-│    3.7. Event Publishing                                       │
-│         - Publica evento: VeiculoCriado                        │
-│         - Para processamento assíncrono                        │
-│                                                                 │
-│    3.8. Response                                               │
+│    3.5. Response                                               │
 │         - Status: 201 Created                                  │
-│         - Body: { id, placa, marca, ... }                      │
+│         - Body: { id, marca, modelo, ... }                     │
 └────────────────────────┬────────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
@@ -214,24 +256,24 @@ Interface web responsável pela interação do usuário com o sistema, fornecend
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### 2. Consulta de Veículo
+### 2. Consulta de Vendas (Atual)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ 1. Usuário acessa listagem de veículos                         │
+│ 1. Usuário acessa página de vendas                             │
 │    backoffice-veiculos-web                                      │
 └────────────────────────┬────────────────────────────────────────┘
                          │
-                         │ GET /api/veiculos?page=1&limit=20
+                         │ GET /api/vendas
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
 │ 2. backoffice-veiculos-bff                                      │
 │                                                                 │
 │    2.1. Authentication & Authorization                          │
 │                                                                 │
-│    2.2. VeiculosController.list()                              │
+│    2.2. VendasController.list()                                │
 │                                                                 │
-│    2.3. VeiculosService.listarVeiculos()                       │
+│    2.3. VendasService.listarVendas()                           │
 │         - Gera cache key baseada nos parâmetros                │
 │                                                                 │
 │    2.4. Verificação em Cache (Redis)                           │
@@ -239,30 +281,49 @@ Interface web responsável pela interação do usuário com o sistema, fornecend
 │         │ Cache HIT?                              │            │
 │         │                                         │            │
 │         │ SIM:                        NÃO:        │            │
-│         │ - Retorna dados do cache    - Consulta BD│           │
-│         │ - Resposta rápida (<10ms)   - Repository │           │
+│         │ - Retorna dados do cache    - Chama API │           │
+│         │ - Resposta rápida (<10ms)   - Backend   │           │
 │         │                             - Popula cache│           │
 │         │                             - Retorna dados│          │
 │         └─────────────────────────────────────────┘            │
 │                                                                 │
-│    2.5. VeiculosRepository.findAll()                           │
-│         - Query otimizada com índices                          │
+│    2.5. Response                                               │
+│         - Status: 200 OK                                       │
+│         - Body: {                                              │
+│             data: [vendas...],                                 │
+│             pagination: { page, limit, total }                 │
+│           }                                                    │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         │ GET /api/vendas
+                         │
+┌────────────────────────▼────────────────────────────────────────┐
+│ 3. backoffice-veiculos-api                                      │
+│                                                                 │
+│    3.1. Authentication Middleware                               │
+│                                                                 │
+│    3.2. VendasController.list()                                │
+│                                                                 │
+│    3.3. VendasService.listarVendas()                           │
+│                                                                 │
+│    3.4. VendasRepository.findAll()                             │
+│         - Query no MongoDB                                     │
 │         - Paginação aplicada                                   │
 │         - Filtros e ordenação                                  │
 │                                                                 │
-│    2.6. Response                                               │
+│    3.5. Response                                               │
 │         - Status: 200 OK                                       │
 │         - Body: {                                              │
-│             data: [...],                                       │
+│             data: [vendas...],                                 │
 │             pagination: { page, limit, total }                 │
 │           }                                                    │
 └────────────────────────┬────────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
-│ 3. backoffice-veiculos-web                                      │
+│ 4. backoffice-veiculos-web                                      │
 │    - Atualiza estado com dados recebidos                       │
-│    - Renderiza tabela de veículos                              │
-│    - Exibe paginação                                           │
+│    - Renderiza lista de vendas                                 │
+│    - Exibe informações: modelo, comprador, vendedor, valor     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -483,115 +544,108 @@ Separação entre operações de leitura e escrita:
 
 ## Tecnologias Utilizadas
 
-### Frontend (backoffice-veiculos-web)
+### Frontend (backoffice-veiculos-web) - Em Desenvolvimento
 
 **Core:**
-- **Framework:** React 18+ / Vue 3+ / Angular 15+
-- **Linguagem:** TypeScript 5+
-- **Build Tool:** Vite / Webpack / esbuild
-- **Package Manager:** npm / yarn / pnpm
+- **Framework:** React/Next.js
+- **Linguagem:** TypeScript
+- **Build Tool:** Vite/Webpack
+- **Package Manager:** npm
 
 **UI/UX:**
-- **Component Library:** Material-UI / Ant Design / Chakra UI / Tailwind CSS
-- **Styling:** CSS Modules / Styled Components / Emotion
-- **Icons:** React Icons / Font Awesome / Material Icons
+- **Component Library:** Material-UI, Ant Design ou Chakra UI
+- **Styling:** Tailwind CSS ou Styled Components
+- **Icons:** React Icons
 
 **State Management:**
-- **Global State:** Redux Toolkit / Zustand / Jotai / Recoil
-- **Server State:** React Query / SWR / Apollo Client
-- **Form State:** React Hook Form / Formik
+- **Global State:** Redux Toolkit ou Zustand
+- **Form State:** React Hook Form
 
 **Routing:**
-- **Router:** React Router v6 / Vue Router / Angular Router
-- **Dynamic Routing:** Suporte a rotas dinâmicas e lazy loading
+- **Router:** React Router
+- **Dynamic Routing:** Suporte a rotas dinâmicas
 
 **Data Fetching:**
-- **HTTP Client:** Axios / Fetch API
-- **GraphQL Client:** Apollo Client (se aplicável)
+- **HTTP Client:** Axios
 
 **Testing:**
-- **Unit Tests:** Jest / Vitest
-- **Component Tests:** React Testing Library / Vue Test Utils
-- **E2E Tests:** Cypress / Playwright
-- **Visual Regression:** Storybook + Chromatic
+- **Unit Tests:** Jest
+- **Component Tests:** React Testing Library
 
 **Code Quality:**
 - **Linter:** ESLint
 - **Formatter:** Prettier
 - **Type Checking:** TypeScript Compiler
-- **Git Hooks:** Husky + lint-staged
 
-### Backend (backoffice-veiculos-bff)
+### BFF (backoffice-veiculos-bff) - Em Desenvolvimento
 
 **Core:**
-- **Linguagem:** Node.js 18+ / TypeScript 5+
-- **Framework:** NestJS / Express.js / Fastify / Koa
-- **Runtime:** Node.js / Bun / Deno
+- **Linguagem:** Node.js 18+ / TypeScript
+- **Framework:** Express.js
+- **Runtime:** Node.js
 
-**Database:**
-- **ORM/Query Builder:**
-  - TypeORM (completo, com migrations e relations)
-  - Prisma (type-safe, developer experience)
-  - Sequelize (maduro, amplamente utilizado)
-  - Drizzle ORM (performático, type-safe)
-- **Migrations:** Gerenciamento via ORM ou Flyway
-- **Seeding:** Scripts de dados iniciais
+**Cache:**
+- **Redis** para cache de dados e sessões
 
 **Validation:**
-- **Schema Validation:** Joi / Yup / Zod / class-validator
-- **DTO Validation:** class-validator + class-transformer (NestJS)
+- **Schema Validation:** Joi ou class-validator
 
 **Authentication & Authorization:**
-- **JWT:** jsonwebtoken / @nestjs/jwt
-- **Password Hashing:** bcrypt / argon2
-- **OAuth 2.0:** Passport.js strategies
-- **RBAC:** Custom middleware / CASL
+- **JWT:** jsonwebtoken
+- **RBAC:** Controle baseado em roles
 
 **Testing:**
-- **Unit Tests:** Jest / Vitest
-- **Integration Tests:** Supertest / Pactum
-- **E2E Tests:** Jest + Supertest
-- **Mocking:** jest.mock / Sinon
-- **Coverage:** Istanbul / c8
+- **Unit Tests:** Jest
+- **Integration Tests:** Supertest
 
 **Code Quality:**
 - **Linter:** ESLint
 - **Formatter:** Prettier
-- **Static Analysis:** SonarQube / ESLint plugins
-- **Security Scan:** npm audit / Snyk
+
+### API Backend (backoffice-veiculos-api) - Em Desenvolvimento
+
+**Core:**
+- **Linguagem:** Node.js 18+ / TypeScript
+- **Framework:** Express.js
+- **Runtime:** Node.js
+
+**Database:**
+- **MongoDB** como banco principal
+- **MongoDB Driver** para acesso aos dados
+
+**Authentication & Authorization:**
+- **JWT:** jsonwebtoken
+- **Password Hashing:** bcrypt
+
+**Testing:**
+- **Unit Tests:** Jest
+
+**Code Quality:**
+- **Linter:** ESLint
+- **Formatter:** Prettier
 
 ### Infraestrutura e Dados
 
-**Banco de Dados Relacional:**
-- **PostgreSQL 14+** (recomendado)
-  - Suporte a JSON, índices avançados
-  - Replicação e alta disponibilidade
-  - Extensões: pg_trgm, uuid-ossp
-- **Alternativas:** MySQL 8+, MariaDB
+**Banco de Dados:**
+- **MongoDB** como banco principal
+  - Documentos JSON
+  - Índices para performance
+  - Agregações para relatórios
 
 **Cache:**
-- **Redis 7+**
+- **Redis**
   - Key-value storage
   - TTL configurável
-  - Pub/Sub para eventos
-  - Cluster para alta disponibilidade
+  - Cache de sessões
 
-**Message Queue:**
-- **RabbitMQ** (message broker completo)
-- **AWS SQS** (cloud-native)
-- **Apache Kafka** (high-throughput, event streaming)
-- **Redis Streams** (lightweight alternative)
+**Storage:**
+- **Railway** para deploy e storage
+- **AWS S3** (futuro) para imagens
 
-**Search Engine (Opcional):**
-- **Elasticsearch** para busca full-text avançada
-- **Meilisearch** alternativa leve e rápida
-
-### API Gateway & Load Balancer
-
-- **NGINX** (reverse proxy, load balancer)
-- **AWS Application Load Balancer**
-- **Kong** (API Gateway completo)
-- **Traefik** (cloud-native, com service discovery)
+**Deploy:**
+- **Railway** para deploy automático
+- **Docker** para containerização
+- **GitHub Actions** para CI/CD
 
 ### Observabilidade
 
@@ -979,3 +1033,48 @@ Code Push → Git Repository
 - Drenagem de conexões ativas
 - Finalização de requisições em andamento
 - Timeout máximo de shutdown
+
+## Status Atual do Desenvolvimento
+
+### 🚧 Componentes em Desenvolvimento
+
+#### backoffice-veiculos-api
+- **Status:** Estrutura básica implementada
+- **Funcionalidades:** CRUD de anúncios, autenticação JWT, gestão de usuários
+- **Tecnologias:** Node.js, TypeScript, Express.js, MongoDB
+- **Deploy:** Railway
+- **Próximos passos:** Implementação completa de vendas e relatórios
+
+#### backoffice-veiculos-bff
+- **Status:** Estrutura básica implementada
+- **Funcionalidades:** Agregação de dados, cache Redis, endpoints otimizados
+- **Tecnologias:** Node.js, TypeScript, Express.js, Redis
+- **Deploy:** Railway
+- **Próximos passos:** Implementação de métricas e dashboards
+
+#### backoffice-veiculos-web
+- **Status:** Interface básica implementada
+- **Funcionalidades:** Listagem de vendas, navegação, autenticação
+- **Tecnologias:** React, Next.js, TypeScript
+- **Deploy:** Railway
+- **Próximos passos:** Dashboard completo, formulários de cadastro, relatórios
+
+### ✅ Funcionalidades Implementadas
+- Listagem básica de vendas
+- Autenticação JWT
+- Navegação entre páginas
+- Estrutura de componentes
+
+### 🚧 Funcionalidades em Desenvolvimento
+- Dashboard com métricas
+- Cadastro de anúncios
+- Relatórios de vendas
+- Gestão de usuários
+- Upload de imagens
+
+### 📋 Próximas Implementações
+- Filtros avançados de vendas
+- Exportação de relatórios
+- Notificações em tempo real
+- Analytics avançado
+- Mobile responsiveness

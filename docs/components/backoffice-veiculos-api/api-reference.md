@@ -1,8 +1,12 @@
 # API Reference - Backoffice Veículos API
 
+## Status do Projeto
+
+🚧 **EM DESENVOLVIMENTO** - Esta documentação descreve os endpoints planejados para a API.
+
 ## Base URL
 ```
-https://api.backoffice-veiculos.com/v1
+https://backoffice-veiculos-api.railway.app/api/v1
 ```
 
 ## Autenticação
