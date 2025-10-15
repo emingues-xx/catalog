@@ -45,9 +45,9 @@ documents:
   - id: "doc-guides"
     title: "Guias"
     file_path: "docs/guides/index.md"
-    level: 0
+    level: 1
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
-    parent_id: null
+    parent_id: "doc-root"
     tags: ["guides", "tutorials"]
     description: "Guias e tutoriais para desenvolvedores"
 
@@ -84,7 +84,7 @@ documents:
   - id: "doc-contributing"
     title: "Como Contribuir"
     file_path: "docs/guides/contributing.md"
-    level: 1
+    level: 2
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-guides"
     tags: ["contributing", "development"]
@@ -93,7 +93,7 @@ documents:
   - id: "doc-guia-contribuicao"
     title: "Guia de Contribuição"
     file_path: "docs/guides/guia-contribuicao.md"
-    level: 1
+    level: 2
     collection_id: "d236ae05-812e-426a-a125-75653888903e"
     parent_id: "doc-guides"
     tags: ["contributing", "development", "portuguese"]
@@ -194,7 +194,7 @@ documents:
     tags: ["component", "bff", "backoffice", "backend"]
     description: "Backend for Frontend do backoffice de veículos"
 
-  # Nível 3 - Pipelines
+  # Nível 3 - Outros Componentes
   - id: "doc-pipelines"
     title: "Pipelines E-commerce"
     file_path: "docs/components/ecommerce-veiculos-pipelines/index.md"
@@ -212,6 +212,24 @@ documents:
     parent_id: "doc-components"
     tags: ["component", "database", "mongodb", "storage"]
     description: "Banco de dados MongoDB para armazenamento de dados"
+
+  - id: "doc-shared"
+    title: "E-commerce Shared"
+    file_path: "docs/components/ecommerce-veiculos-shared/index.md"
+    level: 3
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-components"
+    tags: ["component", "shared", "library", "common"]
+    description: "Biblioteca compartilhada para e-commerce de veículos"
+
+  - id: "doc-ui-components"
+    title: "UI Components"
+    file_path: "docs/components/ecommerce-veiculos-ui-components/index.md"
+    level: 3
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-components"
+    tags: ["component", "ui", "frontend", "library"]
+    description: "Componentes de interface reutilizáveis"
 
   # Nível 4 - Features específicas
   - id: "doc-vitrine-busca-veiculos"
@@ -232,7 +250,25 @@ documents:
     tags: ["feature", "cadastro", "backoffice", "functionality"]
     description: "Sistema de cadastro de anúncios de veículos"
 
-  # Nível 4 - Documentação específica dos componentes
+  - id: "doc-backoffice-consulta-vendas"
+    title: "Consulta de Vendas"
+    file_path: "docs/systems/backoffice-veiculos/features/consulta-vendas.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-features"
+    tags: ["feature", "vendas", "backoffice", "functionality"]
+    description: "Sistema de consulta e análise de vendas"
+
+  - id: "doc-backoffice-dashboard-metricas"
+    title: "Dashboard de Métricas de Vendas"
+    file_path: "docs/systems/backoffice-veiculos/features/dashboard-metricas-vendas.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-features"
+    tags: ["feature", "dashboard", "metricas", "backoffice"]
+    description: "Dashboard com métricas e indicadores de vendas"
+
+  # Nível 4 - Documentação específica dos componentes - Vitrine Web
   - id: "doc-vitrine-web-architecture"
     title: "Arquitetura"
     file_path: "docs/components/vitrine-veiculos-web/architecture.md"
@@ -251,6 +287,7 @@ documents:
     tags: ["setup", "web", "vitrine", "installation"]
     description: "Guia de configuração do componente web da vitrine"
 
+  # Nível 4 - Documentação específica dos componentes - Vitrine API
   - id: "doc-vitrine-api-reference"
     title: "Referência da API"
     file_path: "docs/components/vitrine-veiculos-api/api-reference.md"
@@ -269,24 +306,7 @@ documents:
     tags: ["api", "documentation", "vitrine", "endpoints"]
     description: "Documentação detalhada da API da vitrine"
 
-  - id: "doc-pipelines-automation"
-    title: "Automação - Pipelines"
-    file_path: "docs/components/ecommerce-veiculos-pipelines/automation.md"
-    level: 4
-    collection_id: "d236ae05-812e-426a-a125-75653888903e"
-    parent_id: "doc-pipelines"
-    tags: ["automation", "pipelines", "cicd", "workflows"]
-    description: "Automação dos pipelines de CI/CD"
-
-  - id: "doc-pipelines-workflows"
-    title: "Workflows - Pipelines"
-    file_path: "docs/components/ecommerce-veiculos-pipelines/workflows.md"
-    level: 4
-    collection_id: "d236ae05-812e-426a-a125-75653888903e"
-    parent_id: "doc-pipelines"
-    tags: ["workflows", "pipelines", "cicd", "processes"]
-    description: "Workflows dos pipelines de CI/CD"
-
+  # Nível 4 - Documentação específica dos componentes - Backoffice API
   - id: "doc-backoffice-api-architecture"
     title: "Arquitetura"
     file_path: "docs/components/backoffice-veiculos-api/architecture.md"
@@ -314,6 +334,25 @@ documents:
     tags: ["installation", "setup", "backoffice", "api"]
     description: "Guia de instalação da API do backoffice"
 
+  - id: "doc-backoffice-api-changelog"
+    title: "Changelog"
+    file_path: "docs/components/backoffice-veiculos-api/changelog.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-api"
+    tags: ["changelog", "version", "backoffice", "api"]
+    description: "Histórico de mudanças da API do backoffice"
+
+  - id: "doc-backoffice-api-deployment"
+    title: "Deployment"
+    file_path: "docs/components/backoffice-veiculos-api/deployment.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-api"
+    tags: ["deployment", "deploy", "backoffice", "api"]
+    description: "Guia de deployment da API do backoffice"
+
+  # Nível 4 - Documentação específica dos componentes - Backoffice BFF
   - id: "doc-backoffice-bff-architecture"
     title: "Arquitetura"
     file_path: "docs/components/backoffice-veiculos-bff/architecture.md"
@@ -322,6 +361,15 @@ documents:
     parent_id: "doc-backoffice-bff"
     tags: ["architecture", "bff", "backoffice", "design"]
     description: "Arquitetura do BFF do backoffice de veículos"
+
+  - id: "doc-backoffice-bff-reference"
+    title: "Referência da API"
+    file_path: "docs/components/backoffice-veiculos-bff/api-reference.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-backoffice-bff"
+    tags: ["api", "reference", "bff", "backoffice"]
+    description: "Referência completa da API do BFF do backoffice"
 
   - id: "doc-backoffice-bff-installation"
     title: "Instalação"
@@ -332,6 +380,7 @@ documents:
     tags: ["installation", "setup", "backoffice", "bff"]
     description: "Guia de instalação do BFF do backoffice"
 
+  # Nível 4 - Documentação específica dos componentes - Backoffice Web
   - id: "doc-backoffice-web-architecture"
     title: "Arquitetura"
     file_path: "docs/components/backoffice-veiculos-web/architecture.md"
@@ -358,3 +407,22 @@ documents:
     parent_id: "doc-backoffice-web"
     tags: ["guide", "user", "backoffice", "web"]
     description: "Guia do usuário do componente web do backoffice"
+
+  # Nível 4 - Documentação específica dos componentes - Pipelines
+  - id: "doc-pipelines-automation"
+    title: "Automação - Pipelines"
+    file_path: "docs/components/ecommerce-veiculos-pipelines/automation.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-pipelines"
+    tags: ["automation", "pipelines", "cicd", "workflows"]
+    description: "Automação dos pipelines de CI/CD"
+
+  - id: "doc-pipelines-workflows"
+    title: "Workflows - Pipelines"
+    file_path: "docs/components/ecommerce-veiculos-pipelines/workflows.md"
+    level: 4
+    collection_id: "d236ae05-812e-426a-a125-75653888903e"
+    parent_id: "doc-pipelines"
+    tags: ["workflows", "pipelines", "cicd", "processes"]
+    description: "Workflows dos pipelines de CI/CD"
