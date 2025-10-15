@@ -38,6 +38,14 @@ Fornecer endpoints para:
 - Auditoria de ações dos usuários
 - Gerenciamento de sessões
 
+### Métricas de Vendas
+- API RESTful para métricas de performance comercial
+- Consolidação de dados de vendas em tempo real
+- Filtros por período personalizáveis
+- Cache Redis para otimização de performance
+- Job de atualização diária automatizado
+- Monitoramento e health checks
+
 ### Acompanhamento de Vendas
 - Métricas de vendas por período
 - Relatórios de performance

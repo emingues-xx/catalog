@@ -15,6 +15,18 @@ Fornecer uma interface web intuitiva e responsiva para operações de gerenciame
 
 ## Funcionalidades Principais
 
+### Dashboard de Métricas de Vendas
+- Dashboard consultivo em tempo real com 5 métricas principais
+- Total de vendas consolidado por período
+- Quantidade de vendas por dia com gráficos temporais
+- Ticket médio com precisão de 100%
+- Taxa de conversão de leads
+- Tempo médio de vendas
+- Filtros por período personalizáveis (date range picker)
+- Carregamento otimizado (< 3 segundos)
+- Interface responsiva e intuitiva
+- Controle de acesso baseado em permissões
+
 ### Dashboard Administrativo
 - Visão geral das métricas de vendas
 - Gráficos e indicadores de performance

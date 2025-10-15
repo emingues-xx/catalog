@@ -4,10 +4,12 @@
 
 ## Funcionalidades Planejadas
 
+### ✅ Em Produção
+- **[Dashboard de Métricas de Vendas](./dashboard-metricas-vendas.md)**: Dashboard consultivo com métricas de performance comercial em tempo real
+
 ### 🚧 Em Desenvolvimento
 - **[Consulta de Vendas](./consulta-vendas.md)**: Sistema completo de consulta, análise e relatórios de vendas
-- **Cadastro de Anúncios**: Sistema de cadastro e gestão de anúncios de veículos
-- **Dashboard Executivo**: Visão consolidada de métricas e indicadores
+- **[Cadastro de Anúncios](./cadastro-anuncio.md)**: Sistema de cadastro e gestão de anúncios de veículos
 - **Gestão de Usuários**: Controle de acessos e permissões
 
 ### 📋 Planejadas
