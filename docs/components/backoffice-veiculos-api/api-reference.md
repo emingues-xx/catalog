@@ -221,6 +221,244 @@ Sem corpo de resposta.
 
 ---
 
+### Métricas de Vendas
+
+#### `GET /metricas/vendas/total`
+Retorna o valor total consolidado de vendas no período especificado.
+
+**Query Parameters:**
+- `data_inicio` (string, opcional): Data inicial no formato ISO 8601 (YYYY-MM-DD)
+- `data_fim` (string, opcional): Data final no formato ISO 8601 (YYYY-MM-DD)
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "total_vendas": 1250000.00,
+  "moeda": "BRL",
+  "periodo": {
+    "inicio": "2024-01-01",
+    "fim": "2024-03-31"
+  },
+  "atualizado_em": "2024-03-25T23:00:00Z"
+}
+```
+
+**Códigos de Status:**
+- `200` - Sucesso
+- `400` - Parâmetros de data inválidos
+- `401` - Não autenticado
+- `500` - Erro interno
+
+---
+
+#### `GET /metricas/vendas/por-dia`
+Retorna a quantidade de vendas realizadas em cada dia do período.
+
+**Query Parameters:**
+- `data_inicio` (string, opcional): Data inicial no formato ISO 8601 (YYYY-MM-DD)
+- `data_fim` (string, opcional): Data final no formato ISO 8601 (YYYY-MM-DD)
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "dados": [
+    {
+      "data": "2024-03-01",
+      "quantidade": 15,
+      "valor_total": 42500.00
+    },
+    {
+      "data": "2024-03-02",
+      "quantidade": 18,
+      "valor_total": 51300.00
+    }
+  ],
+  "periodo": {
+    "inicio": "2024-03-01",
+    "fim": "2024-03-31"
+  },
+  "total_periodo": 450,
+  "atualizado_em": "2024-03-25T23:00:00Z"
+}
+```
+
+**Códigos de Status:**
+- `200` - Sucesso
+- `400` - Parâmetros de data inválidos
+- `401` - Não autenticado
+- `500` - Erro interno
+
+---
+
+#### `GET /metricas/vendas/ticket-medio`
+Retorna o valor médio de cada venda no período.
+
+**Query Parameters:**
+- `data_inicio` (string, opcional): Data inicial no formato ISO 8601 (YYYY-MM-DD)
+- `data_fim` (string, opcional): Data final no formato ISO 8601 (YYYY-MM-DD)
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "ticket_medio": 35700.00,
+  "moeda": "BRL",
+  "total_vendas": 450,
+  "valor_total": 16065000.00,
+  "periodo": {
+    "inicio": "2024-01-01",
+    "fim": "2024-03-31"
+  },
+  "precisao": "100%",
+  "atualizado_em": "2024-03-25T23:00:00Z"
+}
+```
+
+**Códigos de Status:**
+- `200` - Sucesso
+- `400` - Parâmetros de data inválidos
+- `401` - Não autenticado
+- `500` - Erro interno
+
+---
+
+#### `GET /metricas/vendas/taxa-conversao`
+Retorna a taxa de conversão de leads em vendas.
+
+**Query Parameters:**
+- `data_inicio` (string, opcional): Data inicial no formato ISO 8601 (YYYY-MM-DD)
+- `data_fim` (string, opcional): Data final no formato ISO 8601 (YYYY-MM-DD)
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "taxa_conversao": 12.5,
+  "unidade": "percentual",
+  "total_leads": 3600,
+  "vendas_concluidas": 450,
+  "periodo": {
+    "inicio": "2024-01-01",
+    "fim": "2024-03-31"
+  },
+  "atualizado_em": "2024-03-25T23:00:00Z"
+}
+```
+
+**Códigos de Status:**
+- `200` - Sucesso
+- `400` - Parâmetros de data inválidos
+- `401` - Não autenticado
+- `500` - Erro interno
+
+---
+
+#### `GET /metricas/vendas/tempo-medio`
+Retorna o tempo médio entre criação do lead e fechamento da venda.
+
+**Query Parameters:**
+- `data_inicio` (string, opcional): Data inicial no formato ISO 8601 (YYYY-MM-DD)
+- `data_fim` (string, opcional): Data final no formato ISO 8601 (YYYY-MM-DD)
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "tempo_medio_dias": 7.5,
+  "tempo_medio_horas": 180.0,
+  "unidade": "dias",
+  "total_vendas_analisadas": 450,
+  "periodo": {
+    "inicio": "2024-01-01",
+    "fim": "2024-03-31"
+  },
+  "distribuicao": {
+    "0_3_dias": 120,
+    "4_7_dias": 180,
+    "8_14_dias": 110,
+    "mais_14_dias": 40
+  },
+  "atualizado_em": "2024-03-25T23:00:00Z"
+}
+```
+
+**Códigos de Status:**
+- `200` - Sucesso
+- `400` - Parâmetros de data inválidos
+- `401` - Não autenticado
+- `500` - Erro interno
+
+---
+
+#### `GET /metricas/vendas/consolidado`
+Retorna todas as métricas consolidadas em uma única requisição.
+
+**Query Parameters:**
+- `data_inicio` (string, opcional): Data inicial no formato ISO 8601 (YYYY-MM-DD)
+- `data_fim` (string, opcional): Data final no formato ISO 8601 (YYYY-MM-DD)
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "periodo": {
+    "inicio": "2024-01-01",
+    "fim": "2024-03-31"
+  },
+  "total_vendas": 16065000.00,
+  "quantidade_vendas": 450,
+  "ticket_medio": 35700.00,
+  "taxa_conversao": 12.5,
+  "tempo_medio_vendas": 7.5,
+  "vendas_por_dia": [
+    {
+      "data": "2024-03-01",
+      "quantidade": 15,
+      "valor_total": 42500.00
+    }
+  ],
+  "performance_cache": {
+    "cache_hit": true,
+    "tempo_resposta_ms": 45
+  },
+  "atualizado_em": "2024-03-25T23:00:00Z"
+}
+```
+
+**Códigos de Status:**
+- `200` - Sucesso
+- `400` - Parâmetros de data inválidos
+- `401` - Não autenticado
+- `500` - Erro interno
+
+**Notas:**
+- Este endpoint é otimizado com cache Redis
+- Tempo de resposta típico: < 100ms
+- Recomendado para dashboards que necessitam de todas as métricas
+
+---
+
+#### `GET /metricas/vendas/health`
+Health check do sistema de métricas.
+
+**Resposta de Sucesso (200 OK):**
+```json
+{
+  "status": "healthy",
+  "servicos": {
+    "database": "operational",
+    "cache": "operational",
+    "job_atualizacao": "operational"
+  },
+  "ultima_atualizacao": "2024-03-25T23:00:00Z",
+  "proxima_atualizacao": "2024-03-26T23:00:00Z",
+  "metricas_disponiveis": 5,
+  "tempo_resposta_medio_ms": 650
+}
+```
+
+**Códigos de Status:**
+- `200` - Sistema saudável
+- `503` - Sistema com problemas
+
+---
+
 ### Manutenções
 
 #### `GET /veiculos/{veiculo_id}/manutencoes`
