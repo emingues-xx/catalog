@@ -13,7 +13,7 @@ nav:
     - Vitrine:
       - vitrine-veiculos-web: components/vitrine-veiculos-web/index.md
       - vitrine-veiculos-api: components/vitrine-veiculos-api/index.md
-      - vitrine-veiculos-bff: components/vitrine-veiculos-bff/index.md
+      - vitrine-veiculos-bff: components/vitrine-veiculos-bff/index.md sasa
     - Backoffice:
       - backoffice-veiculos-web: components/backoffice-veiculos-web/index.md
       - backoffice-veiculos-api: components/backoffice-veiculos-api/index.md
