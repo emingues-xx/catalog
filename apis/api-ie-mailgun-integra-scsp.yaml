@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-ie-mailgun-integra-scsp
+  title: API Ie Mailgun Integra Scsp
+  description: Integração com Mailgun para envio de emails transacionais.
+  tags:
+  - email
+  - integrations
+  - notifications
+  links:
+  - url: https://back-ie-mailgun-integra-scsp-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-ie-mailgun-integra-scsp-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-ie-mailgun-integra-scsp-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/mailgun-integration-ie-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-mailgun-int-faap?env=ie-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/mailgun-integration-ie-backend
+    github.com/project-slug: uoledtech-opm/mailgun-integration-ie-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  definition:
+    $text: https://back-ie-mailgun-integra-scsp-dev.edtech.com.br/api/docs-json

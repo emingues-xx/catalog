@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-autenticacao
+  tags:
+  - academic
+  - authentication
+  - nodejs
+  - security
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/autenticacao-ie-backend
+    github.com/project-slug: uoledtech-opm/autenticacao-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-autenticacao?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-autenticacao
+    database.types: MySQL
+    database.orm: TypeORM
+  title: Back Ie Autenticacao
+  description: Serviço de autenticação. Gerencia login e sessões de usuários.
+  links:
+    - url: https://github.com/uoledtech-opm/autenticacao-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-autenticacao?env=pucrs-grad-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-autenticacao
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:academico
+  system: opm-production
+  dependsOn:
+  - resource:database-${DB_DATABASE}-mysql

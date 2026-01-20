@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: analytics
+  title: Analytics
+  description: Domínio que concentra as capacidades de analytics, dashboards e integração
+    de dados.
+  tags:
+  - analytics
+  - dashboards
+  - data
+spec:
+  owner: tribe-core

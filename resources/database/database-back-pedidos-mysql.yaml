@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-pedidos-mysql
+  title: Database Back Pedidos MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-pedidos | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de gestão de pedidos.
+  tags:
+  - database
+  - mysql
+  - pedidos
+  - sales
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

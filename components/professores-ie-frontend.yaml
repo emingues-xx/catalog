@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: professores-ie-frontend
+  tags:
+  - academic
+  - frontend
+  - teachers
+  - javascript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/professores-ie-frontend
+    github.com/project-slug: uoledtech-opm/professores-ie-frontend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aprofessores-ie-frontend?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aprofessores-ie-frontend
+  title: Professores Ie Frontend
+  description: Aplicação frontend para gestão de professores. Interface de usuário para gerenciamento de professores e tutores.
+  links:
+    - url: https://github.com/uoledtech-opm/professores-ie-frontend
+      title: Repositório GitHub
+    - url: ./professores-ie-frontend-documentation.md
+      title: Documentação Completa
+    - url: ./professores-ie-frontend-diagrams.md
+      title: Diagramas e Arquitetura
+spec:
+  type: frontend
+  lifecycle: production
+  owner: group:academico
+  system: opm-production
+  dependsOn:
+  - component:back-ie-supervisores
+  - component:back-ie-autenticacao
+  - component:back-ie-cursos
+  - component:back-ie-ead-bff

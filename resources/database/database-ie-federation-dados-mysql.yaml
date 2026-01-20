@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-ie_federation_dados-mysql
+  title: Database IE Federation Dados MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | ie_federation_dados | MySQL | Production |
+    
+    Banco de dados MySQL para federação de dados de Instituições de Ensino.
+  tags:
+  - database
+  - mysql
+  - federation
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

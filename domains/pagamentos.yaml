@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: pagamentos
+  title: Pagamentos
+  description: Jornada de pagamentos responsável pelo processamento de pagamentos, contratos e recorrências.
+  tags:
+  - payments
+  - pagamentos
+  - financeiro
+spec:
+  owner: group:payops

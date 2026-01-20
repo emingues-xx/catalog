@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-promocoes-mysql
+  title: Database Back Promoções MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-promocoes | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de gestão de promoções.
+  tags:
+  - database
+  - mysql
+  - promocoes
+  - promotions
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

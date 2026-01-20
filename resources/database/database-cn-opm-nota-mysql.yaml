@@ -1,0 +1,27 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-opm-nota-mysql
+  title: Database CN OPM Nota MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Nota | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de notas.
+  tags:
+  - database
+  - mysql
+  - nota
+  - grades
+  - academic
+  - ie-pucrs
+  - ie-faap
+  - ie-uninassau
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

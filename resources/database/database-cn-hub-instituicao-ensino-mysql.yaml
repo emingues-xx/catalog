@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-hub-instituicao-ensino-mysql
+  title: Database CN Hub Instituicao Ensino MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_HUB_InstituicaoEnsino | MySQL | Production |
+    
+    Banco de dados MySQL para instituições de ensino do hub administrativo EAD.
+  tags:
+  - database
+  - mysql
+  - instituicao-ensino
+  - institution
+  - hub-prod
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

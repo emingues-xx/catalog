@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: gsandrade
+  title: Guilherme Santana
+spec:
+  profile:
+    displayName: Guilherme Santana
+    email: gsandrade@uoledtech.com
+  memberOf:
+  - group:ava

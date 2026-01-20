@@ -2,26 +2,13 @@ apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
   name: catalog-root
-  description: Raiz do catálogo de E-commerce de veículos
+  description: Raiz do catálogo de OPM
 spec:
   type: url
   targets:
-    - ./domains/ecommerce-veiculos.yaml
-    - ./systems/vitrine-veiculos.yaml
-    - ./systems/backoffice-veiculos.yaml
-    - ./owners/groups.yaml
-    - ./apis/vitrine-veiculos-api.yaml
-    - ./apis/vitrine-veiculos-bff-api.yaml
-    - ./apis/backoffice-veiculos-api.yaml
-    - ./apis/backoffice-veiculos-bff-api.yaml
-    - ./components/vitrine-veiculos-web.yaml
-    - ./components/vitrine-veiculos-api.yaml
-    - ./components/vitrine-veiculos-bff.yaml
-    - ./components/backoffice-veiculos-web.yaml
-    - ./components/backoffice-veiculos-api.yaml
-    - ./components/backoffice-veiculos-bff.yaml
-    - ./components/ecommerce-veiculos-shared.yaml
-    - ./components/ecommerce-veiculos-ui-components.yaml
-    - ./components/ecommerce-veiculos-pipelines.yaml
-    - ./components/ecommerce-docs.yaml
-    - ./components/ecommerce-guides.yaml
+    - ./locations/domains.yaml
+    - ./locations/systems.yaml
+    - ./locations/apis.yaml
+    - ./locations/components.yaml
+    - ./locations/owners.yaml
+    - ./locations/resources.yaml

@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-hub_cep_vendas-mysql
+  title: Database Hub CEP Vendas MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | hub_cep_vendas | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de validação e busca de endereços via CEP.
+  tags:
+  - database
+  - mysql
+  - cep
+  - address
+  - sales
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

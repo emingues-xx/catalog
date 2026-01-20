@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-integracao-adyen-hub-prod
+  tags:
+  - integrations
+  - nodejs
+  - payment-gateway
+  - payments
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/integracao-adyen-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/integracao-adyen-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-integracao-adyen-hub-prod?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-integracao-adyen-hub-prod
+    sqs.queues: sqs-adyen-send-billing-hub
+  title: Back Integracao Adyen Hub Prod
+  description: Integração com gateway de pagamento Adyen. Processa pagamentos e gerencia
+    sessões de pagamento.
+  links:
+    - url: https://github.com/uoledtech-opm/integracao-adyen-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-integracao-adyen-hub-prod?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-integracao-adyen-hub-prod
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:sales
+  system: opm-production
+  dependsOn:
+  - component:back-hub-pagamentos
+  - component:back-hub-pedidos
+  - resource:sqs-adyen-send-billing-hub
+  - resource:sqs-adyen-send-billing-hub

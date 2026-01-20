@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: vendas
+  title: Vendas
+  description: Jornada de vendas que concentra as capacidades de checkout, precificação
+    e gestão de pedidos.
+  tags:
+  - sales
+  - checkout
+  - vendas
+spec:
+  owner: group:sales

@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-enrollment-integration-ie
+  title: SQS Enrollment Integration IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-enrollment-integration-ie | SQS Standard | Production |
+    
+    Fila SQS para integração de matrículas com Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - enrollment
+  - integration
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

@@ -1,0 +1,27 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-ead-bff
+  tags:
+  - academic
+  - api-gateway
+  - ava
+  - bff
+  - enrollment
+  - nestjs
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/back-ead-bff-ie
+    github.com/project-slug: uoledtech-opm/back-ead-bff-ie
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-ead-bff?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-ead-bff
+  title: Back Ie Ead Bff
+  description: Backend For Frontend para ambiente virtual de aprendizagem (EAD).
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:academico
+  system: opm-production
+  dependsOn:
+  - component:back-hub-pedidos

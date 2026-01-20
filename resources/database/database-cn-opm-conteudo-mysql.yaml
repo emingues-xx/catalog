@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn_opm_conteudo-mysql
+  title: Database CN OPM Conteudo MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | cn_opm_conteudo | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de conteúdo.
+  tags:
+  - database
+  - mysql
+  - conteudo
+  - content
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: bsilva6
+  title: Bruna Alves Silva
+spec:
+  profile:
+    displayName: Bruna Alves Silva
+    email: bsilva6@uoledtech.com
+  memberOf:
+  - group:academico

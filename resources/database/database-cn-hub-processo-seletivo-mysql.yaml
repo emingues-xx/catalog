@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-hub-processo-seletivo-mysql
+  title: Database CN Hub Processo Seletivo MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_HUB_ProcessoSeletivo | MySQL | Production |
+    
+    Banco de dados MySQL para processo seletivo do hub administrativo EAD.
+  tags:
+  - database
+  - mysql
+  - processo-seletivo
+  - selective-process
+  - hub-prod
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

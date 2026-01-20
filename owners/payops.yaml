@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: payops
+  title: Payops
+  description: A Squad PayOps é responsável pela gestão financeira e pós-venda dos
+    alunos de instituições de ensino que utilizam nossa plataforma.
+  tags:
+  - growth
+spec:
+  type: team
+  profile:
+    displayName: Payops
+    email: logarcia@uoledtech.com
+  parent: growth
+  children: []

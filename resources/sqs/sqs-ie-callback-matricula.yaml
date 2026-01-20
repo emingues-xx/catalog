@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-ie-callback-matricula
+  title: SQS IE Callback Matricula
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-ie-callback-matricula | SQS Standard | Production |
+    
+    Fila SQS para callbacks de matrículas de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - callback
+  - matricula
+  - enrollment
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

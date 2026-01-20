@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opm-payment-system
+  title: OPM Payment System
+  description: 'Sistema de pagamentos: processamento, contratos e recorrências.'
+  tags:
+  - payments
+  - pagamentos
+spec:
+  owner: group:payops
+  domain: pagamentos

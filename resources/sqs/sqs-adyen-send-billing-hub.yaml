@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-adyen-send-billing-hub
+  title: SQS Adyen Send Billing Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-adyen-send-billing-hub | SQS Standard | Production |
+    
+    Fila SQS para envio de billing do Adyen.
+  tags:
+  - sqs
+  - queue
+  - adyen
+  - billing
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-dash-financeiro-prod
+  tags:
+  - analytics
+  - dashboard
+  - financial-analytics
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/dashboard-financeiro-ie-backend
+    github.com/project-slug: uoledtech-opm/dashboard-financeiro-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-dash-financeiro-pucrs?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback-dash-financeiro-pucrs
+    sqs.queues: ^0.1.0
+  title: Back Ie Dash Financeiro Prod
+  description: Dashboard financeiro. Fornece relatórios e métricas financeiras.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  dependsOn:
+  - component:back-hub-clientes
+  - component:back-hub-pagamentos
+  - component:back-hub-pedidos
+  - component:back-produtos-hub-prod

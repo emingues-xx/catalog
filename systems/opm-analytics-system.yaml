@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opm-analytics-system
+  title: OPM Analytics System
+  description: 'Sistema de analytics e dashboards: relatórios e integração de dados.'
+  tags:
+  - analytics
+  - dashboards
+spec:
+  owner: group:academico
+  domain: analytics

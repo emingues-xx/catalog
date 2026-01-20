@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-send-data-matrix-fia-hub
+  title: SQS Send Data Matrix FIA Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-send-data-matrix-fia-hub | SQS Standard | Production |
+    
+    Fila SQS para envio de dados Matrix FIA.
+  tags:
+  - sqs
+  - queue
+  - matrix
+  - data
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

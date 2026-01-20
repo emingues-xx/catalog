@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opm-production
+  title: Opm Production
+  description: Sistema opm-production contendo 92 componentes.
+  tags:
+  - production
+  - opm
+spec:
+  owner: group:platform
+  domain: vendas

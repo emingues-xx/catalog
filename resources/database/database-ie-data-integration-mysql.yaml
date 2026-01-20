@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-ie_data_integration-mysql
+  title: Database IE Data Integration MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | ie_data_integration | MySQL | Production |
+    
+    Banco de dados MySQL para integração de dados de Instituições de Ensino.
+  tags:
+  - database
+  - mysql
+  - integration
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

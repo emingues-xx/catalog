@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-dash-disciplinas-uninassau
+  title: API Dash Disciplinas Uninassau
+  description: Serviço de gestão de disciplinas. Gerencia disciplinas e suas configurações.
+  tags:
+  - academic
+  - analytics
+  - dashboard
+  links:
+  - url: https://back-dash-disciplinas-uninassau-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-dash-disciplinas-uninassau-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-dash-disciplinas-uninassau-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/dashboard-disciplinas-ie-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-dash-disciplinas-pucrs?env=ie-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/dashboard-disciplinas-ie-backend
+    github.com/project-slug: uoledtech-opm/dashboard-disciplinas-ie-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:academico
+  system: opm-production
+  definition:
+    $text: https://back-dash-disciplinas-uninassau-dev.edtech.com.br/api/docs-json

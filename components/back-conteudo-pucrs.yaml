@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-conteudo-pucrs
+  tags:
+  - academic
+  - ava
+  - content
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/conteudo-ie-backend
+    github.com/project-slug: uoledtech-opm/conteudo-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-conteudo-pucrs?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-conteudo-pucrs
+  title: Back Conteudo Pucrs
+  description: Serviço de gestão de conteúdo educacional. Gerencia materiais, aulas
+    e recursos didáticos.
+  links:
+    - url: https://github.com/uoledtech-opm/conteudo-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-conteudo-pucrs?env=pucrs-grad-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-conteudo-pucrs
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-credit-card-installments-hub
+  title: SQS Credit Card Installments Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-credit-card-installments-hub | SQS Standard | Production |
+    
+    Fila SQS para processamento de parcelas de cartão de crédito.
+  tags:
+  - sqs
+  - queue
+  - credit-card
+  - installments
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

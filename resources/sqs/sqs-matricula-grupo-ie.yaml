@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-matricula-grupo-ie
+  title: SQS Matricula Grupo IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-matricula-grupo-ie | SQS Standard | Production |
+    
+    Fila SQS para processamento de matrículas em grupo de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - matricula
+  - grupo
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

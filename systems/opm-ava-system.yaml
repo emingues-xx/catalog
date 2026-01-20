@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opm-ava-system
+  title: OPM AVA System
+  description: 'Sistema de ambiente virtual de aprendizagem: conteúdo, avaliações
+    e notas.'
+  tags:
+  - ava
+  - conteudo
+spec:
+  owner: group:ava
+  domain: ava

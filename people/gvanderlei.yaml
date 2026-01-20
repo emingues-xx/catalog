@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: gvanderlei
+  title: Guilherme Torres
+spec:
+  profile:
+    displayName: Guilherme Torres
+    email: gvanderlei@uoledtech.com
+  memberOf:
+  - group:ava

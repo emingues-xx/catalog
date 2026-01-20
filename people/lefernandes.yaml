@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: lefernandes
+  title: Leander Fernandes
+spec:
+  profile:
+    displayName: Leander Fernandes
+    email: lefernandes@uoledtech.com
+  memberOf:
+  - group:payops

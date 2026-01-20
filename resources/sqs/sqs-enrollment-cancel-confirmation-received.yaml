@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-enrollment-cancel-confirmation-received
+  title: SQS Enrollment Cancel Confirmation Received
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-enrollment-cancel-confirmation-received | SQS Standard | Production |
+    
+    Fila SQS para confirmação de cancelamento de matrícula recebida.
+  tags:
+  - sqs
+  - queue
+  - enrollment
+  - cancel
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

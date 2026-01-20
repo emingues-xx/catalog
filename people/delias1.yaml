@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: delias1
+  title: Daniel Simoes
+spec:
+  profile:
+    displayName: Daniel Simoes
+    email: delias1@uoledtech.com
+  memberOf:
+  - group:payops

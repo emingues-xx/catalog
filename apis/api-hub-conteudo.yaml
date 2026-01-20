@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-hub-conteudo
+  title: API Hub Conteudo
+  description: Serviço de gestão de conteúdo educacional. Gerencia materiais, aulas
+    e recursos didáticos.
+  tags:
+  - academic
+  - ava
+  - content
+  links:
+  - url: https://back-hub-conteudo-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-hub-conteudo-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-hub-conteudo-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/conteudo-hub-corp-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-conteudo?env=hub-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/conteudo-hub-corp-backend
+    github.com/project-slug: uoledtech-opm/conteudo-hub-corp-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  definition:
+    $text: https://back-hub-conteudo-dev.edtech.com.br/api/docs-json

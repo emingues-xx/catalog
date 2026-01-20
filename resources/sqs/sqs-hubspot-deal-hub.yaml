@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-hubspot-deal-hub
+  title: SQS Hubspot Deal Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-hubspot-deal-hub | SQS Standard | Production |
+    
+    Fila SQS para negócios no Hubspot.
+  tags:
+  - sqs
+  - queue
+  - hubspot
+  - deal
+  - crm
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

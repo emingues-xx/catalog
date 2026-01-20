@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-hub-sms-messages-response
+  title: SQS Hub SMS Messages Response
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-hub-sms-messages-response | SQS Standard | Production |
+    
+    Fila SQS para respostas de mensagens SMS.
+  tags:
+  - sqs
+  - queue
+  - sms
+  - twilio
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

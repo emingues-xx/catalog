@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: academic
+  title: Academic
+  description: 'Domínio que concentra as capacidades acadêmicas: matrículas, alunos,
+    cursos e gestão acadêmica.'
+  tags:
+  - academic
+  - academico
+  - matriculas
+spec:
+  owner: tribe-core

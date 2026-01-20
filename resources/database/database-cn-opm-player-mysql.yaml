@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-opm-player-mysql
+  title: Database CN OPM Player MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Player | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de player.
+  tags:
+  - database
+  - mysql
+  - player
+  - academic
+  - ie-pucrs
+  - ie-faap
+  - ie-uninassau
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

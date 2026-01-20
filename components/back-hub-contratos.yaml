@@ -1,0 +1,43 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-contratos
+  tags:
+  - contracts
+  - nodejs
+  - payments
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/contratos-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/contratos-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-contratos?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-contratos
+    database.types: MySQL
+    database.orm: TypeORM
+    sqs.queues: sqs-enrollment-integration-ie
+  title: Back Hub Contratos
+  description: Serviço de gestão de contratos. Processa e gerencia contratos de matrícula
+    e recorrências.
+  links:
+    - url: https://github.com/uoledtech-opm/contratos-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-contratos?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-contratos
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  dependsOn:
+  - component:back-hub-integration
+  - component:back-hub-pagamentos
+  - component:back-hub-pedidos
+  - component:back-produtos-hub-prod
+  - resource:sqs-enrollment-integration-ie
+  - resource:database-back-contratos-mysql
+  - resource:sqs-enrollment-integration-ie

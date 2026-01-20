@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: ava
+  title: AVA - Ambiente Virtual de Aprendizagem
+  description: 'Domínio responsável pelo ambiente virtual de aprendizagem: conteúdo,
+    avaliações, notas e progresso do aluno.'
+  tags:
+  - ava
+  - conteudo
+  - avaliacoes
+spec:
+  owner: tribe-core

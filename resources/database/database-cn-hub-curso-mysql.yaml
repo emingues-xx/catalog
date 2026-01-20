@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-hub-curso-mysql
+  title: Database CN Hub Curso MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_HUB_Curso | MySQL | Production |
+    
+    Banco de dados MySQL para cursos do hub administrativo EAD.
+  tags:
+  - database
+  - mysql
+  - curso
+  - course
+  - hub-prod
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-update-teacher-data
+  title: SQS Update Teacher Data
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-update-teacher-data | SQS Standard | Production |
+    
+    Fila SQS para atualização de dados de professores.
+  tags:
+  - sqs
+  - queue
+  - teacher
+  - professor
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

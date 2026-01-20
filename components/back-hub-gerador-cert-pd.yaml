@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-gerador-cert-pd
+  tags:
+  - academic
+  - api-gateway
+  - certificates
+  - nestjs
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/gerador-certificados-bff-backend
+    github.com/project-slug: uoledtech-opm/gerador-certificados-bff-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-cert-bff-hub-prod?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-cert-bff-hub-prod
+  title: Back Hub Gerador Cert Pd
+  description: Serviço de gestão de certificados. Gera e gerencia certificados de
+    conclusão.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:acquisition
+  system: opm-production

@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-contract-additive-ie
+  title: SQS Contract Additive IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-contract-additive-ie | SQS Standard | Production |
+    
+    Fila SQS para processamento de aditivos de contratos de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - contract
+  - additive
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

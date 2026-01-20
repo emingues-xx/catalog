@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-core-prod
+  title: Database Core Prod
+  description: |
+    | Instituição de Ensino | DB Host | Endpoint |
+    | ------                | ------- | -------- |
+    | ie-pucrs              | db-pucrs-core-prod.edtech.com.br | rds-pucrs-core-prod.ccrhoogpjifw.us-east-1.rds.amazonaws.com |
+    | ie-faap               | db-faap-core-prod.edtech.com.br | rds-faap-core-prod.cio528ll3ayy.us-east-1.rds.amazonaws.com |
+    | ie-uninassau          | db-core-prod.edtech.com.br | db-core-prod.cfbwloos3r52.us-east-1.rds.amazonaws.com |
+    
+    Banco de dados core de produção para Instituições de Ensino (PUCRS, FAAP, Uninassau).
+  tags:
+  - database
+  - mysql
+  - core
+  - ie-pucrs
+  - ie-faap
+  - ie-uninassau
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

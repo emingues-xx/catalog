@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: bromero
+  title: Bruno Zandonai
+spec:
+  profile:
+    displayName: Bruno Zandonai
+    email: bromero@uoledtech.com
+  memberOf:
+  - group:sales

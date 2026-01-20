@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: checkout-onepage-hub-vendas-frontend
+  tags:
+  - checkout
+  - frontend
+  - javascript
+  - react
+  - sales
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/checkout-onepage-hub-vendas-frontend
+    github.com/project-slug: uoledtech-opm/checkout-onepage-hub-vendas-frontend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Acheckout-frontend?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Acheckout-frontend
+    sqs.queues: ^0.1.0
+  title: Checkout Onepage Hub Vendas Frontend
+  description: Sistema de checkout para processamento de matrículas e pagamentos em
+    instituições de ensino.
+  links:
+    - url: https://github.com/uoledtech-opm/checkout-onepage-hub-vendas-frontend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Acheckout-frontend?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Acheckout-frontend
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: frontend
+  lifecycle: production
+  owner: group:sales
+  system: checkout-onepage
+  dependsOn:
+  - component:back-hub-bff-sales

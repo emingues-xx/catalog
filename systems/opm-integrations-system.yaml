@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opm-integrations-system
+  title: OPM Integrations System
+  description: 'Sistema de integrações: HubSpot, Mailgun, Twilio, Adyen e outros.'
+  tags:
+  - integrations
+  - external
+spec:
+  owner: group:platform
+  domain: integrations

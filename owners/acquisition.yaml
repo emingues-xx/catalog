@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: acquisition
+  title: Acquisition
+  description: Aumentar a base de clientes de forma escalável e sustentável, por meio
+    de estratégias de produto, marketing e vendas.
+  tags:
+  - growth
+spec:
+  type: team
+  profile:
+    displayName: Acquisition
+    email: grusso@uoledtech.com
+  parent: growth
+  children: []

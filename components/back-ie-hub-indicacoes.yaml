@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-hub-indicacoes
+  tags:
+  - nodejs
+  - payments
+  - referrals
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/back-ie-hub-indicacoes
+    github.com/project-slug: uoledtech-opm/back-ie-hub-indicacoes
+  title: Back Ie Hub Indicacoes
+  description: Serviço de indicações. Gerencia indicações e referências de clientes.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

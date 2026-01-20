@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-clientes
+  tags:
+  - customers
+  - nodejs
+  - sales
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/clientes-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/clientes-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-clientes?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-clientes
+    database.types: MySQL
+    database.orm: TypeORM
+  title: Back Hub Clientes
+  description: Serviço de gestão de clientes. Mantém dados cadastrais e histórico
+    de clientes.
+  links:
+    - url: https://github.com/uoledtech-opm/clientes-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-clientes?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-clientes
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:sales
+  system: checkout-campus
+  dependsOn:
+  - component:back-gerador-cert-hub-prod
+  - resource:database-back-clientes-mysql

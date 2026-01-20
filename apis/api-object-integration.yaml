@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-object-integration
+  title: API Object Integration Hub Prod
+  description: Serviço de integração de objetos. Sincroniza objetos entre sistemas.
+  tags:
+  - academic
+  - integrations
+  - object-integration
+  - platform
+  links:
+  - url: https://back-object-integration-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-object-integration-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-object-integration-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/object-integration-hub-corp-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-object-integration-hub-prod?env=hub-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/object-integration-hub-corp-backend
+    github.com/project-slug: uoledtech-opm/object-integration-hub-corp-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:academico
+  system: opm-production
+  definition:
+    $text: https://back-object-integration-dev.edtech.com.br/api/docs-json

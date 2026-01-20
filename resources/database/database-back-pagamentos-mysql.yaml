@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-pagamentos-mysql
+  title: Database Back Pagamentos MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-pagamentos | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de processamento de pagamentos.
+  tags:
+  - database
+  - mysql
+  - pagamentos
+  - payments
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

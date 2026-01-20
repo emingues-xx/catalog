@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-whatsapp-messages
+  title: SQS WhatsApp Messages
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-whatsapp-messages | SQS Standard | Production |
+    
+    Fila SQS para mensagens WhatsApp.
+  tags:
+  - sqs
+  - queue
+  - whatsapp
+  - twilio
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

@@ -1,0 +1,38 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-progressos
+  tags:
+  - academic
+  - ava
+  - nodejs
+  - student-progress
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/progresso-ie-backend
+    github.com/project-slug: uoledtech-opm/progresso-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-progressos?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-progressos
+    database.types: MySQL
+    database.orm: TypeORM
+    sqs.queues: sqs-queue-name
+  title: Back Ie Progressos
+  description: Serviço de gestão de progressos. Acompanha progresso de alunos em cursos.
+  links:
+    - url: https://github.com/uoledtech-opm/progresso-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-progressos?env=pucrs-grad-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-progressos
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  dependsOn:
+  - resource:sqs-queue-name
+  - resource:database-${DB_DATABASE}-mysql

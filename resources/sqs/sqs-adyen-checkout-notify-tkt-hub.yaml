@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-adyen-checkout-notify-tkt-hub
+  title: SQS Adyen Checkout Notify TKT Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-adyen-checkout-notify-tkt-hub | SQS Standard | Production |
+    
+    Fila SQS para notificações de checkout TKT do Adyen.
+  tags:
+  - sqs
+  - queue
+  - adyen
+  - checkout
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

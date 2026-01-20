@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-hubspot-selective-process-hub
+  title: SQS Hubspot Selective Process Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-hubspot-selective-process-hub | SQS Standard | Production |
+    
+    Fila SQS para processo seletivo no Hubspot.
+  tags:
+  - sqs
+  - queue
+  - hubspot
+  - selective-process
+  - integration
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

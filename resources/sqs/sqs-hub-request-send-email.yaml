@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-hub-request-send-email
+  title: SQS Hub Request Send Email
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-hub-request-send-email | SQS Standard | Production |
+    
+    Fila SQS para requisições de envio de email.
+  tags:
+  - sqs
+  - queue
+  - email
+  - mailgun
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

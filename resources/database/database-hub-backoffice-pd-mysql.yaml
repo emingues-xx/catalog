@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-hub_backoffice_pd-mysql
+  title: Database Hub Backoffice PD MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | hub_backoffice_pd | MySQL | Production |
+    
+    Banco de dados MySQL para o backoffice de Product Development.
+  tags:
+  - database
+  - mysql
+  - backoffice
+  - platform
+spec:
+  type: database
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

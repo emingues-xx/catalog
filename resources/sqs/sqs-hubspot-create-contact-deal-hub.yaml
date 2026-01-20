@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-hubspot-create-contact-deal-hub
+  title: SQS Hubspot Create Contact Deal Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-hubspot-create-contact-deal-hub | SQS Standard | Production |
+    
+    Fila SQS para criação de contatos e negócios no Hubspot.
+  tags:
+  - sqs
+  - queue
+  - hubspot
+  - integration
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

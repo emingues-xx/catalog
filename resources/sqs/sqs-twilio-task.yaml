@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-twilio-task
+  title: SQS Twilio Task
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-twilio-task | SQS Standard | Production |
+    
+    Fila SQS para tarefas do Twilio.
+  tags:
+  - sqs
+  - queue
+  - twilio
+  - task
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

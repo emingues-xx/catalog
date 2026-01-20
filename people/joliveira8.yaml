@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: joliveira8
+  title: John Lennon Silva
+spec:
+  profile:
+    displayName: John Lennon Silva
+    email: joliveira8@uoledtech.com
+  memberOf:
+  - group:sales

@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-comunicacao-pucrs
+  tags:
+  - academic
+  - communication
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/comunicacao-ie-backend
+    github.com/project-slug: uoledtech-opm/comunicacao-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-comunicacao-pucrs?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-comunicacao-pucrs
+    database.types: MySQL
+    database.orm: TypeORM
+  title: Back Comunicacao Pucrs
+  description: Serviço de comunicação. Gerencia notificações e comunicações com alunos.
+  links:
+    - url: https://github.com/uoledtech-opm/comunicacao-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-comunicacao-pucrs?env=pucrs-grad-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-comunicacao-pucrs
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  dependsOn:
+  - component:back-gerador-cert-hub-prod
+  - resource:database-comunicacao_pucrs-mysql

@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-CN_OPM_Aluno-mysql
+  title: Database CN OPM Aluno MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Aluno | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de alunos.
+  tags:
+  - database
+  - mysql
+  - alunos
+  - students
+  - academic
+  annotations:
+    database.type: MySQL
+    database.orm: Mongoose
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

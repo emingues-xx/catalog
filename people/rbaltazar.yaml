@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rbaltazar
+  title: Rosiene Baltazar
+spec:
+  profile:
+    displayName: Rosiene Baltazar
+    email: rbaltazar@uoledtech.com
+  memberOf:
+  - group:ava

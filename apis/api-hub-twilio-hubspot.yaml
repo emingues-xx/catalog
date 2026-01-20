@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-hub-twilio-hubspot
+  title: API Hub Twilio Hubspot
+  description: Integração com Twilio para envio de SMS e comunicações.
+  tags:
+  - crm-integration
+  - integrations
+  links:
+  - url: https://back-hub-twilio-hubspot-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-hub-twilio-hubspot-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-hub-twilio-hubspot-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/twilio-hubspot-integration
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-twilio-hubspot?env=hub-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/twilio-hubspot-integration
+    github.com/project-slug: uoledtech-opm/twilio-hubspot-integration
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:platform
+  system: opm-production
+  definition:
+    $text: https://back-hub-twilio-hubspot-dev.edtech.com.br/api/docs-json

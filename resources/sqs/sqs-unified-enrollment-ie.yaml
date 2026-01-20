@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-unified-enrollment-ie
+  title: SQS Unified Enrollment IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-unified-enrollment-ie | SQS Standard | Production |
+    
+    Fila SQS para matrícula unificada de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - enrollment
+  - unified
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

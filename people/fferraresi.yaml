@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: fferraresi
+  title: Felipe Ferraresi
+spec:
+  profile:
+    displayName: Felipe Ferraresi
+    email: fferraresi@uoledtech.com
+  memberOf:
+  - group:acquisition

@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-dash-vendas-pucrs
+  tags:
+  - analytics
+  - dashboard
+  - nodejs
+  - sales
+  - sales-analytics
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/dashboard-vendas-ie-backend
+    github.com/project-slug: uoledtech-opm/dashboard-vendas-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback--dash-vendas-uninassau?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback--dash-vendas-uninassau
+  title: Back Dash Vendas Pucrs
+  description: Dashboard de vendas. Fornece relatórios e métricas de vendas para gestão.
+  links:
+    - url: https://github.com/uoledtech-opm/dashboard-vendas-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback--dash-vendas-uninassau?env=ie-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback--dash-vendas-uninassau
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  dependsOn:
+  - component:back-hub-pedidos

@@ -1,0 +1,27 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-opm-interacao-aluno-mysql
+  title: Database CN OPM Interacao Aluno MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Interacao_Aluno | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de interação de alunos.
+  tags:
+  - database
+  - mysql
+  - interacao
+  - aluno
+  - academic
+  - ie-pucrs
+  - ie-faap
+  - ie-uninassau
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

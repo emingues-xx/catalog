@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-webhook-mysql
+  title: Database Back Webhook MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-webhook | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de webhooks.
+  tags:
+  - database
+  - mysql
+  - webhook
+  - integrations
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

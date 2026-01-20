@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dfbastos
+  title: Daniel Bastos
+spec:
+  profile:
+    displayName: Daniel Bastos
+    email: dfbastos@uoledtech.com
+  memberOf:
+  - group:acquisition

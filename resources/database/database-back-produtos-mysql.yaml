@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-produtos-mysql
+  title: Database Back Produtos MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-produtos | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de gestão de produtos e cursos.
+  tags:
+  - database
+  - mysql
+  - produtos
+  - products
+  - sales
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:sales
+  system: opm-production
