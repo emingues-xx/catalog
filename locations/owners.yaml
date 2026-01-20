@@ -6,4 +6,10 @@ metadata:
 spec:
   type: url
   targets:
-    - ./owners/*.yaml
+    - ./owners/academico.yaml
+    - ./owners/acquisition.yaml
+    - ./owners/ava.yaml
+    - ./owners/cross.yaml
+    - ./owners/payops.yaml
+    - ./owners/platform.yaml
+    - ./owners/sales.yaml
