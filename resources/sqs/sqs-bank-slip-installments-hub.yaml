@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-bank-slip-installments-hub
+  title: SQS Bank Slip Installments Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-bank-slip-installments-hub | SQS Standard | Production |
+    
+    Fila SQS para processamento de parcelas de boleto.
+  tags:
+  - sqs
+  - queue
+  - boleto
+  - installments
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

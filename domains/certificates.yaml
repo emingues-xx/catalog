@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: certificates
+  title: Certificates
+  description: Domínio responsável pela geração e gestão de certificados.
+  tags:
+  - certificates
+  - certificados
+spec:
+  owner: tribe-growth

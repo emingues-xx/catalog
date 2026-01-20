@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-notas-uninassau
+  tags:
+  - academic
+  - ava
+  - grades
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/notas-ie-backend
+    github.com/project-slug: uoledtech-opm/notas-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-notas-faap?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback-ie-notas-faap
+    database.types: MySQL
+    database.orm: TypeORM
+  title: Back Notas Uninassau
+  description: Serviço de gestão de notas. Calcula e gerencia notas de alunos.
+  links:
+    - url: https://github.com/uoledtech-opm/notas-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-notas-faap?env=ie-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback-ie-notas-faap
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  dependsOn:
+  - resource:database-${DB_NAME}-mysql

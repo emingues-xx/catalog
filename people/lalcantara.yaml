@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: lalcantara
+  title: Lucas Pedro
+spec:
+  profile:
+    displayName: Lucas Pedro
+    email: lalcantara@uoledtech.com
+  memberOf:
+  - group:sales

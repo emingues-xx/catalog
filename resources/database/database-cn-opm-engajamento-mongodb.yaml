@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-CN_OPM_Engajamento-mongodb
+  title: Database CN OPM Engajamento MongoDB
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Engajamento | MongoDB | Production |
+    
+    Banco de dados MongoDB para o módulo de engajamento.
+  tags:
+  - database
+  - mongodb
+  - engajamento
+  - engagement
+  - academic
+  annotations:
+    database.type: MongoDB
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

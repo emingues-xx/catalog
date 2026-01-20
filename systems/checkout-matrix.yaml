@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: checkout-matrix
+  title: Checkout Matrix System
+  description: Sistema de checkout matrix para processamento de matrículas e pagamentos em instituições de ensino.
+  tags:
+  - sales
+  - checkout
+  - matrix
+  - vendas
+spec:
+  owner: group:sales
+  domain: vendas

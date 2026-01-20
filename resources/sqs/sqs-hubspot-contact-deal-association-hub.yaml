@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-hubspot-contact-deal-association-hub
+  title: SQS Hubspot Contact Deal Association Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-hubspot-contact-deal-association-hub | SQS Standard | Production |
+    
+    Fila SQS para associação de contatos e negócios no Hubspot.
+  tags:
+  - sqs
+  - queue
+  - hubspot
+  - crm
+  - integration
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

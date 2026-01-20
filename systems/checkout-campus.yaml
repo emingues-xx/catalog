@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: checkout-campus
+  title: Checkout Campus System
+  description: Sistema de checkout campus (whitelabel) para processamento de matrículas e pagamentos em instituições de ensino.
+  tags:
+  - sales
+  - checkout
+  - campus
+  - whitelabel
+  - vendas
+spec:
+  owner: group:sales
+  domain: vendas

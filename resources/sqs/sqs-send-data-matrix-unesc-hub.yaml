@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-send-data-matrix-unesc-hub
+  title: SQS Send Data Matrix UNESC Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-send-data-matrix-unesc-hub | SQS Standard | Production |
+    
+    Fila SQS para envio de dados Matrix UNESC.
+  tags:
+  - sqs
+  - queue
+  - matrix
+  - data
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

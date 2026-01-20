@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-recorrencia-hub-prod
+  tags:
+  - nodejs
+  - payments
+  - recurring-payments
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/recorencia-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/recorencia-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-recorrencia-hub-prod?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-recorrencia-hub-prod
+    sqs.queues: sqs-bank-slip-installments-hub,sqs-credit-card-installments-hub
+  title: Back Recorrencia Hub Prod
+  description: Serviço de gestão de recorrências. Processa pagamentos recorrentes
+    e renovações.
+  links:
+    - url: https://github.com/uoledtech-opm/recorencia-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-recorrencia-hub-prod?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-recorrencia-hub-prod
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  dependsOn:
+  - component:back-hub-pagamentos
+  - resource:sqs-bank-slip-installments-hub
+  - resource:sqs-credit-card-installments-hub
+  - resource:sqs-bank-slip-installments-hub
+  - resource:sqs-credit-card-installments-hub

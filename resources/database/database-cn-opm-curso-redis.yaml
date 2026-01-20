@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-CN_OPM_Curso-redis
+  title: Database CN OPM Curso Redis
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Curso | Redis | Production |
+    
+    Banco de dados Redis para cache do módulo de cursos.
+  tags:
+  - database
+  - redis
+  - cache
+  - cursos
+  - courses
+  - academic
+  annotations:
+    database.type: Redis
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dflorenca
+  title: Douglas Florenca
+spec:
+  profile:
+    displayName: Douglas Florenca
+    email: dflorenca@uoledtech.com
+  memberOf:
+  - group:sales

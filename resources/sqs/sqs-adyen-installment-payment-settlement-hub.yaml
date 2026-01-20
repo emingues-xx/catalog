@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-adyen-installment-payment-settlement-hub
+  title: SQS Adyen Installment Payment Settlement Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-adyen-installment-payment-settlement-hub | SQS Standard | Production |
+    
+    Fila SQS para liquidação de pagamentos parcelados do Adyen.
+  tags:
+  - sqs
+  - queue
+  - adyen
+  - installment
+  - settlement
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-cn-hub-conteudo-mysql
+  title: Database CN Hub Conteudo MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_HUB_Conteudo | MySQL | Production |
+    
+    Banco de dados MySQL para conteúdo do hub administrativo EAD.
+  tags:
+  - database
+  - mysql
+  - conteudo
+  - content
+  - hub-prod
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

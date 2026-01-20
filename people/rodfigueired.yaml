@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rodfigueired
+  title: Rodrigo Figueiredo
+spec:
+  profile:
+    displayName: Rodrigo Figueiredo
+    email: rodfigueired@uoledtech.com
+  memberOf:
+  - group:ava

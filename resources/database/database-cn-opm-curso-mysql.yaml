@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-CN_OPM_Curso-mysql
+  title: Database CN OPM Curso MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Curso | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de cursos.
+  tags:
+  - database
+  - mysql
+  - cursos
+  - courses
+  - academic
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

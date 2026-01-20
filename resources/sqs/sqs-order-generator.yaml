@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-order-generator
+  title: SQS Order Generator
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-order-generator | SQS Standard | Production |
+    
+    Fila SQS para geração de pedidos.
+  tags:
+  - sqs
+  - queue
+  - order
+  - generator
+  - sales
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

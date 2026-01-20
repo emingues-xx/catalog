@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-annual-adjustment-hub
+  title: SQS Annual Adjustment Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-annual-adjustment-hub | SQS Standard | Production |
+    
+    Fila SQS para processamento de ajustes anuais.
+  tags:
+  - sqs
+  - queue
+  - adjustment
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

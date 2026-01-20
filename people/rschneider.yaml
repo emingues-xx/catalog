@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rschneider
+  title: Rafael Schneider
+spec:
+  profile:
+    displayName: Rafael Schneider
+    email: rschneider@uoledtech.com
+  memberOf:
+  - group:academico

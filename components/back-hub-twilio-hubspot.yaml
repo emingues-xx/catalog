@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-twilio-hubspot
+  tags:
+  - crm-integration
+  - integrations
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/twilio-hubspot-integration
+    github.com/project-slug: uoledtech-opm/twilio-hubspot-integration
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-twilio-hubspot?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-twilio-hubspot
+    sqs.queues: sqs-dlq-twilio-task-response,sqs-hub-sms-messages,sqs-hub-sms-messages-response,sqs-hubspot-deal-hub,sqs-pd-messages-hub,sqs-twilio-marketing-hub,sqs-twilio-pd-sms-otp,sqs-twilio-task,sqs-whatsapp-messages,sqs-whatsapp-messages-uninassau
+  title: Back Hub Twilio Hubspot
+  description: Integração com Twilio para envio de SMS e comunicações.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:platform
+  system: opm-production
+  dependsOn:
+  - component:back-hub-twilio-hubspot
+  - resource:sqs-dlq-twilio-task-response
+  - resource:sqs-hub-sms-messages
+  - resource:sqs-hub-sms-messages-response
+  - resource:sqs-hubspot-deal-hub
+  - resource:sqs-pd-messages-hub
+  - resource:sqs-twilio-marketing-hub
+  - resource:sqs-twilio-pd-sms-otp
+  - resource:sqs-twilio-task
+  - resource:sqs-whatsapp-messages
+  - resource:sqs-whatsapp-messages-uninassau
+  - resource:sqs-dlq-twilio-task-response
+  - resource:sqs-hub-sms-messages
+  - resource:sqs-hub-sms-messages-response
+  - resource:sqs-hubspot-deal-hub
+  - resource:sqs-pd-messages-hub
+  - resource:sqs-twilio-marketing-hub
+  - resource:sqs-twilio-pd-sms-otp
+  - resource:sqs-twilio-task
+  - resource:sqs-whatsapp-messages
+  - resource:sqs-whatsapp-messages-uninassau

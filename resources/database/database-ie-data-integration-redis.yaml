@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-ie_data_integration-redis
+  title: Database IE Data Integration Redis
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | ie_data_integration | Redis | Production |
+    
+    Banco de dados Redis para cache de integração de dados de Instituições de Ensino.
+  tags:
+  - database
+  - redis
+  - cache
+  - integration
+  - academic
+  annotations:
+    database.type: Redis
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: sales
+  title: Sales
+  description: Proporcionar uma experiência de compra aos nossos alunos e futuro alunos
+    para aumentar conversão.
+  tags:
+  - growth
+spec:
+  type: team
+  profile:
+    displayName: Sales
+    email: emingues@uoledtech.com
+  parent: growth
+  children: []

@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-mailgun-integra-scsp
+  tags:
+  - email
+  - integrations
+  - nodejs
+  - notifications
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/mailgun-integration-ie-backend
+    github.com/project-slug: uoledtech-opm/mailgun-integration-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-mailgun-int-faap?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback-ie-mailgun-int-faap
+  title: Back Ie Mailgun Integra Scsp
+  description: Integração com Mailgun para envio de emails transacionais.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

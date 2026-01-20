@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-mailgun-integration-impacta
+  title: API Mailgun Integration Impacta
+  description: Integração com Mailgun para envio de emails transacionais.
+  tags:
+  - email
+  - integrations
+  - notifications
+  links:
+  - url: https://back-mailgun-integration-impacta-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-mailgun-integration-impacta-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-mailgun-integration-impacta-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/mailgun-integration-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-envia-email-hub-pd?env=hub-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/mailgun-integration-backend
+    github.com/project-slug: uoledtech-opm/mailgun-integration-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  definition:
+    $text: https://back-mailgun-integration-impacta-dev.edtech.com.br/api/docs-json

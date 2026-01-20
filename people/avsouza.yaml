@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: avsouza
+  title: Agata Vitoria Souza
+spec:
+  profile:
+    displayName: Agata Vitoria Souza
+    email: avsouza@uoledtech.com
+  memberOf:
+  - group:academico

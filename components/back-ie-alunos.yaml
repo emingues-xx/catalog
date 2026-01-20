@@ -1,0 +1,45 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-alunos
+  tags:
+  - academic
+  - nodejs
+  - students
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/core-alunos-ie-backend
+    github.com/project-slug: uoledtech-opm/core-alunos-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-alunos?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-alunos
+    database.types: MySQL
+    database.orm: Mongoose
+    sqs.queues: sqs-alunos-consumer-ie,sqs-matricula-grupo-ie
+  title: Back Ie Alunos
+  description: Serviço de gestão de alunos. Mantém dados acadêmicos e informações
+    de alunos.
+  links:
+    - url: https://github.com/uoledtech-opm/core-alunos-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-alunos?env=pucrs-grad-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-alunos
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  dependsOn:
+  - component:back-hub-pagamentos
+  - component:back-hub-pedidos
+  - component:back-ie
+  - component:back-produtos-hub-prod
+  - resource:sqs-alunos-consumer-ie
+  - resource:sqs-matricula-grupo-ie
+  - resource:database-CN_OPM_Aluno-mysql
+  - resource:sqs-alunos-consumer-ie
+  - resource:sqs-matricula-grupo-ie

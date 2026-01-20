@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-templates_hub_prod-mysql
+  title: Database Templates Hub Prod MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | templates_hub_prod | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de templates.
+  tags:
+  - database
+  - mysql
+  - templates
+spec:
+  type: database
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

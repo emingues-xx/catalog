@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-ie-callback-rematricula
+  title: SQS IE Callback Rematricula
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-ie-callback-rematricula | SQS Standard | Production |
+    
+    Fila SQS para callbacks de rematrículas de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - callback
+  - rematricula
+  - re-enrollment
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-pagamentos
+  tags:
+  - nodejs
+  - payments
+  - sales
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/pagamentos-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/pagamentos-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-pagamentos?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-pagamentos
+    sqs.queues: sqs-annual-adjustment-hub,sqs-bank-slip-installments-hub,sqs-credit-card-installments-hub
+    database.types: MySQL
+    database.orm: TypeORM
+  title: Back Hub Pagamentos
+  description: Serviço de processamento de pagamentos. Integra com gateways de pagamento
+    e gerencia transações.
+  links:
+    - url: https://github.com/uoledtech-opm/pagamentos-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-pagamentos?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-pagamentos
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  dependsOn:
+  - component:back-feature-flag-hub-prod
+  - component:back-hub-clientes
+  - component:back-hub-integration
+  - component:back-hub-pedidos
+  - component:back-hub-promocao
+  - component:back-produtos-hub-prod
+  - resource:sqs-annual-adjustment-hub
+  - resource:sqs-bank-slip-installments-hub
+  - resource:sqs-credit-card-installments-hub
+  - resource:database-back-pagamentos-mysql
+  - resource:sqs-annual-adjustment-hub
+  - resource:sqs-bank-slip-installments-hub
+  - resource:sqs-credit-card-installments-hub

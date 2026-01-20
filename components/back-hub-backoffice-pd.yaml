@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-backoffice-pd
+  tags:
+  - academic
+  - certificates
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/backoffice-certificados-backend
+    github.com/project-slug: uoledtech-opm/backoffice-certificados-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-backoffice-hub-prod?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-backoffice-hub-prod
+    sqs.queues: 6.0.2,^0.0.5,^0.1.0
+    database.types: MySQL
+    database.orm: Sequelize
+  title: Back Hub Backoffice Pd
+  description: Backoffice administrativo. Interface administrativa para gestão do
+    sistema.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:acquisition
+  system: opm-production
+  dependsOn:
+  - resource:database-hub_backoffice_pd-mysql
+  - resource:sqs-6.0.2

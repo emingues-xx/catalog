@@ -1,0 +1,27 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-adm-ead-prod
+  title: Database Adm EAD Prod
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | db-adm-ead-prod | MySQL | Production |
+    
+    DB Host: db-adm-ead-prod.edtech.com.br
+    Endpoint: rds-adm-ead-prod.cbv7upkorinf.us-east-1.rds.amazonaws.com
+    
+    Banco de dados de administração EAD de produção.
+  tags:
+  - database
+  - mysql
+  - adm-ead
+  - hub-prod
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

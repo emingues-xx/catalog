@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-CN_OPM_Avaliacao-mysql
+  title: Database CN OPM Avaliacao MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Avaliacao | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de avaliações.
+  tags:
+  - database
+  - mysql
+  - avaliacao
+  - assessment
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

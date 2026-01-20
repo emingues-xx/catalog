@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-contratos-mysql
+  title: Database Back Contratos MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-contratos | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de gestão de contratos.
+  tags:
+  - database
+  - mysql
+  - contratos
+  - contracts
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

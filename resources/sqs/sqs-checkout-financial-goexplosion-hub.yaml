@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-checkout-financial-goexplosion-hub
+  title: SQS Checkout Financial GoExplosion Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-checkout-financial-goexplosion-hub | SQS Standard | Production |
+    
+    Fila SQS para checkout financeiro GoExplosion.
+  tags:
+  - sqs
+  - queue
+  - checkout
+  - financial
+  - payments
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

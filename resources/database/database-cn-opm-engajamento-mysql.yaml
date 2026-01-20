@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-CN_OPM_Engajamento-mysql
+  title: Database CN OPM Engajamento MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | CN_OPM_Engajamento | MySQL | Production |
+    
+    Banco de dados MySQL para o módulo de engajamento.
+  tags:
+  - database
+  - mysql
+  - engajamento
+  - engagement
+  - academic
+  annotations:
+    database.type: MySQL
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

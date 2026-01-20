@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-gerador_cert_hub_prod-mysql
+  title: Database Gerador Cert Hub Prod MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | gerador_cert_hub_prod | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de geração de certificados.
+  tags:
+  - database
+  - mysql
+  - certificados
+  - certificates
+spec:
+  type: database
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

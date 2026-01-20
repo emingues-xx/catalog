@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-enrollment-cancel-request
+  title: SQS Enrollment Cancel Request
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-enrollment-cancel-request | SQS Standard | Production |
+    
+    Fila SQS para requisições de cancelamento de matrícula.
+  tags:
+  - sqs
+  - queue
+  - enrollment
+  - cancel
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

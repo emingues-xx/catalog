@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-comunicacao_pucrs-mysql
+  title: Database Comunicacao PUCRS MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | comunicacao_pucrs | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de comunicação da PUCRS.
+  tags:
+  - database
+  - mysql
+  - comunicacao
+  - communication
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

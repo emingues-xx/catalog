@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: logarcia
+  title: Leonardo Peixoto
+spec:
+  profile:
+    displayName: Leonardo Peixoto
+    email: logarcia@uoledtech.com
+  memberOf:
+  - group:payops

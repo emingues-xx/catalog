@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: opm-academic-system
+  title: OPM Academic System
+  description: 'Sistema acadêmico: matrículas, alunos, cursos e gestão acadêmica.'
+  tags:
+  - academic
+  - academico
+spec:
+  owner: group:academico
+  domain: academic

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rcadena
+  title: Rafael Cadena
+spec:
+  profile:
+    displayName: Rafael Cadena
+    email: rcadena@uoledtech.com
+  memberOf:
+  - group:academico

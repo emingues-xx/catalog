@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: cin_gbarboza
+  title: Guilherme Barboza
+spec:
+  profile:
+    displayName: Guilherme Barboza
+    email: cin_gbarboza@uoledtech.com
+  memberOf:
+  - group:sales

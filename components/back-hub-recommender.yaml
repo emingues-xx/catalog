@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-recommender
+  tags:
+  - analytics
+  - nodejs
+  - recommendations
+  - sales
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/back-hub-recommender
+    github.com/project-slug: uoledtech-opm/back-hub-recommender
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-recommender?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-recommender
+    sqs.queues: ^0.1.0
+  title: Back Hub Recommender
+  description: Serviço de recomendação. Fornece recomendações personalizadas.
+spec:
+  type: backend
+  lifecycle: production
+  owner: todo-owner
+  system: opm-production

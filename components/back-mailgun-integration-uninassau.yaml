@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-mailgun-integration-uninassau
+  tags:
+  - email
+  - integrations
+  - nodejs
+  - notifications
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/mailgun-integration-backend
+    github.com/project-slug: uoledtech-opm/mailgun-integration-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-envia-email-hub-pd?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-envia-email-hub-pd
+    sqs.queues: sqs-hub-request-send-email
+  title: Back Mailgun Integration Uninassau
+  description: Integração com Mailgun para envio de emails transacionais.
+  links:
+    - url: https://github.com/uoledtech-opm/mailgun-integration-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-envia-email-hub-pd?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-envia-email-hub-pd
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  dependsOn:
+  - resource:sqs-hub-request-send-email

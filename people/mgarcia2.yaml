@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: mgarcia2
+  title: Miguel Garcia
+spec:
+  profile:
+    displayName: Miguel Garcia
+    email: mgarcia2@uoledtech.com
+  memberOf:
+  - group:academico

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: aoliveira30
+  title: Afonso Oliveira
+spec:
+  profile:
+    displayName: Afonso Oliveira
+    email: aoliveira30@uoledtech.com
+  memberOf:
+  - group:ava

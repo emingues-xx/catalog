@@ -1,0 +1,38 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-templates-hub-prod
+  tags:
+  - academic
+  - certificates
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/templates-certificados-backend
+    github.com/project-slug: uoledtech-opm/templates-certificados-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-templates-pd?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-templates-pd
+    sqs.queues: sqs-ie-callback-matricula
+    database.types: MySQL
+    database.orm: Mongoose
+  title: Back Templates Hub Prod
+  description: Serviço de gestão de templates. Gerencia templates de emails, documentos
+    e comunicações.
+  links:
+    - url: https://github.com/uoledtech-opm/templates-certificados-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-templates-pd?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-templates-pd
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:acquisition
+  system: opm-production
+  dependsOn:
+  - resource:sqs-ie-callback-matricula
+  - resource:database-templates_hub_prod-mysql

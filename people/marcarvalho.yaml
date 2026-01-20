@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: marcarvalho
+  title: Marcelo Carvalho
+spec:
+  profile:
+    displayName: Marcelo Carvalho
+    email: marcarvalho@uoledtech.com
+  memberOf:
+  - group:academico

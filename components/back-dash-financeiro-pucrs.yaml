@@ -1,0 +1,34 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-dash-financeiro-pucrs
+  tags:
+  - analytics
+  - dashboard
+  - financial-analytics
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/dashboard-financeiro-ie-backend
+    github.com/project-slug: uoledtech-opm/dashboard-financeiro-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-dash-financeiro-pucrs?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback-dash-financeiro-pucrs
+  title: Back Dash Financeiro Pucrs
+  description: Dashboard financeiro. Fornece relatórios e métricas financeiras.
+  links:
+    - url: https://github.com/uoledtech-opm/dashboard-financeiro-ie-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-dash-financeiro-pucrs?env=ie-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Aback-dash-financeiro-pucrs
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  dependsOn:
+  - component:back-hub-pagamentos

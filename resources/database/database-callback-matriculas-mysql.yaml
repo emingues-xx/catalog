@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-callback-matriculas-mysql
+  title: Database Callback Matriculas MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | callback-matriculas | MySQL | Production |
+    
+    Banco de dados MySQL para callbacks de matrículas.
+  tags:
+  - database
+  - mysql
+  - callback
+  - matriculas
+  - enrollment
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

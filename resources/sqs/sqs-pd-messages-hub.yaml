@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-pd-messages-hub
+  title: SQS PD Messages Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-pd-messages-hub | SQS Standard | Production |
+    
+    Fila SQS para mensagens de Product Development.
+  tags:
+  - sqs
+  - queue
+  - pd
+  - messages
+  - platform
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

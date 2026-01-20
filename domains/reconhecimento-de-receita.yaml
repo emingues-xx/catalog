@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: reconhecimento-de-receita
+  title: Reconhecimento de Receita
+  description: Automação do Billing e contabilidade.
+  tags:
+  - receita
+  - billing
+  - contabilidade
+  - automação
+spec:
+  owner: group:payops

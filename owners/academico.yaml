@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: academico
+  title: Academico
+  description: Melhorar a experiência de gestão de aluno e da IE.
+  tags:
+  - core
+spec:
+  type: team
+  profile:
+    displayName: Academico
+    email: bsilva6@uoledtech.com
+  parent: core
+  children: []

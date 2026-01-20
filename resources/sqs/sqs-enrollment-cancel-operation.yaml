@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-enrollment-cancel-operation
+  title: SQS Enrollment Cancel Operation
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-enrollment-cancel-operation | SQS Standard | Production |
+    
+    Fila SQS para operações de cancelamento de matrícula.
+  tags:
+  - sqs
+  - queue
+  - enrollment
+  - cancel
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

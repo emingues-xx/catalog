@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-students-assignments
+  title: SQS Students Assignments
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-students-assignments | SQS Standard | Production |
+    
+    Fila SQS para processamento de tarefas e assignments de alunos.
+  tags:
+  - sqs
+  - queue
+  - students
+  - assignments
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

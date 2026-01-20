@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jpcarvalho
+  title: João Pedro Carvalho
+spec:
+  profile:
+    displayName: João Pedro Carvalho
+    email: jpcarvalho@uoledtech.com
+  memberOf:
+  - group:acquisition

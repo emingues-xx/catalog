@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-twilio-marketing-hub
+  title: SQS Twilio Marketing Hub
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-twilio-marketing-hub | SQS Standard | Production |
+    
+    Fila SQS para marketing do Twilio.
+  tags:
+  - sqs
+  - queue
+  - twilio
+  - marketing
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

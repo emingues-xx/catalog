@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-alunos-consumer-ie
+  title: SQS Alunos Consumer IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-alunos-consumer-ie | SQS Standard | Production |
+    
+    Fila SQS para consumo de mensagens relacionadas a alunos de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - alunos
+  - students
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

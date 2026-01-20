@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-hub-chatai
+  title: API Hub Chatai Prod
+  description: Serviço de chat com IA para atendimento e suporte aos clientes durante
+    o processo de compra.
+  tags:
+  - ai-chat
+  - sales
+  links:
+  - url: https://back-hub-chatai-prod-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-hub-chatai-prod-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-hub-chatai-prod-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/chatai-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-chatai-prod?env=hub-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/chatai-backend
+    github.com/project-slug: uoledtech-opm/chatai-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:sales
+  system: opm-production
+  definition:
+    $text: https://back-hub-chatai-prod-dev.edtech.com.br/api/docs-json

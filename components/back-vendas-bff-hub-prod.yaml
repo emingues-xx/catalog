@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-vendas-bff-hub-prod
+  tags:
+  - api-gateway
+  - bff
+  - nestjs
+  - nodejs
+  - sales
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/bff-vendas-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/bff-vendas-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-vendas-bff-hub-prod?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-vendas-bff-hub-prod
+    sqs.queues: ^0.1.0
+  title: Back Vendas Bff Hub Prod
+  description: Serviço backend para processamento de requisições e lógica de negócio.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:sales
+  system: opm-production
+  dependsOn:
+  - component:back-hub-cep-vendas
+  - component:back-hub-clientes
+  - component:back-hub-pagamentos
+  - component:back-hub-pedidos
+  - component:back-hub-precificacao
+  - component:back-ie-ead-bff
+  - component:back-produtos-hub-prod

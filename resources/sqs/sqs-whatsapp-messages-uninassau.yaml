@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-whatsapp-messages-uninassau
+  title: SQS WhatsApp Messages Uninassau
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-whatsapp-messages-uninassau | SQS Standard | Production |
+    
+    Fila SQS para mensagens WhatsApp da Uninassau.
+  tags:
+  - sqs
+  - queue
+  - whatsapp
+  - twilio
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

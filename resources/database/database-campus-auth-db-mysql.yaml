@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-campus_auth_db-mysql
+  title: Database Campus Auth DB MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | campus_auth_db | MySQL | Production |
+    
+    Banco de dados MySQL para autenticação de campus.
+  tags:
+  - database
+  - mysql
+  - auth
+  - authentication
+  - academic
+spec:
+  type: database
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

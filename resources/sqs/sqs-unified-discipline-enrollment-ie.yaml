@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-unified-discipline-enrollment-ie
+  title: SQS Unified Discipline Enrollment IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-unified-discipline-enrollment-ie | SQS Standard | Production |
+    
+    Fila SQS para matrícula unificada de disciplinas de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - enrollment
+  - discipline
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-ie-cursos
+  title: API Ie Cursos
+  description: Serviço de gestão de cursos. Mantém informações sobre cursos e disciplinas.
+  tags:
+  - academic
+  - courses
+  links:
+  - url: https://back-ie-cursos-dev.edtech.com.br
+    title: URI Develop
+    icon: code
+  - url: https://back-ie-cursos-hmg.edtech.com.br
+    title: URI Homolog
+    icon: code
+  - url: https://back-ie-cursos-dev.edtech.com.br/api/docs
+    title: Swagger Develop
+    icon: code
+  - url: https://github.com/uoledtech-opm/cursos-ie-backend
+    title: GitHub Repo
+    icon: github
+  - url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-cursos?env=pucrs-grad-production
+    title: Datadog APM
+    icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/cursos-ie-backend
+    github.com/project-slug: uoledtech-opm/cursos-ie-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:ava
+  system: opm-production
+  definition:
+    $text: https://back-ie-cursos-dev.edtech.com.br/api/docs-json

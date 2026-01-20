@@ -1,0 +1,38 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: api-contratos
+  title: API Contratos
+  description: API do serviço de gestão de contratos. Processa e gerencia contratos de matrícula e recorrências.
+  tags:
+  - contratos
+  - contracts
+  - nestjs
+  - rest
+  - payments
+  links:
+    - url: https://back-hub-contratos-dev.edtech.com.br
+      title: URI Develop
+      icon: code
+    - url: https://back-contratos-hmg.edtech.com.br
+      title: URI Homolog
+      icon: code
+    - url: https://back-hub-contratos-dev.edtech.com.br/api/docs
+      title: Swagger Develop
+      icon: code
+    - url: https://github.com/uoledtech-opm/contratos-hub-vendas-backend
+      title: GitHub Repo
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-contratos?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/contratos-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/contratos-hub-vendas-backend
+spec:
+  type: rest
+  lifecycle: production
+  owner: group:payops
+  system: opm-production
+  definition:
+    $text: https://back-hub-contratos-dev.edtech.com.br/api/docs-json

@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-dlq-twilio-task-response
+  title: SQS DLQ Twilio Task Response
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-dlq-twilio-task-response | SQS DLQ | Production |
+    
+    Dead Letter Queue SQS para respostas de tarefas do Twilio.
+  tags:
+  - sqs
+  - queue
+  - dlq
+  - twilio
+  - communication
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:platform
+  system: opm-production

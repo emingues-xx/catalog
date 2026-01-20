@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: tamoreira
+  title: Tadeu Moreira
+spec:
+  profile:
+    displayName: Tadeu Moreira
+    email: tamoreira@uoledtech.com
+  memberOf:
+  - group:payops

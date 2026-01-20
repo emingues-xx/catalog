@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-engagement-consumer-ie
+  title: SQS Engagement Consumer IE
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-engagement-consumer-ie | SQS Standard | Production |
+    
+    Fila SQS para consumo de mensagens de engajamento de Instituições de Ensino.
+  tags:
+  - sqs
+  - queue
+  - engagement
+  - engajamento
+  - academic
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:ava
+  system: opm-production

@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: gestao-de-parcelas
+  title: Gestão de Parcelas
+  description: Flexibilidade para renegociações e ajustes financeiros.
+  tags:
+  - parcelas
+  - renegociação
+  - ajustes
+  - financeiro
+spec:
+  owner: group:payops

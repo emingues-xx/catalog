@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sqs-webhook-vendas
+  title: SQS Webhook Vendas
+  description: |
+    | Queue | Tipo | Ambiente |
+    | ------ | ---- | -------- |
+    | sqs-webhook-vendas | SQS Standard | Production |
+    
+    Fila SQS para processamento de webhooks de vendas.
+  tags:
+  - sqs
+  - queue
+  - webhook
+  - vendas
+  - sales
+spec:
+  type: sqs-queue
+  lifecycle: production
+  owner: group:payops
+  system: opm-production

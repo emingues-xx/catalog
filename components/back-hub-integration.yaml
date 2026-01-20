@@ -1,0 +1,45 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-integration
+  tags:
+  - crm-integration
+  - integrations
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/hubspot-integration-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/hubspot-integration-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-integration?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-integration
+    sqs.queues: sqs-hubspot-contact-deal-association-hub,sqs-hubspot-create-contact-deal-hub,sqs-hubspot-selective-process-hub
+  title: Back Hub Integration
+  description: Integração com HubSpot CRM. Gerencia contatos, deals e sincronização
+    de dados de vendas.
+  links:
+    - url: https://github.com/uoledtech-opm/hubspot-integration-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-integration?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-integration
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:sales
+  system: checkout-campus
+  dependsOn:
+  - component:back-hub-clientes
+  - component:back-hub-pagamentos
+  - component:back-hub-pedidos
+  - component:back-hub-promocao
+  - component:back-produtos-hub-prod
+  - resource:sqs-hubspot-contact-deal-association-hub
+  - resource:sqs-hubspot-create-contact-deal-hub
+  - resource:sqs-hubspot-selective-process-hub
+  - resource:sqs-hubspot-contact-deal-association-hub
+  - resource:sqs-hubspot-create-contact-deal-hub
+  - resource:sqs-hubspot-selective-process-hub

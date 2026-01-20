@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: database-back-clientes-mysql
+  title: Database Back Clientes MySQL
+  description: |
+    | Database | Tipo | Ambiente |
+    | ------   | ---- | -------- |
+    | back-clientes | MySQL | Production |
+    
+    Banco de dados MySQL para o serviço de gestão de clientes.
+  tags:
+  - database
+  - mysql
+  - clientes
+  - customers
+  annotations:
+    database.type: MySQL
+    database.orm: TypeORM
+spec:
+  type: database
+  lifecycle: production
+  owner: group:sales
+  system: opm-production

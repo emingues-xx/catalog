@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: lqrosa
+  title: Lucas Queiroz da Rosa
+spec:
+  profile:
+    displayName: Lucas Queiroz da Rosa
+    email: lqrosa@uoledtech.com
+  memberOf:
+  - group:academico

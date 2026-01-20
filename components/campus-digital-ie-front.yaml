@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: campus-digital-ie-front
+  tags:
+  - academic
+  - campus-platform
+  - frontend
+  - javascript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/campus-digital-ie-front
+    github.com/project-slug: uoledtech-opm/campus-digital-ie-front
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Afront-ie-campus-digital-home?env=ie-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Afront-ie-campus-digital-home
+    sqs.queues: ^0.1.0,^1.0.0,^1.0.3
+  title: Campus Digital Ie Front
+  description: Aplicação frontend para interface de usuário.
+  links:
+    - url: https://github.com/uoledtech-opm/campus-digital-ie-front
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Afront-ie-campus-digital-home?env=ie-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Aie-production%20service%3Afront-ie-campus-digital-home
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: frontend
+  lifecycle: production
+  owner: group:cross
+  system: opm-production

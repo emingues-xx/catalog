@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: integrations
+  title: Integrations
+  description: 'Domínio que concentra as integrações com sistemas externos: HubSpot,
+    Mailgun, Twilio, Adyen.'
+  tags:
+  - integrations
+  - integracoes
+  - external
+spec:
+  owner: tribe-growth

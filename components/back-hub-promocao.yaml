@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-hub-promocao
+  tags:
+  - nodejs
+  - promotions
+  - sales
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/promocoes-hub-vendas-backend
+    github.com/project-slug: uoledtech-opm/promocoes-hub-vendas-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-promocao?env=hub-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-promocao
+    database.types: MySQL
+    database.orm: TypeORM
+  title: Back Hub Promocao
+  description: Serviço de gestão de promoções e descontos. Aplica regras de negócio
+    para promoções.
+  links:
+    - url: https://github.com/uoledtech-opm/promocoes-hub-vendas-backend
+      title: GitHub Repository
+      icon: github
+    - url: https://opm.datadoghq.com/apm/entity/service%3Aback-hub-promocao?env=hub-production
+      title: Datadog APM
+      icon: monitoring
+    - url: https://opm.datadoghq.com/logs?query=env%3Ahub-production%20service%3Aback-hub-promocao
+      title: Datadog Logs
+      icon: monitoring
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:sales
+  system: checkout-campus
+  dependsOn:
+  - component:back-hub-clientes
+  - component:back-hub-integration
+  - component:back-produtos-hub-prod
+  - resource:database-back-promocoes-mysql

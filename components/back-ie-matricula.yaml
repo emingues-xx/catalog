@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: back-ie-matricula
+  tags:
+  - academic
+  - enrollment
+  - nodejs
+  - typescript
+  annotations:
+    backstage.io/source-location: url:https://github.com/uoledtech-opm/matriculas-ie-backend
+    github.com/project-slug: uoledtech-opm/matriculas-ie-backend
+    datadog.com/apm-url: https://opm.datadoghq.com/apm/entity/service%3Aback-ie-matricula?env=pucrs-grad-production
+    datadog.com/logs-url: https://opm.datadoghq.com/logs?query=env%3Apucrs-grad-production%20service%3Aback-ie-matricula
+    database.types: MySQL
+    database.orm: TypeORM
+    sqs.queues: sqs-matricula-grupo-ie
+  title: Back Ie Matricula
+  description: Serviço de gestão de matrículas. Processa matrículas de alunos em cursos.
+spec:
+  type: backend
+  lifecycle: production
+  owner: group:academico
+  system: opm-production
+  dependsOn:
+  - resource:sqs-matricula-grupo-ie
+  - resource:database-${DB_DATABASE}-mysql
+  - resource:sqs-matricula-grupo-ie

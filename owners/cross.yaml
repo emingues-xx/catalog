@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: cross
+  title: Cross
+  description: Grupo cross-functional
+  tags:
+  - tribe-core
+spec:
+  type: team
+  profile:
+    displayName: Cross
+  parent: tribe-core

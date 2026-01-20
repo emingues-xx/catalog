@@ -1,0 +1,34 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: checkout-onepage
+  title: Checkout Onepage System
+  description: |
+    Sistema de checkout onepage para processamento de matrículas e pagamentos em instituições de ensino.
+    O sistema gerencia todo o fluxo desde a seleção do produto até a finalização do pagamento,
+    integrando múltiplos serviços para proporcionar uma experiência fluida de matrícula e pagamento.
+  tags:
+  - sales
+  - checkout
+  - onepage
+  - vendas
+  - frontend
+  - nextjs
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    architecture/diagram: docs/architecture.md
+    architecture/event-storming: docs/event-storming.md
+  links:
+    - url: https://github.com/uoledtech-opm/checkout-onepage-hub-vendas-frontend
+      title: GitHub Repository
+      icon: github
+    - url: docs/architecture.md
+      title: Diagrama de Arquitetura
+      icon: architecture
+    - url: docs/event-storming.md
+      title: Event Storming
+      icon: event
+spec:
+  owner: group:sales
+  domain: vendas
+  type: system

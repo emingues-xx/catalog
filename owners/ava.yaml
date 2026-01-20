@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: ava
+  title: Ava
+  description: Promover uma experiência eficiente para alunos, tutores e coordenadores
+    em relação aos objetos avaliativos e notas.
+  tags:
+  - core
+spec:
+  type: team
+  profile:
+    displayName: Ava
+    email: gsandrade@uoledtech.com
+  parent: core
+  children: []
