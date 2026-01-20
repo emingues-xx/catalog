@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: opm-systems
+  description: Sistemas do catálogo de OPM
+spec:
+  type: url
+  targets:
+    - ./systems/*.yaml

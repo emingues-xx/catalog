@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: opm-resources
+  description: Resources (databases e SQS queues) do catálogo de OPM
+spec:
+  type: url
+  targets:
+    - ./resources/database/*.yaml
+    - ./resources/sqs/*.yaml
