@@ -11,5 +11,5 @@ spec:
     - ./locations/apis.yaml
     - ./locations/components.yaml
     - ./locations/owners.yaml
-    - ./locations/acme.yaml
+    - ./locations/people.yaml
     - ./locations/resources.yaml

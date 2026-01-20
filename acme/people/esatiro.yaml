@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: esatiro
+  title: Erick Satiro Vieira
+  description: UX
+  annotations:
+    uoledtech.org/email: esatiro+edtech@uoledtech.com
+  tags:
+    - squad-academico
+spec:
+  profile:
+    displayName: Erick Satiro Vieira
+    email: esatiro+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-academico

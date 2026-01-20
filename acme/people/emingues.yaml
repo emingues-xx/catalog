@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: emingues
+  title: Eduardo de Araujo Mingues
+  description: EM
+  annotations:
+    uoledtech.org/email: emingues+edtech@uoledtech.com
+  tags:
+    - squad-sales-success
+spec:
+  profile:
+    displayName: Eduardo de Araujo Mingues
+    email: emingues+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-sales-success

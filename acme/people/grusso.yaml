@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: grusso
+  title: Gregory Russo
+spec:
+  profile:
+    displayName: Gregory Russo
+    email: grusso@uoledtech.com
+  memberOf:
+  - group:squad-aquisicao

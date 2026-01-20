@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: vngomes
+  title: Vitor Gomes
+spec:
+  profile:
+    displayName: Vitor Gomes
+    email: vngomes@uoledtech.com
+  memberOf:
+  - group:squad-ava

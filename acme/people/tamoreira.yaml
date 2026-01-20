@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: tamoreira
+  title: Tadeu Moreira Oliveira
+  description: DEV
+  annotations:
+    uoledtech.org/email: tamoreira+edtech@uoledtech.com
+  tags:
+    - squad-aquisicao
+spec:
+  profile:
+    displayName: Tadeu Moreira Oliveira
+    email: tamoreira+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-aquisicao
+    - squad-payops

@@ -1,0 +1,33 @@
+# apiVersion: backstage.io/v1alpha1
+# kind: Group
+# metadata:
+#  name: Uoledtech
+#  description: The Uoledtech organization
+#  links:
+#    - url: https://uoledtech.com.br/
+#      title: Website
+# spec:
+#  type: organization
+#  profile:
+#    displayName: Uoledtech
+#    email: contato@uoledtech.com.br
+#    picture: https://avatars.dicebear.com/api/identicon/info@example.com.svg?background=%23fff&margin=25
+#  children: [tribo-growth]
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: groups
+  description: A collection of all Backstage Groups
+spec:
+  targets:
+    - ./*.yaml
+    # Explicitly listed groups (also covered by ./*.yaml above):
+    - ./squad-academico.yaml
+    - ./squad-aquisicao.yaml
+    - ./squad-ava.yaml
+    - ./squad-payops.yaml
+    - ./squad-sales-success.yaml
+    - ./tribo-core.yaml
+    - ./tribo-growth.yaml
+    - ./cross.yaml
+    - ./platform.yaml

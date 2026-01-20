@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: tribo-core
+  description: tribo-core
+spec:
+  type: team
+  profile:
+    email: tribo-core@example.com
+    picture: https://avatars.dicebear.com/api/identicon/team-a@example.com.svg?background=%23fff&margin=25
+  parent: tribo-core
+  children: []

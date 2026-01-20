@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sneves
+  title: Saimom Matheus Vargas Neves
+  description: DEV
+  annotations:
+    uoledtech.org/email: sneves+edtech@uoledtech.com
+  tags:
+    - squad-aquisicao
+spec:
+  profile:
+    displayName: Saimom Matheus Vargas Neves
+    email: sneves+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-aquisicao

@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform
+  title: Platform
+  description: Squad Plataforma - Responsável por plataforma e infraestrutura
+  tags:
+  - tribe-core
+  - plataforma
+spec:
+  type: team
+  profile:
+    displayName: Platform
+    email: l-uoledtech-sre-opm@uolinc.com
+  parent: tribe-core
+  children: []

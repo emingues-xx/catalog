@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: japolinario
+  title: Jaelson Apolinario de Oliveira
+  description: Head de Engenharia
+  annotations:
+    uoledtech.org/email: japolinario+edtech@uoledtech.com
+  tags:
+    - tribo-core
+    - tribo-growth
+spec:
+  profile:
+    displayName: Jaelson Apolinario de Oliveira
+    email: japolinario+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - tribo-core
+    - tribo-growth

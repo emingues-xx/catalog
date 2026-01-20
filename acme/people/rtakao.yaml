@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rtakao
+  title: Robert Dos Santos Takao
+  description: EM
+  annotations:
+    uoledtech.org/email: rtakao+edtech@uoledtech.com
+  tags:
+    - squad-aquisicao
+spec:
+  profile:
+    displayName: Robert Dos Santos Takao
+    email: rtakao+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-aquisicao

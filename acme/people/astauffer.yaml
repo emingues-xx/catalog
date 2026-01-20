@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: astauffer
+  title: Anna Stauffer
+  description: Data Manager
+  annotations:
+    uoledtech.org/email: astauffer@uoledtech.com
+  tags:
+    - tribo-core
+    - tribo-growth
+spec:
+  profile:
+    displayName: Anna Stauffer
+    email: astauffer@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - tribo-core
+    - tribo-growth

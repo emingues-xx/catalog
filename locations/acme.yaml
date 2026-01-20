@@ -1,0 +1,64 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: acme
+  description: A collection of all Backstage Groups and Users from ACME
+spec:
+  targets:
+    # Groups
+    - ../acme/org.yaml
+    - ../acme/tribo-core.yaml
+    - ../acme/tribo-growth.yaml
+    - ../acme/squad-academico.yaml
+    - ../acme/squad-aquisicao.yaml
+    - ../acme/squad-ava.yaml
+    - ../acme/squad-payops.yaml
+    - ../acme/squad-sales-success.yaml
+    - ../acme/platform.yaml
+    - ../acme/cross.yaml
+    # People
+    - ../acme/people/alcosta.yaml
+    - ../acme/people/aoliveira30.yaml
+    - ../acme/people/astauffer.yaml
+    - ../acme/people/avsouza.yaml
+    - ../acme/people/bromero.yaml
+    - ../acme/people/bsd_amarques.yaml
+    - ../acme/people/bsilva6.yaml
+    - ../acme/people/cin_gbarboza.yaml
+    - ../acme/people/delias1.yaml
+    - ../acme/people/deyler.yaml
+    - ../acme/people/dfbastos.yaml
+    - ../acme/people/dflorenca.yaml
+    - ../acme/people/dnarnatonis.yaml
+    - ../acme/people/dserrano.yaml
+    - ../acme/people/emingues.yaml
+    - ../acme/people/esatiro.yaml
+    - ../acme/people/fferraresi.yaml
+    - ../acme/people/fpaz.yaml
+    - ../acme/people/grusso.yaml
+    - ../acme/people/gsandrade.yaml
+    - ../acme/people/gvanderlei.yaml
+    - ../acme/people/japolinario.yaml
+    - ../acme/people/joliveira8.yaml
+    - ../acme/people/jpcarvalho.yaml
+    - ../acme/people/lalcantara.yaml
+    - ../acme/people/lccordeiro.yaml
+    - ../acme/people/lefernandes.yaml
+    - ../acme/people/logarcia.yaml
+    - ../acme/people/lqrosa.yaml
+    - ../acme/people/lvillanetti.yaml
+    - ../acme/people/marcarvalho.yaml
+    - ../acme/people/mgarcia2.yaml
+    - ../acme/people/phramos.yaml
+    - ../acme/people/rbaltazar.yaml
+    - ../acme/people/rcadena.yaml
+    - ../acme/people/rodfigueired.yaml
+    - ../acme/people/rschneider.yaml
+    - ../acme/people/rsilva6.yaml
+    - ../acme/people/rtakao.yaml
+    - ../acme/people/rtrodrigues.yaml
+    - ../acme/people/rvaranda.yaml
+    - ../acme/people/sneves.yaml
+    - ../acme/people/svargas.yaml
+    - ../acme/people/tamoreira.yaml
+    - ../acme/people/vngomes.yaml

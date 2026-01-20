@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dnarnatonis
+  title: Danilo Narnatonis De Moraes Oliveira
+  description: DEV
+  annotations:
+    uoledtech.org/email: dnarnatonis+edtech@uoledtech.com
+  tags:
+    - squad-academico
+spec:
+  profile:
+    displayName: Danilo Narnatonis De Moraes Oliveira
+    email: dnarnatonis+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-academico

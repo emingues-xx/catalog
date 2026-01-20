@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: fpaz
+  title: Fillipe Almeida Paz
+  description: TTL
+  annotations:
+    uoledtech.org/email: fpaz+edtech@uoledtech.com
+  tags:
+    - tribo-growth
+spec:
+  profile:
+    displayName: Fillipe Almeida Paz
+    email: fpaz+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - tribo-growth

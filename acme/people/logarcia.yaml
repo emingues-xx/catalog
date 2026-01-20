@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: logarcia
+  title: Leonardo Peixoto
+  description: EM
+  annotations:
+    uoledtech.org/email: logarcia+edtech@uoledtech.com
+  tags:
+    - squad-payops
+spec:
+  profile:
+    displayName: Leonardo Peixoto
+    email: logarcia@uoledtech.com
+  memberOf:
+  - group:squad-payops

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: svargas
+  title: Saimom Vargas
+spec:
+  profile:
+    displayName: Saimom Vargas
+    email: svargas@uoledtech.com
+  memberOf:
+  - group:squad-payops

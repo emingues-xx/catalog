@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: mgarcia2
+  title: Miguel Braga Garcia
+  description: DEV
+  annotations:
+    uoledtech.org/email: mgarcia2+edtech@uoledtech.com
+  tags:
+    - squad-academico
+spec:
+  profile:
+    displayName: Miguel Braga Garcia
+    email: mgarcia2+edtech@uoledtech.com
+    picture: https://avatars.dicebear.com/api/avataaars/calum-leavy@example.com.svg?background=%23fff
+  memberOf:
+    - squad-academico
