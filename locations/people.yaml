@@ -1,0 +1,40 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: opm-people
+  description: People (pessoas) do catálogo de OPM
+spec:
+  type: url
+  targets:
+    - ../people/aoliveira30.yaml
+    - ../people/avsouza.yaml
+    - ../people/bromero.yaml
+    - ../people/bsilva6.yaml
+    - ../people/cin_gbarboza.yaml
+    - ../people/delias1.yaml
+    - ../people/deyler.yaml
+    - ../people/dfbastos.yaml
+    - ../people/dflorenca.yaml
+    - ../people/emingues.yaml
+    - ../people/fferraresi.yaml
+    - ../people/grusso.yaml
+    - ../people/gsandrade.yaml
+    - ../people/gvanderlei.yaml
+    - ../people/joliveira8.yaml
+    - ../people/jpcarvalho.yaml
+    - ../people/lalcantara.yaml
+    - ../people/lefernandes.yaml
+    - ../people/logarcia.yaml
+    - ../people/lqrosa.yaml
+    - ../people/lvillanetti.yaml
+    - ../people/marcarvalho.yaml
+    - ../people/mgarcia2.yaml
+    - ../people/rbaltazar.yaml
+    - ../people/rcadena.yaml
+    - ../people/rodfigueired.yaml
+    - ../people/rschneider.yaml
+    - ../people/rsilva6.yaml
+    - ../people/rtrodrigues.yaml
+    - ../people/svargas.yaml
+    - ../people/tamoreira.yaml
+    - ../people/vngomes.yaml

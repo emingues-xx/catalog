@@ -6,12 +6,12 @@ metadata:
 spec:
   type: url
   targets:
-    - ./systems/checkout-campus.yaml
-    - ./systems/checkout-matrix.yaml
-    - ./systems/checkout-onepage.yaml
-    - ./systems/opm-academic-system.yaml
-    - ./systems/opm-analytics-system.yaml
-    - ./systems/opm-ava-system.yaml
-    - ./systems/opm-integrations-system.yaml
-    - ./systems/opm-payment-system.yaml
-    - ./systems/opm-production.yaml
+    - ../systems/checkout-campus.yaml
+    - ../systems/checkout-matrix.yaml
+    - ../systems/checkout-onepage.yaml
+    - ../systems/opm-academic-system.yaml
+    - ../systems/opm-analytics-system.yaml
+    - ../systems/opm-ava-system.yaml
+    - ../systems/opm-integrations-system.yaml
+    - ../systems/opm-payment-system.yaml
+    - ../systems/opm-production.yaml
