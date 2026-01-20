@@ -6,4 +6,14 @@ metadata:
 spec:
   type: url
   targets:
-    - ./domains/*.yaml
+    - ./domains/academic.yaml
+    - ./domains/analytics.yaml
+    - ./domains/apis-financeiras.yaml
+    - ./domains/ava.yaml
+    - ./domains/certificates.yaml
+    - ./domains/gestao-de-parcelas.yaml
+    - ./domains/integrations.yaml
+    - ./domains/motor-de-recorrencia.yaml
+    - ./domains/pagamentos.yaml
+    - ./domains/reconhecimento-de-receita.yaml
+    - ./domains/vendas.yaml
